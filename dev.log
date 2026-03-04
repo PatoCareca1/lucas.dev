@@ -1,0 +1,154 @@
+nohup: ignorando entrada
+🚀 Starting Lucas Portfolio Pro Dev Environment...
+🛑 Cleaning up ports 8001 and 5173...
+ 744441🐍 Starting Django Backend on port 8001 in background...
+⚡ Starting Vite Frontend...
+
+> frontend@0.0.0 dev
+> vite
+
+
+  VITE v7.3.1  ready in 362 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+Watching for file changes with StatReloader
+[04/Mar/2026 01:20:10] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:20:10] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:20:31] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:20:31] "GET /api/system-info HTTP/1.1" 200 51
+22:27:35 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+[04/Mar/2026 01:27:36] "GET /api/system-info HTTP/1.1" 200 51
+22:28:44 [vite] (client) hmr update /src/index.css, /src/components/TerminalModal.tsx
+22:28:46 [vite] (client) ✨ new dependencies optimized: canvas-confetti
+22:28:46 [vite] (client) ✨ optimized dependencies changed. reloading
+[04/Mar/2026 01:28:49] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:28:49] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:29:23] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:29:23] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:37:42] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:37:42] "GET /api/system-info HTTP/1.1" 200 51
+22:38:14 [vite] (client) hmr update /src/pages/Home.tsx, /src/index.css
+22:38:42 [vite] (client) hmr update /src/pages/Home.tsx, /src/index.css
+[04/Mar/2026 01:38:42] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:38:42] "GET /api/system-info HTTP/1.1" 200 51
+22:38:55 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+22:38:55 [vite] Internal server error: /home/pato/Projetos/lucas-portfolio-pro/frontend/src/components/Layout.tsx: Unexpected token, expected "," (147:12)
+
+  145 |             </div>      </div>
+  146 |
+> 147 |             {/* Invisible FAB trigger at the bottom right corner for mobile/click accessibility without being obvious */ }
+      |             ^
+  148 |             <div
+  149 |                 className="fixed bottom-0 right-0 w-8 h-8 cursor-default z-[90]"
+  150 |                 onClick={() => setIsTerminalOpen(true)}
+  Plugin: vite:react-babel
+  File: /home/pato/Projetos/lucas-portfolio-pro/frontend/src/components/Layout.tsx:147:12
+  145 |              </div>      </div>
+  146 |  
+  147 |              {/* Invisible FAB trigger at the bottom right corner for mobile/click accessibility without being obvious...
+      |              ^
+  148 |              <div
+  149 |                  className="fixed bottom-0 right-0 w-8 h-8 cursor-default z-[90]"
+      at constructor (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:6619:16)
+      at TypeScriptParserMixin.expect (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:6899:12)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11661:14)
+      at TypeScriptParserMixin.parseExprAtom (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseArrowExpression (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12075:10)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11687:12)
+      at TypeScriptParserMixin.parseExprAtom (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at /home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseVar (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13384:91)
+      at TypeScriptParserMixin.parseVarStatement (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:13230:10)
+      at TypeScriptParserMixin.parseVarStatement (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9408:31)
+      at TypeScriptParserMixin.parseStatementContent (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:12851:23)
+      at TypeScriptParserMixin.parseStatementContent (/home/pato/Projetos/lucas-portfolio-pro/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+22:39:40 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+[04/Mar/2026 01:39:40] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:40:15] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:40:15] "GET /api/system-info HTTP/1.1" 200 51
+22:44:13 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+[04/Mar/2026 01:46:14] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:46:14] "GET /api/system-info HTTP/1.1" 200 51
+22:49:38 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+[04/Mar/2026 01:49:40] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:49:54] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:49:54] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:50:32] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:50:32] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:50:34] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:50:34] "GET /api/system-info HTTP/1.1" 200 51
+22:53:49 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+22:54:10 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+22:55:09 [vite] (client) hmr update /src/index.css, /src/components/ProfilePicture.tsx
+22:55:10 [vite] (client) hmr update /src/index.css, /src/components/ProfilePicture.tsx
+[04/Mar/2026 01:55:23] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 01:55:23] "GET /api/system-info HTTP/1.1" 200 51
+22:55:58 [vite] (client) hmr update /src/index.css, /src/components/ProfilePicture.tsx
+23:00:18 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+23:00:55 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+[04/Mar/2026 02:02:57] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:02:57] "GET /api/system-info HTTP/1.1" 200 51
+23:05:02 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+23:05:27 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+23:05:38 [vite] (client) hmr update /src/components/Layout.tsx, /src/index.css
+23:09:18 [vite] (client) page reload src/locales/en/translation.json
+[04/Mar/2026 02:09:20] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:09:20] "GET /api/system-info HTTP/1.1" 200 51
+23:09:29 [vite] (client) page reload src/locales/pt/translation.json
+[04/Mar/2026 02:09:30] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:09:30] "GET /api/system-info HTTP/1.1" 200 51
+23:09:30 [vite] (client) page reload src/locales/pt/translation.json
+[04/Mar/2026 02:09:31] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:09:31] "GET /api/system-info HTTP/1.1" 200 51
+23:18:00 [vite] (client) page reload src/locales/pt/translation.json
+[04/Mar/2026 02:18:02] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:18:02] "GET /api/system-info HTTP/1.1" 200 51
+23:18:20 [vite] (client) page reload src/locales/en/translation.json
+[04/Mar/2026 02:18:21] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:18:21] "GET /api/system-info HTTP/1.1" 200 51
+23:18:50 [vite] (client) page reload src/locales/en/translation.json
+[04/Mar/2026 02:18:50] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:18:50] "GET /api/system-info HTTP/1.1" 200 51
+23:19:02 [vite] (client) page reload src/locales/pt/translation.json
+[04/Mar/2026 02:19:03] "GET /api/system-info HTTP/1.1" 200 51
+[04/Mar/2026 02:19:03] "GET /api/system-info HTTP/1.1" 200 51
+./dev.sh, linha 21: 744666 Morto                      npm run dev
+🛑 Development environment stopped.

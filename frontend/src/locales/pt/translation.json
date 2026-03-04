@@ -1,0 +1,26 @@
+{
+    "language": "Idioma",
+    "theme": "Tema",
+    "title": "Lucas.dev",
+    "technologies": "Tecnologias Principais",
+    "os": "Sistema Operacional",
+    "python_version": "Versão Python",
+    "welcome": "Bem-vindo ao meu portfólio movido por React & Django.",
+    "home": {
+        "greeting": "Olá, eu sou o Lucas.",
+        "subtitle": "Desenvolvedor Backend especialista em aplicações Django e Python.",
+        "bio": "Construo sistemas e APIs robustos e escaláveis. Minha experiência inclui o desenvolvimento de arquiteturas fullstack e serviços principais de backend para plataformas corporativas (PLP, PRP). Vamos construir algo extraordinário juntos.",
+        "skills_title": "Habilidades Principais"
+    },
+    "labs": {
+        "title": "Labs & Ferramentas",
+        "word_counter": {
+            "name": "Contador de Palavras",
+            "placeholder": "Digite ou cole seu texto aqui...",
+            "words": "Palavras",
+            "characters": "Caracteres",
+            "characters_no_spaces": "Caracteres (sem espaços)",
+            "frequency": "Frequência de Palavras"
+        }
+    }
+}

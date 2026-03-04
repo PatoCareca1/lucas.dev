@@ -1,0 +1,26 @@
+{
+    "language": "Language",
+    "theme": "Theme",
+    "title": "Lucas.dev",
+    "technologies": "Core Technologies",
+    "os": "Operating System",
+    "python_version": "Python Version",
+    "welcome": "Welcome to my portfolio powered by React & Django.",
+    "home": {
+        "greeting": "Hello, I am Lucas.",
+        "subtitle": "Backend Developer specializing in Django and Python applications.",
+        "bio": "I build robust, scalable systems and APIs. My experience includes developing fullstack architectures and core backend services for enterprise platforms (PLP, PRP). Let's build something extraordinary together.",
+        "skills_title": "Core Expertise"
+    },
+    "labs": {
+        "title": "Labs & Tools",
+        "word_counter": {
+            "name": "Word Counter",
+            "placeholder": "Type or paste your text here...",
+            "words": "Words",
+            "characters": "Characters",
+            "characters_no_spaces": "Characters (no spaces)",
+            "frequency": "Word Frequency"
+        }
+    }
+}
