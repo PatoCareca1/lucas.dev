@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import SystemInfo from './SystemInfo';
@@ -121,8 +121,17 @@ const Layout: React.FC = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    // Interactive Console Dev Easter Egg
+    useEffect(() => {
+        console.log(
+            '%c system fully operational | built by Antigravity \n%c \n Hello Recruiter/Dev! Looking for source code or want to chat? \n Try pressing Ctrl+Shift+K to open the terminal, or just contact me directly!',
+            'color: #35bf5c; font-weight: bold; font-size: 14px; padding: 4px; border: 1px solid #35bf5c; border-radius: 4px; background: #000;',
+            'color: #888; font-size: 12px; font-style: italic; margin-top: 4px;'
+        );
+    }, []);
+
     // Generate 50 stable random spheres
-    const sphereConfigs = useMemo(() => {
+    const [sphereConfigs] = useState(() => {
         const configs = [];
         for (let i = 0; i < 50; i++) {
             // Varying sizes between 2px and 8px for depth
@@ -139,7 +148,7 @@ const Layout: React.FC = () => {
             });
         }
         return configs;
-    }, []); // Only compute once per mount
+    });
 
     // Mouse follower light spring to smooth it out slightly if desired, though direct follow is also fine
     const lightX = useSpring(mousePosition.x - 400, { damping: 40, stiffness: 300 });

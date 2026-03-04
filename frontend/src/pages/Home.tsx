@@ -1,20 +1,14 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import FeatureCard from '../components/FeatureCard';
 import ProfilePicture from '../components/ProfilePicture';
 import Tooltip from '../components/Tooltip';
-import { Code2, Database, Layout, Terminal } from 'lucide-react';
+import BentoGrid from '../components/BentoGrid';
+import Timeline from '../components/Timeline';
+import OffDutyGallery from '../components/OffDutyGallery';
 import { motion } from 'framer-motion';
 
 const Home: React.FC = () => {
     const { t } = useTranslation();
-
-    const skills = [
-        { title: 'Django (Python)', description: 'Robust backend with Django Ninja for fast, scalable APIs.', icon: <Database size={32} /> },
-        { title: 'React & TypeScript', description: 'Dynamic user interfaces built with type safety.', icon: <Code2 size={32} /> },
-        { title: 'Vite & Tailwind CSS', description: 'Lightning fast builds and utility-first styling.', icon: <Layout size={32} /> },
-        { title: 'Linux Environment', description: 'Aimed at production readiness on Linux environments (Manjaro/CachyOS).', icon: <Terminal size={32} /> }
-    ];
 
     return (
         <div className="min-h-[calc(100vh-8rem)]">
@@ -65,26 +59,14 @@ const Home: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Skills Section */}
+                {/* New Page Sections */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mb-12"
+                    className="flex flex-col gap-8"
                 >
-                    <div className="text-center md:text-left mb-8">
-                        <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
-                            {t('home.skills_title')}
-                        </h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {skills.map((skill, idx) => (
-                            <FeatureCard
-                                key={idx}
-                                title={skill.title}
-                                description={skill.description}
-                                icon={skill.icon}
-                            />
-                        ))}
-                    </div>
+                    <BentoGrid />
+                    <Timeline />
+                    <OffDutyGallery />
                 </motion.div>
 
             </div>

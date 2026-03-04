@@ -22,5 +22,49 @@
             "characters_no_spaces": "Characters (no spaces)",
             "frequency": "Word Frequency"
         }
+    },
+    "bento": {
+        "django": "Django",
+        "django_desc": "Main framework for robust and scalable API development. Powering enterprise platforms under the hood.",
+        "django_badge": "Scalable & Secure",
+        "python": "Python",
+        "python_desc": "The core language for backend logic, data processing, and scripting.",
+        "react": "React & TS",
+        "react_desc": "Building dynamic, type-safe, and interactive user interfaces.",
+        "linux": "Linux",
+        "linux_desc": "Production-ready environments and deep system understanding."
+    },
+    "timeline": {
+        "title": "Journey",
+        "sethas": {
+            "title": "System Analyst - SETHAS",
+            "date": "2021 - Present",
+            "desc": "Lead developer for state-wide social management systems. Architected and maintained the main legacy applications and led modernization efforts."
+        },
+        "plp": {
+            "title": "PLP Architect",
+            "date": "2023",
+            "desc": "Designed a high-performance pricing and promotions microservice to handle complex real-time calculations at scale."
+        },
+        "prp": {
+            "title": "PRP Developer",
+            "date": "2024",
+            "desc": "Built a resilient product review platform managing large volumes of UGC (User Generated Content) integrating with various downstream systems."
+        }
+    },
+    "offduty": {
+        "title": "Beyond the Code",
+        "marilia": {
+            "title": "Marília",
+            "caption": "Partnership & Communication. Building a life together with continuous deployment of love."
+        },
+        "training": {
+            "title": "Strength Training",
+            "caption": "Discipline & Consistency. Progress is made one commit (and rep) at a time."
+        },
+        "games": {
+            "title": "Gaming",
+            "caption": "Problem-solving & Strategy. Navigating complex systems, both digital and fantasy."
+        }
     }
 }
