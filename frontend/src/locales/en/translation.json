@@ -9,7 +9,7 @@
     "home": {
         "greeting": "Hello, I am Lucas.",
         "subtitle": "Backend Developer specializing in Django and Python applications.",
-        "bio": "I build robust, scalable systems and APIs. My experience includes developing fullstack architectures and core backend services for enterprise platforms (PLP, PRP). Let's build something extraordinary together.",
+        "bio": "Studying technology for 10 years and coding for 8. Specialist in Python and JavaScript, focused on TypeScript for Fullstack architectures that replace manual processes with scalable solutions.",
         "skills_title": "Core Expertise"
     },
     "labs": {
@@ -25,38 +25,43 @@
     },
     "bento": {
         "django": "Django",
-        "django_desc": "Main framework for robust and scalable API development. Powering enterprise platforms under the hood.",
+        "django_desc": "Senior Backend: Auditable APIs and complex domain modeling.",
         "django_badge": "Scalable & Secure",
         "python": "Python",
         "python_desc": "The core language for backend logic, data processing, and scripting.",
         "react": "React & TS",
         "react_desc": "Building dynamic, type-safe, and interactive user interfaces.",
-        "linux": "Linux",
-        "linux_desc": "Production-ready environments and deep system understanding."
+        "devops": "DevOps",
+        "devops_desc": "Docker & CI/CD: I used to think DevOps was just a backend guy who wasn't afraid of the terminal...(irony intended)."
     },
     "timeline": {
         "title": "Journey",
         "sethas": {
-            "title": "System Analyst - SETHAS",
-            "date": "2021 - Present",
-            "desc": "Lead developer for state-wide social management systems. Architected and maintained the main legacy applications and led modernization efforts."
+            "title": "System Analyst - SETHAS / UFRN",
+            "date": "2025 - Present",
+            "desc": "Legacy systems modernization and verifiable API creation using Django Ninja."
         },
-        "plp": {
-            "title": "PLP Architect",
+        "pump": {
+            "title": "Developer - 4PUMP",
             "date": "2023",
-            "desc": "Designed a high-performance pricing and promotions microservice to handle complex real-time calculations at scale."
+            "desc": "Built Python automations to optimize business processes."
         },
-        "prp": {
-            "title": "PRP Developer",
-            "date": "2024",
-            "desc": "Built a resilient product review platform managing large volumes of UGC (User Generated Content) integrating with various downstream systems."
+        "crowdless": {
+            "title": "Team Leader - Hackathon Juventudes",
+            "date": "2021",
+            "desc": "Technical lead of the winning team, building the Crowdless solution from scratch."
+        },
+        "ifba": {
+            "title": "The Beginning - IFBA",
+            "date": "2016",
+            "desc": "Deep dive into the world of technology, algorithms, and computer science fundamentals."
         }
     },
     "offduty": {
         "title": "Beyond the Code",
         "marilia": {
             "title": "Marília",
-            "caption": "Partnership & Communication. Building a life together with continuous deployment of love."
+            "caption": "Partnership and support: the solid foundation that allows total focus on technical excellence."
         },
         "training": {
             "title": "Strength Training",

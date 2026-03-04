@@ -21,7 +21,7 @@ const BentoGrid: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
-                
+
                 {/* Django Block (Large) */}
                 <motion.div
                     {...hoverTiltStyle}
@@ -86,19 +86,27 @@ const BentoGrid: React.FC = () => {
                     </p>
                 </motion.div>
 
-                {/* Linux Block */}
+                {/* DevOps Block */}
                 <motion.div
                     {...hoverTiltStyle}
                     transition={{ delay: 0.4 }}
-                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/10 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-md flex flex-col justify-center"
+                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/10 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-md flex flex-col justify-between"
                 >
-                    <div className="mb-4 text-orange-500">
-                        <Terminal size={32} />
+                    <div>
+                        <div className="mb-4 text-orange-500">
+                            <Terminal size={32} />
+                        </div>
+                        <h4 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{t('bento.devops')}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {t('bento.devops_desc')}
+                        </p>
                     </div>
-                    <h4 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{t('bento.linux')}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t('bento.linux_desc')}
-                    </p>
+                    {/* Devops Tags */}
+                    <div className="flex gap-2 mt-4 text-xs font-mono font-bold text-manjaro-green opacity-90">
+                        <span>#Docker</span>
+                        <span>#CI/CD</span>
+                        <span>#TDD</span>
+                    </div>
                 </motion.div>
 
             </div>

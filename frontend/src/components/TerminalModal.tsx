@@ -70,10 +70,10 @@ const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose }) => {
             'specs': () => (
                 <div className="flex flex-col gap-1 my-2">
                     <div className="text-teal-400 font-bold border-b border-gray-700 pb-1 mb-1">Server Specifications</div>
-                    <div><span className="text-manjaro-green">CPU:</span> Oster Air Fryer (4.5L High Performance)</div>
-                    <div><span className="text-manjaro-green">GPU:</span> Moto G85 Adreno Integrated Graphics</div>
-                    <div><span className="text-manjaro-green">OS:</span> Manjaro OS (btw)</div>
-                    <div className="text-xs text-gray-500 mt-2">Running Lucas Portfolio Pro at peak efficiency.</div>
+                    <div><span className="text-manjaro-green">Hardware:</span> Oster Air Fryer</div>
+                    <div><span className="text-manjaro-green">Mobile:</span> Moto G85</div>
+                    <div><span className="text-manjaro-green">OS:</span> Manjaro Linux</div>
+                    <div className="text-xs text-gray-500 mt-2">Running Portfolio Pro at peak efficiency.</div>
                 </div>
             ),
             'challenge': () => {

@@ -9,7 +9,7 @@
     "home": {
         "greeting": "Olá, eu sou o Lucas.",
         "subtitle": "Desenvolvedor Backend especialista em aplicações Django e Python.",
-        "bio": "Construo sistemas e APIs robustos e escaláveis. Minha experiência inclui o desenvolvimento de arquiteturas fullstack e serviços principais de backend para plataformas corporativas (PLP, PRP). Vamos construir algo extraordinário juntos.",
+        "bio": "Estudando tecnologia há 10 anos e programando há 8. Especialista em Python e JavaScript, focado em TypeScript para arquiteturas Fullstack que substituem processos manuais por soluções escaláveis.",
         "skills_title": "Habilidades Principais"
     },
     "labs": {
@@ -25,38 +25,43 @@
     },
     "bento": {
         "django": "Django",
-        "django_desc": "Framework principal para desenvolvimento de APIs robustas e escaláveis. Sustentando plataformas corporativas.",
+        "django_desc": "Backend sênior: APIs auditáveis e modelagem de domínio complexa.",
         "django_badge": "Escalável & Seguro",
         "python": "Python",
         "python_desc": "Linguagem base para lógica de backend, processamento de dados e automação.",
         "react": "React & TS",
         "react_desc": "Construindo interfaces de usuário dinâmicas, interativas e fortemente tipadas.",
-        "linux": "Linux",
-        "linux_desc": "Ambientes prontos para produção e domínio do sistema operacional."
+        "devops": "DevOps",
+        "devops_desc": "Docker & CI/CD: Eu achava que DevOps era só um backend que não tinha medo do terminal...(contém ironia)."
     },
     "timeline": {
         "title": "Trajetória",
         "sethas": {
-            "title": "Analista de Sistemas - SETHAS",
-            "date": "2021 - Presente",
-            "desc": "Desenvolvedor líder em sistemas de gestão social estadual. Arquitetou e manteve aplicações legadas e liderou esforços de modernização."
+            "title": "Analista de Sistemas - SETHAS / UFRN",
+            "date": "2025 - Presente",
+            "desc": "Modernização de sistemas legados e criação de APIs auditáveis com Django Ninja."
         },
-        "plp": {
-            "title": "Arquiteto PLP",
+        "pump": {
+            "title": "Desenvolvedor - 4PUMP",
             "date": "2023",
-            "desc": "Projetou um microsserviço de preços e promoções de alto desempenho para lidar com cálculos complexos em tempo real e em larga escala."
+            "desc": "Desenvolvimento de automações em Python para otimização de processos."
         },
-        "prp": {
-            "title": "Desenvolvedor PRP",
-            "date": "2024",
-            "desc": "Construiu uma plataforma resiliente de avaliação de produtos gerenciando grandes volumes de conteúdo de usuários integrando com vários sistemas."
+        "crowdless": {
+            "title": "Team Leader - Hackathon Juventudes",
+            "date": "2021",
+            "desc": "Líder técnico da equipe vencedora, construindo a solução Crowdless do zero."
+        },
+        "ifba": {
+            "title": "Início da Jornada - IFBA",
+            "date": "2016",
+            "desc": "Imersão no mundo da tecnologia, algoritmos e fundamentos da ciência da computação."
         }
     },
     "offduty": {
         "title": "Além do Código",
         "marilia": {
             "title": "Marília",
-            "caption": "Parceria e Comunicação. Construindo a vida com 'continuous deployment' de amor."
+            "caption": "Parceria e suporte: a base sólida que permite o foco total na excelência técnica."
         },
         "training": {
             "title": "Treino de Força",

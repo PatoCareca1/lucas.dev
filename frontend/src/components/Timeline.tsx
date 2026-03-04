@@ -69,25 +69,32 @@ const Timeline: React.FC = () => {
 
     const items = [
         {
-            title: t('timeline.prp.title'),
-            date: t('timeline.prp.date'),
-            description: t('timeline.prp.desc'),
-            tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
-            delay: 0.1
-        },
-        {
-            title: t('timeline.plp.title'),
-            date: t('timeline.plp.date'),
-            description: t('timeline.plp.desc'),
-            tags: ['Django', 'Python', 'Redis', 'PostgreSQL', 'Celery'],
-            delay: 0.2
-        },
-        {
             title: t('timeline.sethas.title'),
             date: t('timeline.sethas.date'),
             description: t('timeline.sethas.desc'),
-            tags: ['Python', 'Legacy Modernization', 'Architecture'],
+            tags: ['Django Ninja', 'Python', 'Legacy Modernization', 'APIs'],
+            delay: 0.1
+        },
+        {
+            title: t('timeline.pump.title'),
+            date: t('timeline.pump.date'),
+            description: t('timeline.pump.desc'),
+            tags: ['Python', 'Automations', 'Process Optimization'],
+            delay: 0.2
+        },
+        {
+            title: t('timeline.crowdless.title'),
+            date: t('timeline.crowdless.date'),
+            description: t('timeline.crowdless.desc'),
+            tags: ['Team Leader', 'Hackathon Winner', 'MVP', 'Fullstack'],
             delay: 0.3
+        },
+        {
+            title: t('timeline.ifba.title'),
+            date: t('timeline.ifba.date'),
+            description: t('timeline.ifba.desc'),
+            tags: ['C/C++', 'Algorithms', 'Computer Science'],
+            delay: 0.4
         }
     ];
 

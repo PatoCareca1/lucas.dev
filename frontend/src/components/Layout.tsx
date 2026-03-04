@@ -124,7 +124,7 @@ const Layout: React.FC = () => {
     // Interactive Console Dev Easter Egg
     useEffect(() => {
         console.log(
-            '%c system fully operational | built by Antigravity \n%c \n Hello Recruiter/Dev! Looking for source code or want to chat? \n Try pressing Ctrl+Shift+K to open the terminal, or just contact me directly!',
+            '%c System operational. 10 years of passion, 8 years of code. Hire me? [y/n] \n%c \n Hello Recruiter/Dev! Looking for source code or want to chat? \n Try pressing Ctrl+Shift+K to open the terminal, or just contact me directly!',
             'color: #35bf5c; font-weight: bold; font-size: 14px; padding: 4px; border: 1px solid #35bf5c; border-radius: 4px; background: #000;',
             'color: #888; font-size: 12px; font-style: italic; margin-top: 4px;'
         );
