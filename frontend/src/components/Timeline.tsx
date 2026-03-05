@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Briefcase, GraduationCap, Trophy } from 'lucide-react';
+import chibiSenior from '../assets/chibi_senior.png';
+import chibiYoung from '../assets/chibi_young.png';
 
 
 
@@ -218,9 +220,14 @@ const EventCard: React.FC<{ data?: InfoCard; type: 'exp' | 'edu' }> = ({ data, t
 const Timeline: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <div className="my-16 flex flex-col w-full">
+        <div className="my-16 flex flex-col w-full relative">
+            {/* Chibi Tópico (Senior) */}
+            <div className="absolute -top-48 right-0 md:right-10 w-48 h-48 md:w-72 md:h-72 z-10 pointer-events-none opacity-90 drop-shadow-md">
+                <img src={chibiSenior} alt="Lucas Senior" className="w-full h-full object-contain" />
+            </div>
+
             {/* Table Header (hidden on mobile) */}
-            <div className="hidden md:flex w-full px-4 text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-widest mb-6">
+            <div className="hidden md:flex w-full px-4 text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-widest mb-6 mt-8">
                 <div className="w-1/6">{t('timeline.headers.period')}</div>
                 <div className="w-2/5 pl-4">{t('timeline.headers.experience')}</div>
                 <div className="w-2/5 pl-4">{t('timeline.headers.education')}</div>
@@ -237,10 +244,15 @@ const Timeline: React.FC = () => {
                         className="flex flex-col md:flex-row w-full gap-4 md:gap-0 border-b border-slate-300 dark:border-slate-800 pb-8 md:pb-6 last:border-0"
                     >
                         {/* Col 1: Período */}
-                        <div className="md:w-1/6 flex items-start pt-4">
+                        <div className="md:w-1/6 flex flex-col items-start pt-4 relative">
                             <span className="inline-block px-3 py-1 bg-white border border-slate-200 shadow-sm dark:shadow-none dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-gray-200 font-bold text-sm tracking-widest rounded-full">
                                 {row.year}
                             </span>
+                            {row.education?.key === 'ifba' && (
+                                <div className="mt-8 pointer-events-none opacity-90 drop-shadow-md">
+                                    <img src={chibiYoung} alt="Lucas Young" className="w-48 h-48 md:w-90 md:h-90 object-contain" />
+                                </div>
+                            )}
                         </div>
 
                         {/* Col 2: Experiência */}
@@ -252,7 +264,7 @@ const Timeline: React.FC = () => {
                         </div>
 
                         {/* Col 3: Formação & Conquistas */}
-                        <div className="md:w-2/5 md:px-2 flex flex-col gap-4">
+                        <div className="md:w-2/5 md:px-2 flex flex-col gap-4 relative">
                             <span className="md:hidden text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-widest pl-2 pt-2">
                                 {t('timeline.labels.edu')}
                             </span>
