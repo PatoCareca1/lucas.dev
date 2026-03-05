@@ -41,27 +41,7 @@
         "devops_desc": "Docker & CI/CD: I used to think DevOps was just a backend guy who wasn't afraid of the terminal...(irony intended)."
     },
     "timeline": {
-        "title": "Journey",
-        "sethas": {
-            "title": "System Analyst - SETHAS / UFRN",
-            "date": "2025 - Present",
-            "desc": "Legacy systems modernization and verifiable API creation using Django Ninja."
-        },
-        "pump": {
-            "title": "Developer - 4PUMP",
-            "date": "2023",
-            "desc": "Built Python automations to optimize business processes."
-        },
-        "crowdless": {
-            "title": "Team Leader - Hackathon Juventudes",
-            "date": "2021",
-            "desc": "Technical lead of the winning team, building the Crowdless solution from scratch."
-        },
-        "ifba": {
-            "title": "The Beginning - IFBA",
-            "date": "2016",
-            "desc": "Deep dive into the world of technology, algorithms, and computer science fundamentals."
-        }
+        "title": "Journey"
     },
     "offduty": {
         "title": "Beyond the Code",

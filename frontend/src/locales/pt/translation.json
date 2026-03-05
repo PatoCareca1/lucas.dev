@@ -9,7 +9,12 @@
     "home": {
         "greeting": "Olá, eu sou Lucas.",
         "subtitle": "Desenvolvedor Backend especializado em Python e Django, focado em APIs escaláveis, automação de processos e arquitetura de sistemas modernos.",
-        "badges": ["Backend Engineering", "APIs", "Data Processing", "Automation"],
+        "badges": [
+            "Backend Engineering",
+            "APIs",
+            "Data Processing",
+            "Automation"
+        ],
         "bio": "Há mais de 8 anos programando, transformo problemas complexos em soluções robustas e eficientes, utilizando Python, TypeScript e ferramentas modernas de engenharia.",
         "skills_title": "Habilidades Principais"
     },
@@ -36,27 +41,7 @@
         "devops_desc": "Docker & CI/CD: Eu achava que DevOps era só um backend que não tinha medo do terminal...(contém ironia)."
     },
     "timeline": {
-        "title": "Trajetória",
-        "sethas": {
-            "title": "Analista de Sistemas - SETHAS / UFRN",
-            "date": "2025 - Presente",
-            "desc": "Modernização de sistemas legados e criação de APIs auditáveis com Django Ninja."
-        },
-        "pump": {
-            "title": "Desenvolvedor - 4PUMP",
-            "date": "2023",
-            "desc": "Desenvolvimento de automações em Python para otimização de processos."
-        },
-        "crowdless": {
-            "title": "Team Leader - Hackathon Juventudes",
-            "date": "2021",
-            "desc": "Líder técnico da equipe vencedora, construindo a solução Crowdless do zero."
-        },
-        "ifba": {
-            "title": "Início da Jornada - IFBA",
-            "date": "2016",
-            "desc": "Imersão no mundo da tecnologia, algoritmos e fundamentos da ciência da computação."
-        }
+        "title": "Trajetória"
     },
     "offduty": {
         "title": "Além do Código",
