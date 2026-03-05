@@ -1,122 +1,161 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Briefcase, GraduationCap } from 'lucide-react';
 
-interface TimelineItemProps {
+interface InfoCard {
     title: string;
-    date: string;
-    description: string;
-    tags: string[];
-    isLast?: boolean;
-    delay?: number;
+    role: string;
+    deepDive?: string;
 }
 
-const TimelineItem: React.FC<TimelineItemProps> = ({ title, date, description, tags, isLast, delay = 0 }) => {
+interface TimelineRow {
+    year: string;
+    experience?: InfoCard;
+    education?: InfoCard;
+}
+
+const timelineData: TimelineRow[] = [
+    {
+        year: '2025 - Atual',
+        experience: {
+            title: 'SETHAS / RN',
+            role: 'Backend Developer / Analista de Dados',
+            deepDive: 'Arquitetura de APIs auditáveis em Django REST/Ninja. Modelagem de domínios complexos isolados e integração de pipelines maciços de ETL usando Pandas/DuckDB para garantir a integridade dos dados governamentais.',
+        },
+        education: {
+            title: 'UFRN / UERN',
+            role: 'Bacharelado & Especialização',
+            deepDive: 'Aprofundamento em Engenharia de Software, Arquitetura de Sistemas e Otimização Computacional em ambientes acadêmicos rigorosos.',
+        }
+    },
+    {
+        year: '2023 - 2024',
+        experience: {
+            title: '4PUMP',
+            role: 'Desenvolvedor Full Stack & Automação',
+            deepDive: 'Manutenção de automações ponta a ponta com Python e Selenium. Construção de interfaces React dinâmicas e dashboards que conectam múltiplas APIs financeiras a bases Postgres relacionais.',
+        }
+    },
+    {
+        year: '2021',
+        education: {
+            title: 'Hackathon HackaPower - 1º Lugar',
+            role: 'Tech Lead / Projeto Crowdless',
+            deepDive: 'Sob intensa restrição de tempo, liderei o desenvolvimento da IA/Visão Computacional e regras da aplicação Crowdless, conquistando o primeiro lugar geral pelo impacto e viabilidade arquitetural.',
+        }
+    },
+    {
+        year: '2016',
+        experience: {
+            title: 'Técnico em Informática',
+            role: 'Suporte & Infraestrutura Inicial',
+        },
+        education: {
+            title: 'IFBA - Campus Irecê',
+            role: 'Graduando Técnico',
+            deepDive: 'O rito de passagem: primeiros arrays em C/C++, manipulação brutal de ponteiros e fundação lógica para pensar como a máquina.',
+        }
+    }
+];
+
+const EventCard: React.FC<{ data?: InfoCard; type: 'exp' | 'edu' }> = ({ data, type }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    if (!data) {
+        return (
+            <div className="hidden md:flex h-full min-h-[120px] items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 dark:border-slate-800/50 bg-gray-50/30 dark:bg-slate-900/10 opacity-60">
+                <span className="text-gray-400 dark:text-gray-600 text-sm">N/A</span>
+            </div>
+        );
+    }
+
+    const isExp = type === 'exp';
+
     return (
-        <div className="relative pl-8 md:pl-0">
-            {/* Desktop timeline line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-200 dark:bg-slate-700" style={{ display: isLast ? 'none' : 'block' }}></div>
-
-            {/* Mobile timeline line */}
-            <div className="md:hidden absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-slate-700" style={{ display: isLast ? 'none' : 'block' }}></div>
-
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay }}
-                className="md:flex items-center justify-between w-full mb-12"
-            >
-                {/* Left side (Date on desktop, ignored on mobile) */}
-                <div className="hidden md:block w-5/12 text-right pr-8">
-                    <span className="text-manjaro-green font-mono font-semibold">{date}</span>
+        <div className={`p-6 rounded-2xl bg-white/10 dark:bg-slate-900/40 backdrop-blur-md border ${isExp ? 'border-blue-200 dark:border-blue-900/50 hover:border-blue-400 dark:hover:border-blue-500/50' : 'border-manjaro-green/30 dark:border-manjaro-green/30 hover:border-manjaro-green dark:hover:border-manjaro-green'} transition-colors shadow-sm relative group w-full h-full flex flex-col`}>
+            <div className="flex items-start justify-between mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors pr-4">
+                    {data.title}
+                </h3>
+                <div className={`p-2 rounded-lg ${isExp ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-manjaro-green dark:bg-green-900/30 dark:text-manjaro-green'}`}>
+                    {isExp ? <Briefcase size={16} /> : <GraduationCap size={16} />}
                 </div>
+            </div>
+            <h4 className="text-[15px] font-medium text-gray-600 dark:text-gray-400 mb-4">
+                {data.role}
+            </h4>
 
-                {/* Center Node */}
-                <div className="absolute left-0 md:static md:w-2/12 flex justify-center z-10">
-                    <div className="w-6 h-6 bg-white dark:bg-slate-800 border-4 border-manjaro-green rounded-full shadow-md flex items-center justify-center">
-                        <div className="w-2 h-2 bg-manjaro-green rounded-full"></div>
-                    </div>
-                </div>
+            {data.deepDive && (
+                <div className="mt-auto">
+                    <button
+                        onClick={() => setExpanded(!expanded)}
+                        className={`flex items-center gap-2 text-sm font-bold ${isExp ? 'text-blue-600 dark:text-blue-400' : 'text-manjaro-green hover:text-green-600'} transition-opacity hover:opacity-80`}
+                    >
+                        <ChevronDown size={14} className={`transform transition-transform ${expanded ? 'rotate-180' : ''}`} />
+                        Technical Deep Dive
+                    </button>
 
-                {/* Right side (Content) */}
-                <div className="w-full md:w-5/12 pl-4 md:pl-8 bg-white/5 dark:bg-slate-800/30 backdrop-blur-md p-6 rounded-2xl border border-gray-100 dark:border-slate-700/50 shadow-sm relative">
-                    <div className="md:hidden mb-2">
-                        <span className="text-manjaro-green font-mono text-sm font-semibold">{date}</span>
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{title}</h4>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm">
-                        {description}
-                    </p>
-                    {/* Tech Tags */}
-                    {tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                            {tags.map((tag, idx) => (
-                                <span key={idx} className="px-2 py-1 bg-gray-100 dark:bg-slate-700 text-xs font-medium text-gray-700 dark:text-gray-300 rounded-md shadow-sm border border-gray-200 dark:border-slate-600">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
+                    <AnimatePresence>
+                        {expanded && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                animate={{ height: 'auto', opacity: 1, marginTop: 16 }}
+                                exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                className="overflow-hidden"
+                            >
+                                <div className="p-4 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-100 dark:border-slate-800/50 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                                    {data.deepDive}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
-            </motion.div>
+            )}
         </div>
     );
 };
 
 const Timeline: React.FC = () => {
-    const { t } = useTranslation();
-
-    const items = [
-        {
-            title: t('timeline.sethas.title'),
-            date: t('timeline.sethas.date'),
-            description: t('timeline.sethas.desc'),
-            tags: ['Django Ninja', 'Python', 'Legacy Modernization', 'APIs'],
-            delay: 0.1
-        },
-        {
-            title: t('timeline.pump.title'),
-            date: t('timeline.pump.date'),
-            description: t('timeline.pump.desc'),
-            tags: ['Python', 'Automations', 'Process Optimization'],
-            delay: 0.2
-        },
-        {
-            title: t('timeline.crowdless.title'),
-            date: t('timeline.crowdless.date'),
-            description: t('timeline.crowdless.desc'),
-            tags: ['Team Leader', 'Hackathon Winner', 'MVP', 'Fullstack'],
-            delay: 0.3
-        },
-        {
-            title: t('timeline.ifba.title'),
-            date: t('timeline.ifba.date'),
-            description: t('timeline.ifba.desc'),
-            tags: ['C/C++', 'Algorithms', 'Computer Science'],
-            delay: 0.4
-        }
-    ];
-
     return (
-        <div className="w-full mb-20">
-            <div className="text-center mb-16">
-                <h3 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 inline-block drop-shadow-sm mb-2">
-                    {t('timeline.title')}
-                </h3>
+        <div className="my-16 flex flex-col w-full">
+            {/* Table Header Wrapper (Hidden on mobile) */}
+            <div className="hidden md:flex w-full px-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-6">
+                <div className="w-1/6">Período</div>
+                <div className="w-2/5 pl-4">Experiência Profissional</div>
+                <div className="w-2/5 pl-4">Formação & Conquistas</div>
             </div>
 
-            <div className="relative container mx-auto px-4">
-                {items.map((item, index) => (
-                    <TimelineItem
-                        key={index}
-                        title={item.title}
-                        date={item.date}
-                        description={item.description}
-                        tags={item.tags}
-                        isLast={index === items.length - 1}
-                        delay={item.delay}
-                    />
+            <div className="flex flex-col gap-8 md:gap-6">
+                {timelineData.map((row, idx) => (
+                    <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        className="flex flex-col md:flex-row w-full gap-4 md:gap-0 border-b border-gray-200 dark:border-slate-800 pb-8 md:pb-6 last:border-0"
+                    >
+                        {/* Column 1: Dates */}
+                        <div className="md:w-1/6 flex items-start pt-4">
+                            <span className="inline-block px-3 py-1 bg-gray-200 dark:bg-slate-800 text-gray-800 dark:text-gray-200 font-bold text-sm tracking-widest rounded-full">
+                                {row.year}
+                            </span>
+                        </div>
+
+                        {/* Column 2: Experience */}
+                        <div className="md:w-2/5 md:px-2 flex flex-col gap-4">
+                            {/* Mobile label visible only on small screens */}
+                            <span className="md:hidden text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest pl-2 pt-2">Exp. Profissional</span>
+                            <EventCard data={row.experience} type="exp" />
+                        </div>
+
+                        {/* Column 3: Education */}
+                        <div className="md:w-2/5 md:px-2 flex flex-col gap-4">
+                            {/* Mobile label visible only on small screens */}
+                            <span className="md:hidden text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest pl-2 pt-2">Formação/Conquistas</span>
+                            <EventCard data={row.education} type="edu" />
+                        </div>
+                    </motion.div>
                 ))}
             </div>
         </div>
