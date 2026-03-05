@@ -16,7 +16,25 @@
             "Automation"
         ],
         "bio": "8+ years of coding experience, turning complex problems into robust and efficient solutions using Python, TypeScript, and modern engineering tools.",
-        "skills_title": "Core Expertise"
+        "skills_title": "Core Expertise",
+        "stacks": {
+            "python": {
+                "title": "Python & Django (Auditable APIs)",
+                "desc": "Advanced mastery of Django, Django Ninja and complex architecture. Background processing and hyper-relational domain modeling."
+            },
+            "devops": {
+                "title": "DevOps & Docker",
+                "desc": "Setting up the infra is harder than the backend. Robust CI/CD and optimized deployment on root Linux environments."
+            },
+            "react": {
+                "title": "React & TypeScript",
+                "desc": "Strong typing and interfaces with Framer Motion."
+            },
+            "postgres": {
+                "title": "PostgreSQL & ETL",
+                "desc": "Heavy-duty fault-tolerant pipelines with Pandas."
+            }
+        }
     },
     "labs": {
         "title": "Labs & Tools",
@@ -31,20 +49,179 @@
     },
     "bento": {
         "django": "Django",
-        "django_desc": "Senior Backend: Auditable APIs and complex domain modeling.",
+        "django_desc": "Scalable APIs in Django Ninja. Advanced async processing with Celery and Redis.",
         "django_badge": "Scalable & Secure",
         "python": "Python",
         "python_desc": "The core language for backend logic, data processing, and scripting.",
         "react": "React & TS",
         "react_desc": "Building dynamic, type-safe, and interactive user interfaces.",
         "devops": "DevOps",
-        "devops_desc": "Docker & CI/CD: I used to think DevOps was just a backend guy who wasn't afraid of the terminal...(irony intended)."
+        "devops_desc": "Docker & CI/CD: Containerization and automated deployment pipelines on Linux environments."
     },
     "timeline": {
-        "title": "Journey"
+        "title": "Trajectory",
+        "headers": {
+            "period": "PERIOD",
+            "experience": "PROFESSIONAL EXPERIENCE",
+            "education": "EDUCATION & ACHIEVEMENTS"
+        },
+        "labels": {
+            "exp": "Prof. Experience",
+            "edu": "Education / Achievements",
+            "context": "Context",
+            "responsibilities": "Responsibilities",
+            "impact": "Impact",
+            "deep_dive": "Technical Deep Dive",
+            "highlights": "Engineering Highlights"
+        },
+        "events": {
+            "ufrn": {
+                "title": "UFRN",
+                "role": "Computer Science",
+                "description": "Moved to UFRN to seek more opportunities and deepen my foundation in computing and software engineering.",
+                "highlights": [
+                    "Focus on software engineering and systems fundamentals",
+                    "More academic opportunities, projects, and networking"
+                ],
+                "deepDive": {
+                    "context": "Relocated to expand opportunities and continue evolving technically.",
+                    "responsibilities": [
+                        "Deepen knowledge in core CS subjects",
+                        "Pursue practical projects and applied experiences"
+                    ],
+                    "impact": [
+                        "Broader opportunities to grow as a developer",
+                        "Stronger foundation for large-scale systems"
+                    ]
+                }
+            },
+            "sethas": {
+                "title": "SETHAS / RN",
+                "role": "Backend Developer / Data Analyst",
+                "description": "Working with backend and data in RN government systems, with APIs, integrations, and automations.",
+                "highlights": [
+                    "Python and Django APIs",
+                    "Internal routine integrations and automations",
+                    "Data and reporting with Pandas and PostgreSQL"
+                ],
+                "deepDive": {
+                    "context": "Public management systems focused on stability and data clarity.",
+                    "responsibilities": [
+                        "Create and maintain endpoints, REST APIs, and business rules",
+                        "Automate processes and integrate modules/systems"
+                    ],
+                    "impact": [
+                        "Reduced manual work through automations",
+                        "More consistent data with validations and integrations"
+                    ]
+                }
+            },
+            "4pump": {
+                "title": "4PUMP",
+                "role": "Full Stack & Automation Developer",
+                "description": "Development of web solutions and automations, working on both backend and frontend.",
+                "highlights": [
+                    "Python backend and integrations",
+                    "React + TypeScript frontend",
+                    "Task and workflow automation"
+                ],
+                "deepDive": {
+                    "context": "Project with fast deliveries, requiring end-to-end hands-on work.",
+                    "responsibilities": [
+                        "Implement full features (API + UI)",
+                        "Create automations and inter-service integrations"
+                    ],
+                    "impact": [
+                        "Automation of repetitive tasks",
+                        "More consistent interfaces with typing and component standards"
+                    ]
+                }
+            },
+            "uern": {
+                "title": "UERN",
+                "role": "Computer Science",
+                "description": "Moved to Natal and started CS degree, strengthening theoretical and practical foundation.",
+                "highlights": [
+                    "Algorithms and data structures",
+                    "Operating systems and architecture"
+                ],
+                "deepDive": {
+                    "context": "Phase to strengthen fundamentals and turn theory into practice.",
+                    "responsibilities": [
+                        "Consolidate core course subjects",
+                        "Build technical repertoire consistently"
+                    ],
+                    "impact": [
+                        "Solid fundamentals to evolve in backend and architecture."
+                    ]
+                }
+            },
+            "searh": {
+                "title": "Department of Education",
+                "role": "IT Technician (Internship)",
+                "description": "First professional IT experience, providing support and maintenance for institutional environments.",
+                "highlights": [
+                    "User support and hardware maintenance",
+                    "Network and hardware diagnostics"
+                ],
+                "deepDive": {
+                    "context": "Support routine with real problems requiring fast solutions.",
+                    "responsibilities": [
+                        "Handle support tickets and log solutions",
+                        "Maintain operational and updated environments"
+                    ],
+                    "impact": [
+                        "Fewer interruptions with proactive support and maintenance",
+                        "More standardized and stable environments"
+                    ]
+                }
+            },
+            "hackathon": {
+                "title": "Hackathon HackaPower — 1st Place",
+                "role": "Tech Lead — Crowdless Project",
+                "description": "Technical leadership in building the winning prototype of HackaPower.",
+                "highlights": [
+                    "Technical team coordination",
+                    "Fast architectural decisions and prioritization",
+                    "Functional prototype delivered on time"
+                ],
+                "deepDive": {
+                    "context": "Hackathon: short time, high delivery and practical validation.",
+                    "responsibilities": [
+                        "Organize the team and prioritize essentials",
+                        "Define architecture and integrate the prototype"
+                    ],
+                    "impact": [
+                        "1st place in HackaPower."
+                    ],
+                    "linkLabel": "View official event news"
+                }
+            },
+            "ifba": {
+                "title": "IFBA",
+                "role": "IT Technician",
+                "description": "Started technology journey with a technical degree in informatics.",
+                "highlights": [
+                    "Programming and logic fundamentals",
+                    "Networking and infra basics",
+                    "Operating systems and maintenance"
+                ],
+                "deepDive": {
+                    "context": "Technical education that provided the foundation for the field.",
+                    "responsibilities": [
+                        "Complete technical subjects with lab practice",
+                        "Consolidate fundamentals: programming, networks, hardware"
+                    ],
+                    "impact": [
+                        "Solid base that sustained career evolution."
+                    ]
+                }
+            }
+        }
     },
     "offduty": {
         "title": "Beyond the Code",
+        "subtitle": "I believe robust logic written in the terminal is a reflection of discipline built away from the screens. Meet the pillars that keep me focused.",
         "marilia": {
             "title": "Marília",
             "caption": "Partnership and support: the solid foundation that allows total focus on technical excellence."
@@ -56,6 +233,66 @@
         "games": {
             "title": "Gaming",
             "caption": "Problem-solving & Strategy. Navigating complex systems, both digital and fantasy."
+        }
+    },
+    "skills": {
+        "hard_skills_title": "Hard Skills",
+        "soft_skills_title": "Soft Skills",
+        "legend_title": "Proficiency Legend",
+        "legend": {
+            "star_1": "Basic knowledge",
+            "star_2": "Studied and practiced",
+            "star_3": "Applied in real projects",
+            "star_4": "Frequently used",
+            "star_5": "Advanced mastery"
+        },
+        "hard": {
+            "python": {
+                "name": "Python / Django",
+                "desc": "8+ years coding • Production APIs • Government-scale systems"
+            },
+            "api": {
+                "name": "API Design / REST",
+                "desc": "REST API architecture and service integration with Django Ninja"
+            },
+            "postgres": {
+                "name": "PostgreSQL",
+                "desc": "Relational modeling, complex queries and query performance tuning"
+            },
+            "etl": {
+                "name": "Data Processing / ETL",
+                "desc": "Data pipelines and automation with Pandas and PostgreSQL"
+            },
+            "docker": {
+                "name": "Docker / DevOps",
+                "desc": "Containerization and deployment on Linux environments with CI/CD pipelines"
+            },
+            "react": {
+                "name": "React / TypeScript",
+                "desc": "Modern type-safe interfaces integrated with backend APIs"
+            },
+            "testing": {
+                "name": "Testing (Pytest / TDD)",
+                "desc": "Automated test suites for APIs and backend business logic (Pytest / TDD)"
+            }
+        },
+        "soft": {
+            "leadership": {
+                "name": "Leadership",
+                "desc": "Technical lead of the winning team at Hackathon HackaPower"
+            },
+            "problem": {
+                "name": "Problem Solving",
+                "desc": "Decomposing complex problems into efficient and maintainable solutions"
+            },
+            "teamwork": {
+                "name": "Teamwork & Communication",
+                "desc": "Collaboration in multidisciplinary teams with clear technical communication"
+            },
+            "english": {
+                "name": "English (Read/Write)",
+                "desc": "Technical documentation, spec reading and async written communication"
+            }
         }
     }
 }

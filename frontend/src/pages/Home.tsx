@@ -15,26 +15,22 @@ const Home: React.FC = () => {
 
     const coreStacks = [
         {
-            title: 'Python & Django (APIs Auditáveis)',
-            description: 'Domínio avançado em Django, Django Ninja e arquitetura complexa. Processamento em background e modelagem de recursos hiper-relacionais.',
+            key: 'python',
             icon: <Database size={48} />,
-            className: 'md:col-span-2 md:row-span-2 bg-gradient-to-br from-white/10 to-green-500/5 dark:from-slate-900/40 dark:to-manjaro-green/10'
+            className: 'md:col-span-2 md:row-span-2 bg-gradient-to-br from-white/95 to-slate-50 dark:from-slate-900/40 dark:to-manjaro-green/10'
         },
         {
-            title: 'DevOps & Docker',
-            description: 'Pior que configurar o backend, é subir a infra. CI/CD robusto e deploy otimizado rodando sob ambiente Linux raiz.',
+            key: 'devops',
             icon: <Terminal size={32} />,
             className: 'md:col-span-2 md:row-span-1'
         },
         {
-            title: 'React & TypeScript',
-            description: 'Tipagem forte e interfaces com Framer Motion.',
+            key: 'react',
             icon: <Code2 size={24} />,
             className: 'md:col-span-1 md:row-span-1'
         },
         {
-            title: 'PostgreSQL & ETL',
-            description: 'Pipelines pesados com Pandas tolerantes a falha.',
+            key: 'postgres',
             icon: <Layout size={24} />,
             className: 'md:col-span-1 md:row-span-1'
         }
@@ -94,8 +90,8 @@ const Home: React.FC = () => {
                         {coreStacks.map((skill, idx) => (
                             <FeatureCard
                                 key={idx}
-                                title={skill.title}
-                                description={skill.description}
+                                title={t(`home.stacks.${skill.key}.title`)}
+                                description={t(`home.stacks.${skill.key}.desc`)}
                                 icon={skill.icon}
                                 className={skill.className}
                             />
@@ -110,7 +106,7 @@ const Home: React.FC = () => {
                 <section className="mb-24">
                     <div className="text-center md:text-left mb-12">
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
-                            A Jornada (Timeline)
+                            {t('timeline.title')}
                         </h3>
                     </div>
                     <Timeline />

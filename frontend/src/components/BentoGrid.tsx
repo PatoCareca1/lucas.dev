@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Database, Code2, Terminal, Server, ShieldCheck } from 'lucide-react';
+import { Database, Code2, Terminal, Server } from 'lucide-react';
 
 const BentoGrid: React.FC = () => {
     const { t } = useTranslation();
@@ -38,13 +38,14 @@ const BentoGrid: React.FC = () => {
                             </div>
                             <h4 className="text-3xl font-bold text-white">{t('bento.django')}</h4>
                         </div>
-                        <p className="text-gray-200 text-lg leading-relaxed max-w-sm">
+                        <p className="text-manjaro-green/80 text-sm md:text-base leading-relaxed max-w-sm mb-6">
                             {t('bento.django_desc')}
                         </p>
-                    </div>
-                    <div className="inline-flex items-center gap-2 bg-black/30 w-max px-4 py-2 rounded-full border border-manjaro-green/50 text-manjaro-green font-medium text-sm mt-6">
-                        <ShieldCheck size={18} />
-                        {t('bento.django_badge', 'Scalable & Secure')}
+                        <div className="flex gap-2">
+                            <span className="px-3 py-1 bg-[#12583e] text-manjaro-green text-xs font-bold rounded-full border border-manjaro-green/20">
+                                {t('bento.django_badge')}
+                            </span>
+                        </div>
                     </div>
                 </motion.div>
 
@@ -52,15 +53,15 @@ const BentoGrid: React.FC = () => {
                 <motion.div
                     {...hoverTiltStyle}
                     transition={{ delay: 0.2 }}
-                    className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 bg-white/10 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-md flex flex-col justify-center relative overflow-hidden"
+                    className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 bg-white/90 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 dark:border-gray-700/50 shadow-sm dark:shadow-none flex flex-col justify-center relative overflow-hidden"
                 >
                     <div className="flex items-start gap-4 z-10">
                         <div className="p-3 bg-blue-500/10 text-blue-500 rounded-xl">
                             <Server size={28} />
                         </div>
                         <div>
-                            <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">{t('bento.python')}</h4>
-                            <p className="text-gray-600 dark:text-gray-400">
+                            <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{t('bento.python')}</h4>
+                            <p className="text-slate-600 dark:text-gray-400 text-sm w-full leading-relaxed">
                                 {t('bento.python_desc')}
                             </p>
                         </div>
@@ -75,7 +76,7 @@ const BentoGrid: React.FC = () => {
                 <motion.div
                     {...hoverTiltStyle}
                     transition={{ delay: 0.3 }}
-                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/10 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-md flex flex-col justify-center"
+                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/90 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 dark:border-gray-700/50 shadow-sm dark:shadow-none flex flex-col justify-center"
                 >
                     <div className="mb-4 text-cyan-500">
                         <Code2 size={32} />
@@ -90,14 +91,14 @@ const BentoGrid: React.FC = () => {
                 <motion.div
                     {...hoverTiltStyle}
                     transition={{ delay: 0.4 }}
-                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/10 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-md flex flex-col justify-between"
+                    className="col-span-1 lg:col-span-1 row-span-1 bg-white/90 dark:bg-slate-800/40 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 dark:border-gray-700/50 shadow-sm dark:shadow-none flex flex-col justify-between"
                 >
                     <div>
                         <div className="mb-4 text-orange-500">
                             <Terminal size={32} />
                         </div>
-                        <h4 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{t('bento.devops')}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{t('bento.devops')}</h4>
+                        <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
                             {t('bento.devops_desc')}
                         </p>
                     </div>

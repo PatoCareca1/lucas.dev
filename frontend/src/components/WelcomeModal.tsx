@@ -136,7 +136,7 @@ const WelcomeModal: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -20 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-manjaro-green/30 p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center pointer-events-auto gap-8 md:gap-12"
+          className="relative w-full max-w-2xl bg-white/95 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center pointer-events-auto gap-8 md:gap-12"
         >
           {/* Image Slot - Fully Transparent Container */}
           <div className="w-64 h-64 shrink-0 flex items-center justify-center bg-transparent">
