@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import gymPhoto from '../assets/gym.jpeg';
+import setupPhoto from '../assets/setup.png';
+import mariliaPhoto from '../assets/marilia.jpg';
 
 const defaultImageClass = "w-full sm:w-48 md:w-64 aspect-square bg-gray-200 dark:bg-slate-800 rounded-3xl overflow-hidden relative shadow-lg group border border-gray-200 dark:border-slate-700 shrink-0";
 
@@ -23,9 +26,11 @@ const BeyondTheCode: React.FC = () => {
                     className="flex flex-col sm:flex-row items-center gap-8 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-gray-200/50 dark:border-slate-800/50 hover:border-manjaro-green/30 transition-colors"
                 >
                     <div className={defaultImageClass}>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium p-4 text-center">
-                            [Slot Foto: Treino/Academia]
-                        </div>
+                        <img
+                            src={gymPhoto}
+                            alt="Gym"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <div className="flex-1 space-y-4">
                         <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
@@ -43,9 +48,11 @@ const BeyondTheCode: React.FC = () => {
                     className="flex flex-col sm:flex-row-reverse items-center gap-8 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-gray-200/50 dark:border-slate-800/50 hover:border-manjaro-green/30 transition-colors"
                 >
                     <div className={defaultImageClass}>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium p-4 text-center">
-                            [Slot Foto: Setup/Games]
-                        </div>
+                        <img
+                            src={setupPhoto}
+                            alt="Setup"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <div className="flex-1 space-y-4 md:text-right">
                         <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
@@ -63,9 +70,11 @@ const BeyondTheCode: React.FC = () => {
                     className="flex flex-col sm:flex-row items-center gap-8 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-gray-200/50 dark:border-slate-800/50 hover:border-manjaro-green/30 transition-colors"
                 >
                     <div className={defaultImageClass}>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm font-medium p-4 text-center">
-                            [Slot Foto: Com Marília]
-                        </div>
+                        <img
+                            src={mariliaPhoto}
+                            alt="Marília"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <div className="flex-1 space-y-4">
                         <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
@@ -76,7 +85,6 @@ const BeyondTheCode: React.FC = () => {
                         </p>
                     </div>
                 </motion.div>
-
             </div>
         </section>
     );
