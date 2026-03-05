@@ -19,7 +19,7 @@ const WelcomeModal: React.FC = () => {
     if (modalState === 'welcomed_recruiter') {
       const closeTimer = setTimeout(() => {
         setModalState('closed');
-      }, 5000);
+      }, 7000);
       return () => clearTimeout(closeTimer);
     }
   }, [modalState]);
@@ -136,22 +136,40 @@ const WelcomeModal: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -20 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="relative w-full max-w-2xl bg-white/95 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center pointer-events-auto gap-8 md:gap-12"
+          className="relative w-full max-w-4xl bg-white/95 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center pointer-events-auto gap-8 md:gap-12 transition-all duration-500"
         >
-          {/* Image Slot - Fully Transparent Container */}
-          <div className="w-64 h-64 shrink-0 flex items-center justify-center bg-transparent">
-            <img
-              src={`/src/assets/${chibiImage}`}
-              alt="Lucas - Chibi Avatar"
-              className="max-w-full max-h-full object-contain relative z-10 drop-shadow-2xl"
-              onError={(e) => e.currentTarget.style.display = 'none'}
-            />
-          </div>
+          {/* Image Slot - Animated Crossfade */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={chibiImage}
+              initial={{ opacity: 0, scale: 0.7, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, scale: 0.7, rotate: 5 }}
+              transition={{ duration: 0.45, ease: 'easeInOut' }}
+              className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] shrink-0 flex items-center justify-center bg-transparent z-20 relative"
+            >
+              <img
+                src={`/src/assets/${chibiImage}`}
+                alt="Lucas - Chibi Avatar"
+                className="max-w-full max-h-full object-contain relative z-10 drop-shadow-2xl"
+                onError={(e) => e.currentTarget.style.display = 'none'}
+              />
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Content Slot */}
-          <div className="flex-1 w-full flex flex-col justify-center min-h-[200px]">
-            {renderContent()}
-          </div>
+          {/* Content Slot - Animated Crossfade */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={modalState}
+              initial={{ opacity: 0, x: 30, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, x: -30, filter: 'blur(4px)' }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="flex-1 w-full flex flex-col justify-center min-h-[200px] z-10"
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
       </div>
     </AnimatePresence>

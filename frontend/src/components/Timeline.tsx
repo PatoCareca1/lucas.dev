@@ -250,7 +250,7 @@ const Timeline: React.FC = () => {
                             </span>
                             {row.education?.key === 'ifba' && (
                                 <div className="mt-8 pointer-events-none opacity-90 drop-shadow-md">
-                                    <img src={chibiYoung} alt="Lucas Young" className="w-48 h-48 md:w-90 md:h-90 object-contain" />
+                                    <img src={chibiYoung} alt="Lucas Young" className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] max-w-none object-contain -ml-8 md:-ml-12" />
                                 </div>
                             )}
                         </div>
