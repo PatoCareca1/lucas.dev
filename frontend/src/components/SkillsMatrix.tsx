@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
+import chibiCoding from '../assets/chibi_stacks.png';
 
 interface Skill {
     name: string;
@@ -20,7 +21,7 @@ const softSkills: Skill[] = [
     { name: 'Leadership (Hackathon Winner)', level: 5 },
     { name: 'Problem Solving', level: 5 },
     { name: 'Teamwork & Communication', level: 4 },
-    { name: 'English (Advanced)', level: 4 },
+    { name: 'English (Leitura/Escrita)', level: 4 },
 ];
 
 const RatingStars: React.FC<{ level: number }> = ({ level }) => {
@@ -59,26 +60,45 @@ const SkillList: React.FC<{ title: string; skills: Skill[] }> = ({ title, skills
 const SkillsMatrix: React.FC = () => {
     return (
         <div className="my-24">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 mb-8">
+                {/* Chibi character column */}
                 <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
+                    className="flex items-center justify-center bg-transparent order-first"
                 >
-                    <SkillList title="Hard Skills" skills={hardSkills} />
+                    <img
+                        src={chibiCoding}
+                        alt="Chibi coding character"
+                        className="object-contain w-full max-h-[480px]"
+                    />
                 </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    <SkillList title="Soft Skills" skills={softSkills} />
-                </motion.div>
+
+                {/* Skills column: Hard on top, Soft below */}
+                <div className="flex flex-col gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                        <SkillList title="Hard Skills" skills={hardSkills} />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                        <SkillList title="Soft Skills" skills={softSkills} />
+                    </motion.div>
+                </div>
             </div>
 
-            {/* Skills Legend */}
+            {/* Proficiency Legend — full width */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

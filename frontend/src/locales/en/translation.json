@@ -7,9 +7,15 @@
     "python_version": "Python Version",
     "welcome": "Welcome to my portfolio powered by React & Django.",
     "home": {
-        "greeting": "Hello, I am Lucas.",
-        "subtitle": "Backend Developer specializing in Django and Python applications.",
-        "bio": "Studying technology for 10 years and coding for 8. Specialist in Python and JavaScript, focused on TypeScript for Fullstack architectures that replace manual processes with scalable solutions.",
+        "greeting": "Hello, I'm Lucas.",
+        "subtitle": "Backend Developer specializing in Python & Django, focused on scalable APIs, process automation, and modern system architecture.",
+        "badges": [
+            "Backend Engineering",
+            "APIs",
+            "Data Processing",
+            "Automation"
+        ],
+        "bio": "8+ years of coding experience, turning complex problems into robust and efficient solutions using Python, TypeScript, and modern engineering tools.",
         "skills_title": "Core Expertise"
     },
     "labs": {

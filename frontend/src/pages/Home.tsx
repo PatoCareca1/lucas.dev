@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import FeatureCard from '../components/FeatureCard';
 import ProfilePicture from '../components/ProfilePicture';
-import Tooltip from '../components/Tooltip';
+
 import WelcomeModal from '../components/WelcomeModal';
 import SkillsMatrix from '../components/SkillsMatrix';
 import Timeline from '../components/Timeline';
@@ -58,35 +58,24 @@ const Home: React.FC = () => {
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-manjaro-green to-teal-400 mb-4 tracking-tight">
                             {t('home.greeting')}
                         </h1>
-                        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6 drop-shadow-sm">
+                        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-5 drop-shadow-sm">
                             {t('home.subtitle')}
-                        </h2 >
+                        </h2>
+
+                        {/* Tech badges */}
+                        <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+                            {(t('home.badges', { returnObjects: true }) as string[]).map((badge) => (
+                                <span
+                                    key={badge}
+                                    className="px-3 py-1 text-xs font-medium rounded-full border border-manjaro-green/30 bg-manjaro-green/5 text-gray-700 dark:text-gray-300 tracking-wide"
+                                >
+                                    {badge}
+                                </span>
+                            ))}
+                        </div>
+
                         <p className="text-lg text-gray-700 dark:text-gray-400 max-w-2xl leading-relaxed">
-                            <Trans
-                                i18nKey="home.bio"
-                                components={{
-                                    plp: (
-                                        <Tooltip
-                                            text="PLP"
-                                            projectSlug="plp"
-                                            title={t('projects.plp.title', 'PLP (Pricing & Promotions)')}
-                                            description={t('projects.plp.short_desc', 'Microsserviço de precisão para cálculo de preços e promoções em tempo real.')}
-                                        >
-                                            PLP
-                                        </Tooltip>
-                                    ),
-                                    prp: (
-                                        <Tooltip
-                                            text="PRP"
-                                            projectSlug="prp"
-                                            title={t('projects.prp.title', 'PRP (Product Review Platform)')}
-                                            description={t('projects.prp.short_desc', 'Plataforma de avaliações processando alto volume de dados de produtos.')}
-                                        >
-                                            PRP
-                                        </Tooltip>
-                                    )
-                                }}
-                            />
+                            {t('home.bio')}
                         </p>
                     </motion.div>
                 </div>

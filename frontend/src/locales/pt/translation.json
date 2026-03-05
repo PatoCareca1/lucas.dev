@@ -7,9 +7,10 @@
     "python_version": "Versão Python",
     "welcome": "Bem-vindo ao meu portfólio movido por React & Django.",
     "home": {
-        "greeting": "Olá, eu sou o Lucas.",
-        "subtitle": "Desenvolvedor Backend especialista em aplicações Django e Python.",
-        "bio": "Estudando tecnologia há 10 anos e programando há 8. Especialista em Python e JavaScript, focado em TypeScript para arquiteturas Fullstack que substituem processos manuais por soluções escaláveis.",
+        "greeting": "Olá, eu sou Lucas.",
+        "subtitle": "Desenvolvedor Backend especializado em Python e Django, focado em APIs escaláveis, automação de processos e arquitetura de sistemas modernos.",
+        "badges": ["Backend Engineering", "APIs", "Data Processing", "Automation"],
+        "bio": "Há mais de 8 anos programando, transformo problemas complexos em soluções robustas e eficientes, utilizando Python, TypeScript e ferramentas modernas de engenharia.",
         "skills_title": "Habilidades Principais"
     },
     "labs": {
