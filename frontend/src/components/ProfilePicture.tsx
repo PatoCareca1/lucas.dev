@@ -8,7 +8,7 @@ interface ProfilePictureProps {
 
 const ProfilePicture: React.FC<ProfilePictureProps> = ({ src, alt = "Lucas Profile" }) => {
     // Use Vite's asset handling for the placeholder
-    const imageSrc = src || new URL('../assets/30.jpg', import.meta.url).href;
+    const imageSrc = src || new URL('../assets/Perfil.jpg', import.meta.url).href;
 
     return (
         <motion.div
