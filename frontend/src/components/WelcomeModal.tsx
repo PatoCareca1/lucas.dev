@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Vite requires static imports for assets to be included in the build
+import chibi1 from '../assets/chibi_1.png';
+import chibi2 from '../assets/chibi_2.png';
+import chibiFollowMe from '../assets/chibi_follow-me.png';
+
+const chibiMap: Record<string, string> = {
+  'chibi_1.png': chibi1,
+  'chibi_2.png': chibi2,
+  'chibi_follow-me.png': chibiFollowMe,
+};
+
 type ModalState = 'initial' | 'asking' | 'no_1' | 'welcomed_recruiter' | 'welcomed_visitor' | 'closed';
 
 const WelcomeModal: React.FC = () => {
@@ -149,7 +160,7 @@ const WelcomeModal: React.FC = () => {
               className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] shrink-0 flex items-center justify-center bg-transparent z-20 relative"
             >
               <img
-                src={`/src/assets/${chibiImage}`}
+                src={chibiMap[chibiImage]}
                 alt="Lucas - Chibi Avatar"
                 className="max-w-full max-h-full object-contain relative z-10 drop-shadow-2xl"
                 onError={(e) => e.currentTarget.style.display = 'none'}

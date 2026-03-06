@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { X, Target, Server, Award, Code2 } from 'lucide-react';
+import chibiSenior from '../assets/chibi_senior.png';
 
 interface ProjectModalProps {
     projectKey: string | null;
@@ -91,7 +92,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                 {/* Chibi Pro Validator */}
                                 <div className="hidden sm:flex items-center gap-2 shrink-0">
                                     <img
-                                        src="/src/assets/chibi_senior.png"
+                                        src={chibiSenior}
                                         alt="Chibi Pro"
                                         className="w-16 h-16 object-contain drop-shadow-lg"
                                         onError={(e) => e.currentTarget.style.display = 'none'}
