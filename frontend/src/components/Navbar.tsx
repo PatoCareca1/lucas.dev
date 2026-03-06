@@ -22,6 +22,9 @@ const Navbar: React.FC = () => {
                             {t('title')}
                         </Link>
                         <div className="hidden md:flex items-center space-x-4">
+                            <Link to="/projects" className="text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors">
+                                {t('projects.title', 'Projects')}
+                            </Link>
                             <Link to="/labs" className="text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors">
                                 {t('labs.title', 'Labs')}
                             </Link>

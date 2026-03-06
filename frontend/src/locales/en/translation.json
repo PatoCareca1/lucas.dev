@@ -294,5 +294,79 @@
                 "desc": "Technical documentation, spec reading and async written communication"
             }
         }
+    },
+    "projects": {
+        "title": "Projects",
+        "subtitle": "Real-world systems I've built and shipped — from government-scale APIs to hackathon-winning prototypes.",
+        "view_project": "View Project",
+        "close": "Close",
+        "sections": {
+            "challenge": "The Challenge",
+            "solution": "The Solution",
+            "impact": "Impact",
+            "tech_stack": "Tech Stack"
+        },
+        "plp": {
+            "title": "PLP — SETHAS/RN",
+            "tag": "Django Ninja",
+            "short_desc": "Auditable APIs for managing the complex milk distribution flow of Programa do Leite Potiguar.",
+            "challenge": "Managing the complex distribution flow of milk to thousands of beneficiaries across Rio Grande do Norte, ensuring full data integrity, traceability, and fraud prevention in a government social program.",
+            "solution": "Developed highly auditable RESTful APIs using Django Ninja with strict schema validation, comprehensive audit trails, and database modeling designed for full traceability of every distribution event from origin to beneficiary.",
+            "impact": [
+                "Full transparency in governmental data across 167 municipalities",
+                "Greater control and accountability over public resources",
+                "Fraud prevention through complete audit trails on every transaction",
+                "Real-time visibility for program managers and auditors"
+            ],
+            "tech_stack": [
+                "Django Ninja",
+                "PostgreSQL",
+                "Docker",
+                "Celery",
+                "Redis",
+                "Python"
+            ]
+        },
+        "prp": {
+            "title": "PRP — SETHAS/RN",
+            "tag": "Pandas",
+            "short_desc": "ETL pipelines for automating food security data management at Programa Restaurante Popular.",
+            "challenge": "Modernizing food security data management for Programa Restaurante Popular, dealing with large volumes of daily meals served, slow manual processes, and the need for accurate government metrics and reporting.",
+            "solution": "Created intensive ETL pipelines with Pandas for automating data reconciliation and generating government metric reports. Replaced manual spreadsheet workflows with automated validation layers ensuring data consistency before persistence to PostgreSQL.",
+            "impact": [
+                "Drastic reduction in operational errors through automated data validation",
+                "Faster data-driven decision making for program managers",
+                "Automated daily processing of thousands of meal records with fault tolerance",
+                "Streamlined government reporting and compliance audits"
+            ],
+            "tech_stack": [
+                "Pandas",
+                "PostgreSQL",
+                "Python",
+                "Docker",
+                "Celery",
+                "Redis"
+            ]
+        },
+        "crowdless": {
+            "title": "Crowdless — Hackathon HackaPower",
+            "tag": "Tech Lead",
+            "short_desc": "1st place winning prototype built under pressure with technical leadership.",
+            "challenge": "During the HackaPower hackathon, our team had limited time to conceive, architect, and deliver a functional prototype that addressed real-world crowd management challenges. The pressure demanded fast architectural decisions, clear task delegation, and a working demo by the deadline.",
+            "solution": "As Tech Lead, I organized the team's workflow, defined the system architecture, and prioritized the MVP features. We built a lightweight web application for real-time crowd density monitoring, combining a Python backend with a responsive frontend. I focused on keeping the stack simple and the integration points clean to maximize delivery speed.",
+            "impact": [
+                "Won 1st place at HackaPower hackathon",
+                "Delivered a fully functional prototype within the time constraint",
+                "Demonstrated technical leadership and team coordination under pressure",
+                "Validated the concept with judges and mentors"
+            ],
+            "tech_stack": [
+                "Python",
+                "Flask",
+                "jQuery",
+                "Bootstrap",
+                "SQLite"
+            ]
+        }
     }
 }

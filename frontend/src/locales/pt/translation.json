@@ -294,5 +294,79 @@
                 "desc": "Documentação técnica, leitura de specs e comunicação assíncrona em inglês"
             }
         }
+    },
+    "projects": {
+        "title": "Projetos",
+        "subtitle": "Sistemas reais que construí e entreguei — de APIs governamentais a protótipos vencedores de hackathon.",
+        "view_project": "Ver Projeto",
+        "close": "Fechar",
+        "sections": {
+            "challenge": "O Desafio",
+            "solution": "A Solução",
+            "impact": "Impacto",
+            "tech_stack": "Tech Stack"
+        },
+        "plp": {
+            "title": "PLP — SETHAS/RN",
+            "tag": "Django Ninja",
+            "short_desc": "APIs auditáveis para gerenciar o fluxo complexo de distribuição do Programa do Leite Potiguar.",
+            "challenge": "Gerenciar o fluxo complexo de distribuição de leite para milhares de beneficiários em todo o Rio Grande do Norte, garantindo integridade total dos dados, rastreabilidade e prevenção de fraudes em um programa social governamental.",
+            "solution": "Desenvolvimento de APIs RESTful altamente auditáveis utilizando Django Ninja, com validação rigorosa de schema, trilhas de auditoria abrangentes e modelagem de banco de dados projetada para rastreabilidade total de cada evento de distribuição, da origem ao beneficiário.",
+            "impact": [
+                "Transparência total nos dados governamentais em 167 municípios",
+                "Maior controle e prestação de contas sobre recursos públicos",
+                "Prevenção de fraudes através de trilhas de auditoria completas em cada transação",
+                "Visibilidade em tempo real para gestores e auditores do programa"
+            ],
+            "tech_stack": [
+                "Django Ninja",
+                "PostgreSQL",
+                "Docker",
+                "Celery",
+                "Redis",
+                "Python"
+            ]
+        },
+        "prp": {
+            "title": "PRP — SETHAS/RN",
+            "tag": "Pandas",
+            "short_desc": "Pipelines ETL para automatização da gestão de dados de segurança alimentar do Programa Restaurante Popular.",
+            "challenge": "Modernizar a gestão de dados de segurança alimentar do Programa Restaurante Popular, lidando com grandes volumes de refeições diárias servidas, processos manuais lentos e a necessidade de métricas e relatórios governamentais precisos.",
+            "solution": "Criação de pipelines ETL intensivos com Pandas para automação de conferências de dados e geração de relatórios de métricas governamentais. Substituição de fluxos manuais em planilhas por camadas de validação automatizadas, garantindo consistência dos dados antes da persistência no PostgreSQL.",
+            "impact": [
+                "Redução drástica em erros operacionais através de validação automatizada de dados",
+                "Agilidade na tomada de decisão baseada em dados para gestores do programa",
+                "Processamento automatizado diário de milhares de registros de refeições com tolerância a falhas",
+                "Relatórios governamentais e auditorias de conformidade simplificados"
+            ],
+            "tech_stack": [
+                "Pandas",
+                "PostgreSQL",
+                "Python",
+                "Docker",
+                "Celery",
+                "Redis"
+            ]
+        },
+        "crowdless": {
+            "title": "Crowdless — Hackathon HackaPower",
+            "tag": "Tech Lead",
+            "short_desc": "Protótipo vencedor do 1º lugar, construído sob pressão com liderança técnica.",
+            "challenge": "Durante o hackathon HackaPower, nosso time tinha tempo limitado para conceber, arquitetar e entregar um protótipo funcional que abordasse desafios reais de gerenciamento de multidões. A pressão exigia decisões arquiteturais rápidas, delegação clara de tarefas e uma demo funcional no prazo.",
+            "solution": "Como Tech Lead, organizei o fluxo de trabalho do time, defini a arquitetura do sistema e priorizei as funcionalidades do MVP. Construímos uma aplicação web leve para monitoramento de densidade de multidões em tempo real, combinando um backend em Python com um frontend responsivo. Foquei em manter a stack simples e os pontos de integração limpos para maximizar a velocidade de entrega.",
+            "impact": [
+                "Vencemos o 1º lugar no hackathon HackaPower",
+                "Protótipo totalmente funcional entregue dentro do prazo",
+                "Demonstrou liderança técnica e coordenação de equipe sob pressão",
+                "Conceito validado com jurados e mentores"
+            ],
+            "tech_stack": [
+                "Python",
+                "Flask",
+                "jQuery",
+                "Bootstrap",
+                "SQLite"
+            ]
+        }
     }
 }
