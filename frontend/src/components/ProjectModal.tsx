@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { X, Target, Server, Award, Code2 } from 'lucide-react';
-import chibiSenior from '../assets/chibi_senior.png';
+import { X, Target, Server, Award, Code2, ExternalLink } from 'lucide-react';
+import chibiPro from '../assets/chibi_senior.png';
 
 interface ProjectModalProps {
     projectKey: string | null;
@@ -25,6 +25,13 @@ const techColors: Record<string, string> = {
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
+
+// Gradient accents per project for the visual panel
+const panelGradients: Record<string, string> = {
+    plp: 'from-emerald-600 via-teal-500 to-cyan-400',
+    prp: 'from-blue-600 via-indigo-500 to-purple-400',
+    crowdless: 'from-amber-500 via-orange-400 to-rose-400',
+};
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const { t } = useTranslation();
@@ -52,6 +59,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const solution = t(`projects.${projectKey}.solution`);
     const impactList = t(`projects.${projectKey}.impact`, { returnObjects: true }) as string[];
     const techStack = t(`projects.${projectKey}.tech_stack`, { returnObjects: true }) as string[];
+    const siteUrl = t(`projects.${projectKey}.site_url`, { defaultValue: '#' });
+    const disclaimer = t(`projects.${projectKey}.disclaimer`, { defaultValue: '' });
 
     return (
         <AnimatePresence>
@@ -72,120 +81,169 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ type: "spring", stiffness: 300, damping: 28 }}
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl
+                        className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-3xl
                             bg-white/95 text-slate-900 border border-slate-200 shadow-2xl
                             dark:bg-slate-900/90 dark:text-gray-100 dark:border-manjaro-green/20 dark:shadow-none
                             backdrop-blur-xl z-10"
                     >
-                        {/* Header */}
-                        <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-6 border-b border-slate-200 dark:border-slate-700/50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-t-3xl">
-                            <div className="flex items-center gap-4 flex-1 min-w-0">
-                                <div className="min-w-0 flex-1">
-                                    <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-manjaro-green to-teal-400 truncate">
-                                        {title}
-                                    </h2>
-                                    <span className="inline-block mt-2 px-3 py-1 text-xs font-semibold rounded-full bg-manjaro-green/10 text-manjaro-green border border-manjaro-green/30">
-                                        {tag}
-                                    </span>
-                                </div>
+                        {/* Close button — always visible */}
+                        <button
+                            onClick={onClose}
+                            className="absolute top-4 right-4 z-30 p-2.5 rounded-full
+                                bg-white/80 hover:bg-slate-100 text-slate-600
+                                dark:bg-slate-800/80 dark:hover:bg-slate-700 dark:text-slate-300
+                                shadow-md transition-colors"
+                            aria-label={t('projects.close')}
+                        >
+                            <X size={20} />
+                        </button>
 
-                                {/* Chibi Pro Validator */}
-                                <div className="hidden sm:flex items-center gap-2 shrink-0">
-                                    <img
-                                        src={chibiSenior}
-                                        alt="Chibi Pro"
-                                        className="w-16 h-16 object-contain drop-shadow-lg"
-                                        onError={(e) => e.currentTarget.style.display = 'none'}
-                                    />
-                                    <span className="text-[10px] font-bold text-manjaro-green/70 dark:text-manjaro-green/50 uppercase tracking-widest writing-vertical rotate-0 leading-tight">
-                                        PRO<br />✓
-                                    </span>
-                                </div>
-                            </div>
+                        {/* Two-column layout: Visual panel (left) + Content (right) */}
+                        <div className="grid grid-cols-1 lg:grid-cols-5">
 
-                            {/* Close button */}
-                            <button
-                                onClick={onClose}
-                                className="ml-4 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400"
-                                aria-label={t('projects.close')}
+                            {/* === LEFT COLUMN: Visual / Architecture Panel === */}
+                            <div className={`lg:col-span-2 relative overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none
+                                bg-gradient-to-br ${panelGradients[projectKey] || 'from-slate-600 to-slate-400'}
+                                flex flex-col items-center justify-center p-8 lg:p-10 min-h-[280px] lg:min-h-0`}
                             >
-                                <X size={24} />
-                            </button>
-                        </div>
+                                {/* Decorative circles */}
+                                <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/10 blur-2xl" />
+                                <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-white/10 blur-2xl" />
 
-                        {/* Body */}
-                        <div className="px-8 py-8 space-y-10">
-                            {/* Challenge Section */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 rounded-xl bg-orange-100 dark:bg-orange-900/30">
-                                        <Target className="text-orange-500" size={24} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                                        {t('projects.sections.challenge')}
-                                    </h3>
-                                </div>
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg pl-12">
-                                    {challenge}
-                                </p>
-                            </section>
+                                {/* Project tag badge */}
+                                <span className="relative inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest rounded-full
+                                    bg-white/20 text-white border border-white/30 backdrop-blur-sm mb-6">
+                                    {tag}
+                                </span>
 
-                            {/* Solution Section */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 rounded-xl bg-blue-100 dark:bg-blue-900/30">
-                                        <Server className="text-blue-500" size={24} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                                        {t('projects.sections.solution')}
-                                    </h3>
-                                </div>
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg pl-12">
-                                    {solution}
-                                </p>
-                            </section>
+                                {/* Title on the panel */}
+                                <h2 className="relative text-2xl sm:text-3xl font-extrabold text-white text-center leading-tight mb-8">
+                                    {title}
+                                </h2>
 
-                            {/* Impact Section */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 rounded-xl bg-yellow-100 dark:bg-yellow-900/30">
-                                        <Award className="text-yellow-500" size={24} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                                        {t('projects.sections.impact')}
-                                    </h3>
-                                </div>
-                                <ul className="space-y-3 pl-12">
-                                    {impactList.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-slate-600 dark:text-slate-300 text-lg">
-                                            <span className="text-manjaro-green mt-1 shrink-0">✓</span>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            {/* Tech Stack Section */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-5">
-                                    <div className="p-2 rounded-xl bg-violet-100 dark:bg-violet-900/30">
-                                        <Code2 className="text-violet-500" size={24} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                                        {t('projects.sections.tech_stack')}
-                                    </h3>
-                                </div>
-                                <div className="flex flex-wrap gap-2 pl-12">
+                                {/* Tech stack badges on panel */}
+                                <div className="relative flex flex-wrap justify-center gap-2 mb-8">
                                     {techStack.map((tech, idx) => (
                                         <span
                                             key={idx}
-                                            className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-transform hover:scale-105 ${techColors[tech] || defaultBadge}`}
+                                            className="px-3 py-1 rounded-full text-xs font-semibold
+                                                bg-white/15 text-white/90 border border-white/25 backdrop-blur-sm"
                                         >
                                             {tech}
                                         </span>
                                     ))}
                                 </div>
-                            </section>
+
+                                {/* CTA Button */}
+                                <a
+                                    href={siteUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative inline-flex items-center gap-2 px-6 py-3 rounded-xl
+                                        bg-white text-slate-800 font-bold text-sm
+                                        hover:bg-white/90 hover:scale-105
+                                        shadow-lg transition-all duration-200"
+                                >
+                                    <ExternalLink size={16} />
+                                    {t('projects.visit_site')}
+                                </a>
+
+                                {/* Disclaimer footnote */}
+                                {disclaimer && (
+                                    <p className="relative mt-4 text-[11px] text-white/70 italic text-center max-w-[260px] leading-relaxed">
+                                        {disclaimer}
+                                    </p>
+                                )}
+                            </div>
+
+                            {/* === RIGHT COLUMN: Content === */}
+                            <div className="lg:col-span-3 px-8 py-8 lg:py-10 space-y-8">
+
+                                {/* Section: Challenge */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-xl bg-orange-100 dark:bg-orange-900/30">
+                                            <Target className="text-orange-500" size={22} />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                                            {t('projects.sections.challenge')}
+                                        </h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+                                        {challenge}
+                                    </p>
+                                </section>
+
+                                {/* Section: Solution */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-xl bg-blue-100 dark:bg-blue-900/30">
+                                            <Server className="text-blue-500" size={22} />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                                            {t('projects.sections.solution')}
+                                        </h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+                                        {solution}
+                                    </p>
+                                </section>
+
+                                {/* Section: Impact */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-xl bg-yellow-100 dark:bg-yellow-900/30">
+                                            <Award className="text-yellow-500" size={22} />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                                            {t('projects.sections.impact')}
+                                        </h3>
+                                    </div>
+                                    <ul className="space-y-2.5 pl-11">
+                                        {impactList.map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
+                                                <span className="text-manjaro-green mt-0.5 shrink-0">✓</span>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+
+                                {/* Tech Stack inline (right side, compact) */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-xl bg-violet-100 dark:bg-violet-900/30">
+                                            <Code2 className="text-violet-500" size={22} />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                                            {t('projects.sections.tech_stack')}
+                                        </h3>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 pl-11">
+                                        {techStack.map((tech, idx) => (
+                                            <span
+                                                key={idx}
+                                                className={`px-3 py-1 rounded-full text-sm font-semibold border transition-transform hover:scale-105 ${techColors[tech] || defaultBadge}`}
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </section>
+
+                                {/* Chibi Pro Signature */}
+                                <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <span className="text-[10px] font-bold text-manjaro-green/60 dark:text-manjaro-green/40 uppercase tracking-widest leading-tight text-right">
+                                        PRO<br />✓
+                                    </span>
+                                    <img
+                                        src={chibiPro}
+                                        alt="Chibi Pro"
+                                        className="w-14 h-14 object-contain drop-shadow-lg opacity-80 hover:opacity-100 transition-opacity"
+                                        onError={(e) => e.currentTarget.style.display = 'none'}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

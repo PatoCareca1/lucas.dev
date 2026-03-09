@@ -299,6 +299,7 @@
         "title": "Projects",
         "subtitle": "Real-world systems I've built and shipped — from government-scale APIs to hackathon-winning prototypes.",
         "view_project": "View Project",
+        "visit_site": "Visit Project Site",
         "close": "Close",
         "sections": {
             "challenge": "The Challenge",
@@ -325,7 +326,9 @@
                 "Celery",
                 "Redis",
                 "Python"
-            ]
+            ],
+            "site_url": "#",
+            "disclaimer": "Note: This is a private/governmental project with no public access to the source code, but you can check the official page at the link above."
         },
         "prp": {
             "title": "PRP — SETHAS/RN",
@@ -346,7 +349,9 @@
                 "Docker",
                 "Celery",
                 "Redis"
-            ]
+            ],
+            "site_url": "#",
+            "disclaimer": "Note: This is a private/governmental project with no public access to the source code, but you can check the official page at the link above."
         },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",
@@ -366,7 +371,9 @@
                 "jQuery",
                 "Bootstrap",
                 "SQLite"
-            ]
+            ],
+            "site_url": "#",
+            "disclaimer": "Note: This is a hackathon project. You can check the official event page at the link above."
         }
     }
 }
