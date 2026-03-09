@@ -332,26 +332,25 @@
         },
         "prp": {
             "title": "PRP — SETHAS/RN",
-            "tag": "Pandas",
-            "short_desc": "ETL pipelines for automating food security data management at Programa Restaurante Popular.",
-            "challenge": "Modernizing food security data management for Programa Restaurante Popular, dealing with large volumes of daily meals served, slow manual processes, and the need for accurate government metrics and reporting.",
-            "solution": "Created intensive ETL pipelines with Pandas for automating data reconciliation and generating government metric reports. Replaced manual spreadsheet workflows with automated validation layers ensuring data consistency before persistence to PostgreSQL.",
+            "tag": "Data Engineering",
+            "short_desc": "Automated data processing and validation architecture for the Restaurante Popular Program in RN.",
+            "challenge": "Modernizing the data infrastructure for the 'Restaurante Popular' Program in RN, responsible for auditing thousands of subsidized meals daily. The system relied on manual processes, hindering reliability and governmental reporting.",
+            "solution": "Development of an automated Data Engineering architecture, featuring Python/Pandas ETL pipelines, PostgreSQL normalization layers, and asynchronous processing using Celery + Redis within a Dockerized environment.",
             "impact": [
-                "Drastic reduction in operational errors through automated data validation",
-                "Faster data-driven decision making for program managers",
-                "Automated daily processing of thousands of meal records with fault tolerance",
-                "Streamlined government reporting and compliance audits"
+                "Elimination of manual spreadsheet-based processes",
+                "Automated daily processing of thousands of records",
+                "Creation of a reliable foundation for governmental auditing and accountability"
             ],
             "tech_stack": [
+                "Python",
                 "Pandas",
                 "PostgreSQL",
-                "Python",
-                "Docker",
                 "Celery",
-                "Redis"
+                "Redis",
+                "Docker"
             ],
             "site_url": "#",
-            "disclaimer": "Note: This is a private/governmental project with no public access to the source code, but you can check the official page at the link above."
+            "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
         },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",

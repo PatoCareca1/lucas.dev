@@ -332,26 +332,25 @@
         },
         "prp": {
             "title": "PRP — SETHAS/RN",
-            "tag": "Pandas",
-            "short_desc": "Pipelines ETL para automatização da gestão de dados de segurança alimentar do Programa Restaurante Popular.",
-            "challenge": "Modernizar a gestão de dados de segurança alimentar do Programa Restaurante Popular, lidando com grandes volumes de refeições diárias servidas, processos manuais lentos e a necessidade de métricas e relatórios governamentais precisos.",
-            "solution": "Criação de pipelines ETL intensivos com Pandas para automação de conferências de dados e geração de relatórios de métricas governamentais. Substituição de fluxos manuais em planilhas por camadas de validação automatizadas, garantindo consistência dos dados antes da persistência no PostgreSQL.",
+            "tag": "Data Engineering",
+            "short_desc": "Arquitetura de processamento e validação de dados automatizada para o Programa Restaurante Popular do RN.",
+            "challenge": "Modernizar a infraestrutura de dados do Programa Restaurante Popular do RN, responsável pelo registro e auditoria de milhares de refeições diárias. O sistema dependia de processos manuais, dificultando a confiabilidade e a geração de relatórios governamentais.",
+            "solution": "Desenvolvimento de uma arquitetura automatizada de Data Engineering, incluindo pipelines ETL em Python/Pandas, camadas de normalização em PostgreSQL e processamento assíncrono com Celery + Redis sob infraestrutura Docker.",
             "impact": [
-                "Redução drástica em erros operacionais através de validação automatizada de dados",
-                "Agilidade na tomada de decisão baseada em dados para gestores do programa",
-                "Processamento automatizado diário de milhares de registros de refeições com tolerância a falhas",
-                "Relatórios governamentais e auditorias de conformidade simplificados"
+                "Eliminação de processos manuais baseados em planilhas",
+                "Processamento automatizado diário de milhares de registros",
+                "Criação de uma base confiável para auditoria e prestação de contas governamental"
             ],
             "tech_stack": [
+                "Python",
                 "Pandas",
                 "PostgreSQL",
-                "Python",
-                "Docker",
                 "Celery",
-                "Redis"
+                "Redis",
+                "Docker"
             ],
             "site_url": "#",
-            "disclaimer": "Nota: Este é um projeto privado/governamental sem acesso público ao código-fonte, mas você pode conferir a página oficial no link acima."
+            "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
         },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",
