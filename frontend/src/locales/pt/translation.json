@@ -309,26 +309,48 @@
         },
         "plp": {
             "title": "PLP — SETHAS/RN",
-            "tag": "Django Ninja",
-            "short_desc": "APIs auditáveis para gerenciar o fluxo complexo de distribuição do Programa do Leite Potiguar.",
-            "challenge": "Gerenciar o fluxo complexo de distribuição de leite para milhares de beneficiários em todo o Rio Grande do Norte, garantindo integridade total dos dados, rastreabilidade e prevenção de fraudes em um programa social governamental.",
-            "solution": "Desenvolvimento de APIs RESTful altamente auditáveis utilizando Django Ninja, com validação rigorosa de schema, trilhas de auditoria abrangentes e modelagem de banco de dados projetada para rastreabilidade total de cada evento de distribuição, da origem ao beneficiário.",
+            "tag": "Backend Engineering",
+            "short_desc": "Plataforma backend robusta para rastreamento de distribuição de benefícios em escala estadual com rastreabilidade completa e auditoria governamental.",
+            "challenge": "Desenvolver uma plataforma backend robusta para gerenciamento e rastreamento da distribuição de benefícios em escala estadual. O sistema precisava garantir rastreabilidade completa e transparência em transações governamentais, suportando operações distribuídas e auditoria detalhada.",
+            "solution": "Uma plataforma completa baseada em Django, com arquitetura orientada a serviços e foco em integridade.",
+            "solution_details": {
+                "apis": {
+                    "label": "APIs & Segurança",
+                    "text": "Implementação de APIs REST com DRF e autenticação segura via JWT (SimpleJWT)."
+                },
+                "async": {
+                    "label": "Processamento Assíncrono",
+                    "text": "Orquestração de tarefas complexas (relatórios e automações) utilizando Celery com RabbitMQ e monitoramento em tempo real via Flower."
+                },
+                "data": {
+                    "label": "Engenharia de Dados",
+                    "text": "Manipulação intensiva de dados com Pandas e integração via SQLAlchemy."
+                },
+                "docs": {
+                    "label": "Validação Documental",
+                    "text": "Geração de PDFs institucionais e QR Codes para autenticação de documentos oficiais."
+                },
+                "infra": {
+                    "label": "DevOps & CI/CD",
+                    "text": "Infraestrutura containerizada com Docker e pipelines automatizados via GitLab CI."
+                }
+            },
             "impact": [
-                "Transparência total nos dados governamentais em 167 municípios",
-                "Maior controle e prestação de contas sobre recursos públicos",
-                "Prevenção de fraudes através de trilhas de auditoria completas em cada transação",
-                "Visibilidade em tempo real para gestores e auditores do programa"
+                "Plataforma de gestão de benefícios alimentares em escala estadual",
+                "Automação total de processos administrativos e geração de documentos",
+                "Infraestrutura escalável e auditável para sistemas governamentais"
             ],
             "tech_stack": [
-                "Django Ninja",
-                "PostgreSQL",
-                "Docker",
+                "Django",
+                "DRF",
                 "Celery",
-                "Redis",
-                "Python"
+                "RabbitMQ",
+                "Pandas",
+                "Docker",
+                "GitLab CI"
             ],
             "site_url": "#",
-            "disclaimer": "Nota: Este é um projeto privado/governamental sem acesso público ao código-fonte, mas você pode conferir a página oficial no link acima."
+            "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
         },
         "prp": {
             "title": "PRP — SETHAS/RN",

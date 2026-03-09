@@ -309,26 +309,48 @@
         },
         "plp": {
             "title": "PLP — SETHAS/RN",
-            "tag": "Django Ninja",
-            "short_desc": "Auditable APIs for managing the complex milk distribution flow of Programa do Leite Potiguar.",
-            "challenge": "Managing the complex distribution flow of milk to thousands of beneficiaries across Rio Grande do Norte, ensuring full data integrity, traceability, and fraud prevention in a government social program.",
-            "solution": "Developed highly auditable RESTful APIs using Django Ninja with strict schema validation, comprehensive audit trails, and database modeling designed for full traceability of every distribution event from origin to beneficiary.",
+            "tag": "Backend Engineering",
+            "short_desc": "Robust backend platform for state-wide benefit distribution tracking with full traceability and governmental auditing.",
+            "challenge": "Developing a robust backend platform for managing and tracking benefit distribution at state scale. The system needed to ensure full traceability and transparency in governmental transactions, supporting distributed operations and detailed auditing.",
+            "solution": "A complete Django-based platform with service-oriented architecture focused on data integrity.",
+            "solution_details": {
+                "apis": {
+                    "label": "APIs & Security",
+                    "text": "REST API implementation with DRF and secure authentication via JWT (SimpleJWT)."
+                },
+                "async": {
+                    "label": "Async Processing",
+                    "text": "Complex task orchestration (reports and automations) using Celery with RabbitMQ and real-time monitoring via Flower."
+                },
+                "data": {
+                    "label": "Data Engineering",
+                    "text": "Intensive data manipulation with Pandas and integration via SQLAlchemy."
+                },
+                "docs": {
+                    "label": "Document Validation",
+                    "text": "Institutional PDF generation and QR Codes for official document authentication."
+                },
+                "infra": {
+                    "label": "DevOps & CI/CD",
+                    "text": "Containerized infrastructure with Docker and automated pipelines via GitLab CI."
+                }
+            },
             "impact": [
-                "Full transparency in governmental data across 167 municipalities",
-                "Greater control and accountability over public resources",
-                "Fraud prevention through complete audit trails on every transaction",
-                "Real-time visibility for program managers and auditors"
+                "State-wide food benefit management platform",
+                "Full automation of administrative processes and document generation",
+                "Scalable and auditable infrastructure for governmental systems"
             ],
             "tech_stack": [
-                "Django Ninja",
-                "PostgreSQL",
-                "Docker",
+                "Django",
+                "DRF",
                 "Celery",
-                "Redis",
-                "Python"
+                "RabbitMQ",
+                "Pandas",
+                "Docker",
+                "GitLab CI"
             ],
             "site_url": "#",
-            "disclaimer": "Note: This is a private/governmental project with no public access to the source code, but you can check the official page at the link above."
+            "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
         },
         "prp": {
             "title": "PRP — SETHAS/RN",

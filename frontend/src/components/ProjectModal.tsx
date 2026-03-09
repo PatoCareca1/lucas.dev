@@ -11,17 +11,21 @@ interface ProjectModalProps {
 
 // Color mapping for tech badges
 const techColors: Record<string, string> = {
+    'Django': 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-300 dark:border-emerald-700',
     'Django Ninja': 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-300 dark:border-emerald-700',
+    'DRF': 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/40 dark:text-rose-300 dark:border-rose-700',
     'PostgreSQL': 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700',
     'Pandas': 'bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-700',
     'Docker': 'bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/40 dark:text-sky-300 dark:border-sky-700',
     'Celery': 'bg-lime-100 text-lime-800 border-lime-300 dark:bg-lime-900/40 dark:text-lime-300 dark:border-lime-700',
+    'RabbitMQ': 'bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900/40 dark:text-orange-300 dark:border-orange-700',
     'Redis': 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/40 dark:text-red-300 dark:border-red-700',
     'Python': 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/40 dark:text-yellow-300 dark:border-yellow-700',
     'Flask': 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-800/60 dark:text-gray-300 dark:border-gray-600',
     'jQuery': 'bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-700',
     'Bootstrap': 'bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-900/40 dark:text-violet-300 dark:border-violet-700',
     'SQLite': 'bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-700',
+    'GitLab CI': 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700',
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
@@ -61,6 +65,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const techStack = t(`projects.${projectKey}.tech_stack`, { returnObjects: true }) as string[];
     const siteUrl = t(`projects.${projectKey}.site_url`, { defaultValue: '#' });
     const disclaimer = t(`projects.${projectKey}.disclaimer`, { defaultValue: '' });
+    const solutionDetails = t(`projects.${projectKey}.solution_details`, { returnObjects: true, defaultValue: null }) as Record<string, { label: string; text: string }> | null;
+    const hasSolutionDetails = solutionDetails && typeof solutionDetails === 'object' && !Array.isArray(solutionDetails) && Object.keys(solutionDetails).length > 0;
 
     return (
         <AnimatePresence>
@@ -187,6 +193,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                     <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
                                         {solution}
                                     </p>
+
+                                    {/* Solution subcategories (when available) */}
+                                    {hasSolutionDetails && (
+                                        <div className="mt-5 pl-11 space-y-3">
+                                            {Object.entries(solutionDetails).map(([key, detail]) => (
+                                                <div key={key} className="flex items-start gap-3">
+                                                    <span className="mt-1.5 w-2 h-2 rounded-full bg-manjaro-green shrink-0" />
+                                                    <div>
+                                                        <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
+                                                            {detail.label}:
+                                                        </span>
+                                                        <span className="text-slate-600 dark:text-slate-400 text-sm ml-1">
+                                                            {detail.text}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </section>
 
                                 {/* Section: Impact */}
