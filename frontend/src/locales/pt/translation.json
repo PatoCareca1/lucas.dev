@@ -383,23 +383,60 @@
             "title": "Crowdless — Hackathon HackaPower",
             "tag": "Tech Lead",
             "short_desc": "Protótipo vencedor do 1º lugar, construído sob pressão com liderança técnica.",
-            "challenge": "Durante o hackathon HackaPower, nosso time tinha tempo limitado para conceber, arquitetar e entregar um protótipo funcional que abordasse desafios reais de gerenciamento de multidões. A pressão exigia decisões arquiteturais rápidas, delegação clara de tarefas e uma demo funcional no prazo.",
-            "solution": "Como Tech Lead, organizei o fluxo de trabalho do time, defini a arquitetura do sistema e priorizei as funcionalidades do MVP. Construímos uma aplicação web leve para monitoramento de densidade de multidões em tempo real, combinando um backend em Python com um frontend responsivo. Foquei em manter a stack simples e os pontos de integração limpos para maximizar a velocidade de entrega.",
+            "challenge": "\"Como o jovem pode interagir de forma segura na pandemia?\" O desafio era criar soluções para engajar o debate social e políticas públicas.",
+            "solution": "'Crowdless' — ferramenta para compartilhamento de dados sanitários de ambientes em tempo real, facilitando a escolha de locais seguros.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Highlights",
+                    "text": "Desenvolvimento sob pressão (maratona de 27 horas). Atuação como Tech Lead coordenando o time e as principais decisões de arquitetura e tecnologia."
+                }
+            },
             "impact": [
-                "Vencemos o 1º lugar no hackathon HackaPower",
+                "Vencedor do 1º lugar baseado em: Criatividade, Originalidade, Impacto Social, Qualidade Técnica e Sustentabilidade.",
                 "Protótipo totalmente funcional entregue dentro do prazo",
                 "Demonstrou liderança técnica e coordenação de equipe sob pressão",
                 "Conceito validado com jurados e mentores"
             ],
+            "quote": "\"Foi nosso primeiro hackathon... ganharmos foi algo completamente inesperado e de uma alegria muito grande\" — Lucas Daniel, Líder da Equipe.",
             "tech_stack": [
                 "Python",
                 "Flask",
                 "jQuery",
-                "Bootstrap",
-                "SQLite"
+                "Bootstrap"
             ],
-            "site_url": "#",
+            "site_url": "https://portal.ifba.edu.br/jequie/noticias/2021/agosto/equipe-do-ifba-jequie-e-campea-do-hackathon-juventudes",
+            "link_label": "Ver Notícia Oficial",
             "disclaimer": "Nota: Este é um projeto de hackathon. Confira a página oficial do evento no link acima."
+        },
+        "miniShell": {
+            "title": "Mini-Shell (C Interpreter)",
+            "tag": "Systems Programming",
+            "short_desc": "Um shell isolado e modular focado em segurança com uso de Kernel API.",
+            "challenge": "Criar um shell isolado e modular focado em segurança (Sandbox).",
+            "solution": "Desenvolvimento estratégico usando System Calls e rotinas de isolamento em ambiente Unix.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Decision",
+                    "text": "Uso de System Calls nativas (stat, opendir, unlink, rename) em vez de bibliotecas de alto nível para manipulação de ficheiros, visando obter controle absoluto e comunicação direta com o kernel do sistema."
+                },
+                "sandbox": {
+                    "label": "Sandbox Logic",
+                    "text": "Rotina de inicialização que isola o processo do usuário no diretório /sandbox, bloqueando acessos indevidos e garantindo um ambiente de execução rigorosamente contido."
+                }
+            },
+            "impact": [
+                "Implementação robusta com Kernel API",
+                "Controle absoluto via chamadas de sistema (syscalls)",
+                "Isolamento eficaz de processos do sistema"
+            ],
+            "tech_stack": [
+                "C",
+                "GCC",
+                "Make",
+                "Linux/WSL API"
+            ],
+            "site_url": "https://github.com/PatoCareca1/miniShell",
+            "link_label": "Ver no GitHub"
         }
     }
 }

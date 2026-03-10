@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { X, Target, Server, Award, Code2, ExternalLink } from 'lucide-react';
 import chibiPro from '../assets/chibi_senior.png';
+import chibiYoung from '../assets/chibi_young.png';
+import hackathonImg from '../assets/hackathon.png';
 
 interface ProjectModalProps {
     projectKey: string | null;
@@ -26,6 +28,10 @@ const techColors: Record<string, string> = {
     'Bootstrap': 'bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-900/40 dark:text-violet-300 dark:border-violet-700',
     'SQLite': 'bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-700',
     'GitLab CI': 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700',
+    'C': 'bg-zinc-100 text-zinc-800 border-zinc-300 dark:bg-zinc-900/40 dark:text-zinc-300 dark:border-zinc-700',
+    'GCC': 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/40 dark:text-fuchsia-300 dark:border-fuchsia-700',
+    'Make': 'bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700',
+    'Linux/WSL API': 'bg-slate-200 text-slate-800 border-slate-300 dark:bg-slate-700/60 dark:text-slate-200 dark:border-slate-500',
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
@@ -65,6 +71,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const techStack = t(`projects.${projectKey}.tech_stack`, { returnObjects: true }) as string[];
     const siteUrl = t(`projects.${projectKey}.site_url`, { defaultValue: '#' });
     const disclaimer = t(`projects.${projectKey}.disclaimer`, { defaultValue: '' });
+    const linkLabel = t(`projects.${projectKey}.link_label`, { defaultValue: t('projects.visit_site') });
+    const quote = t(`projects.${projectKey}.quote`, { defaultValue: '' });
     const solutionDetails = t(`projects.${projectKey}.solution_details`, { returnObjects: true, defaultValue: null }) as Record<string, { label: string; text: string }> | null;
     const hasSolutionDetails = solutionDetails && typeof solutionDetails === 'object' && !Array.isArray(solutionDetails) && Object.keys(solutionDetails).length > 0;
 
@@ -151,7 +159,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                         shadow-lg transition-all duration-200"
                                 >
                                     <ExternalLink size={16} />
-                                    {t('projects.visit_site')}
+                                    {linkLabel}
                                 </a>
 
                                 {/* Disclaimer footnote */}
@@ -234,6 +242,22 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                     </ul>
                                 </section>
 
+                                {/* Quote */}
+                                {quote && (
+                                    <blockquote className="border-l-4 border-manjaro-green pl-5 my-6">
+                                        <p className="text-[15px] font-medium italic text-slate-700 dark:text-slate-300 leading-relaxed">
+                                            {quote}
+                                        </p>
+                                    </blockquote>
+                                )}
+
+                                {/* Main Image (if Crowdless) */}
+                                {projectKey === 'crowdless' && (
+                                    <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 my-6">
+                                        <img src={hackathonImg} alt="Hackathon Certificate" className="w-full h-auto object-cover" />
+                                    </div>
+                                )}
+
                                 {/* Tech Stack inline (right side, compact) */}
                                 <section>
                                     <div className="flex items-center gap-3 mb-4">
@@ -256,14 +280,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                     </div>
                                 </section>
 
-                                {/* Chibi Pro Signature */}
+                                {/* Chibi Signature */}
                                 <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <span className="text-[10px] font-bold text-manjaro-green/60 dark:text-manjaro-green/40 uppercase tracking-widest leading-tight text-right">
-                                        PRO<br />✓
+                                        {projectKey === 'miniShell' ? 'YOUNG' : 'PRO'}<br />✓
                                     </span>
                                     <img
-                                        src={chibiPro}
-                                        alt="Chibi Pro"
+                                        src={projectKey === 'miniShell' ? chibiYoung : chibiPro}
+                                        alt={projectKey === 'miniShell' ? 'Chibi Young' : 'Chibi Pro'}
                                         className="w-14 h-14 object-contain drop-shadow-lg opacity-80 hover:opacity-100 transition-opacity"
                                         onError={(e) => e.currentTarget.style.display = 'none'}
                                     />

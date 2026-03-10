@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Layers } from 'lucide-react';
 import ProjectModal from '../components/ProjectModal';
 
-const projectKeys = ['plp', 'prp', 'crowdless'];
+const projectKeys = ['plp', 'prp', 'crowdless', 'miniShell'];
 
 // Gradient accents per project for visual variety
 const cardAccents: Record<string, string> = {
     plp: 'from-emerald-500 to-teal-400',
     prp: 'from-blue-500 to-indigo-400',
     crowdless: 'from-amber-500 to-orange-400',
+    miniShell: 'from-zinc-500 to-neutral-400',
 };
 
 const Projects: React.FC = () => {

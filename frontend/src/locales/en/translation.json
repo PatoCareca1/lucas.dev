@@ -383,23 +383,60 @@
             "title": "Crowdless — Hackathon HackaPower",
             "tag": "Tech Lead",
             "short_desc": "1st place winning prototype built under pressure with technical leadership.",
-            "challenge": "During the HackaPower hackathon, our team had limited time to conceive, architect, and deliver a functional prototype that addressed real-world crowd management challenges. The pressure demanded fast architectural decisions, clear task delegation, and a working demo by the deadline.",
-            "solution": "As Tech Lead, I organized the team's workflow, defined the system architecture, and prioritized the MVP features. We built a lightweight web application for real-time crowd density monitoring, combining a Python backend with a responsive frontend. I focused on keeping the stack simple and the integration points clean to maximize delivery speed.",
+            "challenge": "\"How can youngsters interact safely during the pandemic?\" The challenge was to create solutions to engage social debate and public policies.",
+            "solution": "'Crowdless' — a tool for real-time sharing of sanitary data about environments, making it easier to choose safe places.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Highlights",
+                    "text": "Development under pressure (27-hour marathon). Role as Tech Lead coordinating the team and key architectural decisions."
+                }
+            },
             "impact": [
-                "Won 1st place at HackaPower hackathon",
+                "Won 1st place based on: Creativity, Originality, Social Impact, Technical Quality, and Sustainability.",
                 "Delivered a fully functional prototype within the time constraint",
                 "Demonstrated technical leadership and team coordination under pressure",
                 "Validated the concept with judges and mentors"
             ],
+            "quote": "\"It was our first hackathon... winning was completely unexpected and brought immense joy\" — Lucas Daniel, Team Leader.",
             "tech_stack": [
                 "Python",
                 "Flask",
                 "jQuery",
-                "Bootstrap",
-                "SQLite"
+                "Bootstrap"
             ],
-            "site_url": "#",
+            "site_url": "https://portal.ifba.edu.br/jequie/noticias/2021/agosto/equipe-do-ifba-jequie-e-campea-do-hackathon-juventudes",
+            "link_label": "Read Official News",
             "disclaimer": "Note: This is a hackathon project. You can check the official event page at the link above."
+        },
+        "miniShell": {
+            "title": "Mini-Shell (C Interpreter)",
+            "tag": "Systems Programming",
+            "short_desc": "An isolated and modular shell focused on security using Kernel API.",
+            "challenge": "Create an isolated and modular shell focused on security (Sandbox).",
+            "solution": "Strategic development using System Calls and isolation routines in a Unix environment.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Decision",
+                    "text": "Utilization of native System Calls (stat, opendir, unlink, rename) instead of high-level libraries for file manipulation, directly communicating with the kernel to ensure absolute efficiency and low-level control."
+                },
+                "sandbox": {
+                    "label": "Sandbox Logic",
+                    "text": "Initialization routine that strictly isolates the user process within the /sandbox directory, effectively blocking unauthorized access and securing the execution environment."
+                }
+            },
+            "impact": [
+                "Robust implementation with Kernel API",
+                "Absolute control via system calls (syscalls)",
+                "Effective isolation of system processes"
+            ],
+            "tech_stack": [
+                "C",
+                "GCC",
+                "Make",
+                "Linux/WSL API"
+            ],
+            "site_url": "https://github.com/PatoCareca1/miniShell",
+            "link_label": "View on GitHub"
         }
     }
 }
