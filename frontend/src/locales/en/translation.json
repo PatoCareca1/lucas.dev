@@ -437,6 +437,38 @@
             ],
             "site_url": "https://github.com/PatoCareca1/miniShell",
             "link_label": "View on GitHub"
+        },
+        "fitTrack": {
+            "title": "FitTrack — Workout & Health",
+            "tag": "Full-Stack",
+            "short_desc": "Health tracking platform with multi-protocol support (REST/GraphQL).",
+            "challenge": "Unify the tracking of workouts, diet, and body measurements in a platform that supports multiple communication protocols (REST/GraphQL).",
+            "solution": "A robust Django-based architecture integrating REST and GraphQL endpoints with hybrid persistence and high security.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Solution",
+                    "text": "Structured backend architecture with SimpleJWT to provide unified security across communication paradigms and implementation of hybrid persistence logic, blending a relational database and associated JSON files."
+                },
+                "graphql": {
+                    "label": "GraphQL Power",
+                    "text": "Adoption of Graphene-Django to enable fully optimized Queries and Mutations for workout and exercise routines, enhancing flexibility and request performance."
+                }
+            },
+            "impact": [
+                "Flexible architecture compatible with multiple protocols (REST & GraphQL)",
+                "Unified secure authentication via SimpleJWT",
+                "Consistent and hybrid information management"
+            ],
+            "tech_stack": [
+                "Python",
+                "Django",
+                "Graphene (GraphQL)",
+                "REST Framework",
+                "SQLite",
+                "Tailwind CSS"
+            ],
+            "site_url": "https://github.com/PatoCareca1/fittrack",
+            "link_label": "View on GitHub"
         }
     }
 }

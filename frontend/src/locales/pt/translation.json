@@ -437,6 +437,38 @@
             ],
             "site_url": "https://github.com/PatoCareca1/miniShell",
             "link_label": "Ver no GitHub"
+        },
+        "fitTrack": {
+            "title": "FitTrack — Workout & Health",
+            "tag": "Full-Stack",
+            "short_desc": "Plataforma de saúde com suporte a múltiplos protocolos (REST/GraphQL).",
+            "challenge": "Unificar o acompanhamento de treinos, dieta e medidas corporais numa plataforma que suporte múltiplos protocolos de comunicação (REST/GraphQL).",
+            "solution": "Uma arquitetura robusta baseada em Django integrando endpoints REST e GraphQL com persistência híbrida e alta segurança.",
+            "solution_details": {
+                "engineering": {
+                    "label": "Engineering Solution",
+                    "text": "Arquitetura backend estruturada com SimpleJWT para prover segurança unificada entre paradigmas de comunicação e implementação de uma lógica de persistência híbrida, mesclando banco de dados relacional e arquivos JSON associados."
+                },
+                "graphql": {
+                    "label": "GraphQL Power",
+                    "text": "Adoção do Graphene-Django para viabilizar Queries e Mutations completamente otimizadas nas rotinas de treinos e exercícios, elevando a flexibilidade e a performance das requisições."
+                }
+            },
+            "impact": [
+                "Arquitetura flexível e aderente a múltiplos protocolos (REST & GraphQL)",
+                "Autenticação unificada segura via SimpleJWT",
+                "Gerenciamento consistente e híbrido de informações"
+            ],
+            "tech_stack": [
+                "Python",
+                "Django",
+                "Graphene (GraphQL)",
+                "REST Framework",
+                "SQLite",
+                "Tailwind CSS"
+            ],
+            "site_url": "https://github.com/PatoCareca1/fittrack",
+            "link_label": "Ver no GitHub"
         }
     }
 }

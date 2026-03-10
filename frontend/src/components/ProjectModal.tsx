@@ -32,6 +32,9 @@ const techColors: Record<string, string> = {
     'GCC': 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/40 dark:text-fuchsia-300 dark:border-fuchsia-700',
     'Make': 'bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700',
     'Linux/WSL API': 'bg-slate-200 text-slate-800 border-slate-300 dark:bg-slate-700/60 dark:text-slate-200 dark:border-slate-500',
+    'REST Framework': 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/40 dark:text-rose-300 dark:border-rose-700',
+    'Graphene (GraphQL)': 'bg-pink-100 text-pink-800 border-pink-300 dark:bg-pink-900/40 dark:text-pink-300 dark:border-pink-700',
+    'Tailwind CSS': 'bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-700',
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
@@ -41,6 +44,8 @@ const panelGradients: Record<string, string> = {
     plp: 'from-emerald-600 via-teal-500 to-cyan-400',
     prp: 'from-blue-600 via-indigo-500 to-purple-400',
     crowdless: 'from-amber-500 via-orange-400 to-rose-400',
+    miniShell: 'from-zinc-600 via-zinc-500 to-neutral-400',
+    fitTrack: 'from-indigo-600 via-blue-500 to-cyan-400',
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
@@ -283,11 +288,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                 {/* Chibi Signature */}
                                 <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <span className="text-[10px] font-bold text-manjaro-green/60 dark:text-manjaro-green/40 uppercase tracking-widest leading-tight text-right">
-                                        {projectKey === 'miniShell' ? 'YOUNG' : 'PRO'}<br />✓
+                                        {['miniShell', 'fitTrack'].includes(projectKey) ? 'YOUNG' : 'PRO'}<br />✓
                                     </span>
                                     <img
-                                        src={projectKey === 'miniShell' ? chibiYoung : chibiPro}
-                                        alt={projectKey === 'miniShell' ? 'Chibi Young' : 'Chibi Pro'}
+                                        src={['miniShell', 'fitTrack'].includes(projectKey) ? chibiYoung : chibiPro}
+                                        alt={['miniShell', 'fitTrack'].includes(projectKey) ? 'Chibi Young' : 'Chibi Pro'}
                                         className="w-14 h-14 object-contain drop-shadow-lg opacity-80 hover:opacity-100 transition-opacity"
                                         onError={(e) => e.currentTarget.style.display = 'none'}
                                     />
