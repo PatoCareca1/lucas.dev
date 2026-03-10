@@ -235,6 +235,11 @@
             "caption": "Resolução de Problemas e Estratégia. Navegando por sistemas complexos, tanto digitais quanto visuais."
         }
     },
+    "contact": {
+        "title": "Vamos conversar?",
+        "subtitle": "Estou sempre aberto a novos desafios em desenvolvimento backend, arquitetura de sistemas e parcerias em projetos open-source.",
+        "footer": "© 2026 Lucas Daniel • Desenvolvedor Backend • Natal, RN"
+    },
     "skills": {
         "hard_skills_title": "Hard Skills",
         "soft_skills_title": "Soft Skills",

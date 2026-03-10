@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import SystemInfo from './SystemInfo';
 import TerminalModal from './TerminalModal';
 import { motion, useSpring } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
@@ -194,7 +193,6 @@ const Layout: React.FC = () => {
                 <main className="flex-grow bg-transparent backdrop-blur-[2px] transition-colors duration-300">
                     <Outlet />
                 </main>
-                <SystemInfo />
             </div>
 
             {/* Invisible FAB trigger at the bottom right corner */}
