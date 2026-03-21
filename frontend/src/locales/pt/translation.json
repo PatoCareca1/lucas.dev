@@ -354,7 +354,7 @@
                 "Docker",
                 "GitLab CI"
             ],
-            "site_url": "#",
+            "site_url": "https://distribuicao.plp.sethas.rn.gov.br/",
             "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
         },
         "prp": {
@@ -376,8 +376,43 @@
                 "Redis",
                 "Docker"
             ],
-            "site_url": "#",
+            "site_url": "http://www.sethas.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=9940&ACT=&PAGE=0&PARM=&LBL=Restaurante+Popular",
             "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
+        },
+        "cineReserve": {
+            "title": "CineReserve",
+            "tag": "Full-Stack",
+            "short_desc": "Uma plataforma completa para reserva de ingressos de cinema. API robusta e experiência frontend responsiva.",
+            "challenge": "Desenvolver uma plataforma para simular o ecossistema real de um cinema, necessitando lidar com processos assíncronos e alta demanda em eventos simultâneos, assegurando reservas seguras.",
+            "solution": "O backend foi construído para lidar com processos assíncronos (como disparo automático de emails e processamento contínuo) garantindo que a interface de resposta não trave. A arquitetura viabilizou um ecossistema com comunicação eficiente entre serviços.",
+            "solution_details": {
+                "architecture": {
+                    "label": "Processamento Assíncrono",
+                    "text": "A arquitetura foi pensada para lidar com processos assíncronos — como o disparo de e-mails de confirmação de compra — garantindo que a interface não trave durante as requisições."
+                },
+                "infrastructure": {
+                    "label": "Containers & Deploy",
+                    "text": "O backend foi containerizado para facilitar o deploy e a escalabilidade, mantendo a comunicação eficiente com o frontend em React."
+                }
+            },
+            "impact": [
+                "Experiência de reserva rápida, robusta e fluida para o cliente final",
+                "Arquitetura escalável baseada em containers preparados para produção",
+                "Garantia de escalonamento com processamento assíncrono para operações de I/O"
+            ],
+            "tech_stack": [
+                "Python",
+                "Django REST Framework",
+                "Celery",
+                "React",
+                "Vite",
+                "Tailwind CSS",
+                "Docker Compose",
+                "Docker"
+            ],
+            "site_url": "https://cinereserve.lucasdaniel.dev.br",
+            "repo_url": "https://github.com/PatoCareca1/CineReserve",
+            "link_label": "Ver em Produção"
         },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",

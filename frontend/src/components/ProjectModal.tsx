@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { X, Target, Server, Award, Code2, ExternalLink } from 'lucide-react';
+import { X, Target, Server, Award, Code2, ExternalLink, Github } from 'lucide-react';
 import chibiPro from '../assets/chibi_senior.png';
 import chibiYoung from '../assets/chibi_young.png';
 import hackathonImg from '../assets/hackathon.png';
@@ -34,8 +34,12 @@ const techColors: Record<string, string> = {
     'Make': 'bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700',
     'Linux/WSL API': 'bg-slate-200 text-slate-800 border-slate-300 dark:bg-slate-700/60 dark:text-slate-200 dark:border-slate-500',
     'REST Framework': 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/40 dark:text-rose-300 dark:border-rose-700',
+    'Django REST Framework': 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/40 dark:text-rose-300 dark:border-rose-700',
     'Graphene (GraphQL)': 'bg-pink-100 text-pink-800 border-pink-300 dark:bg-pink-900/40 dark:text-pink-300 dark:border-pink-700',
     'Tailwind CSS': 'bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-700',
+    'React': 'bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/40 dark:text-sky-300 dark:border-sky-700',
+    'Vite': 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/40 dark:text-fuchsia-300 dark:border-fuchsia-700',
+    'Docker Compose': 'bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/40 dark:text-sky-300 dark:border-sky-700',
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
@@ -47,6 +51,7 @@ const panelGradients: Record<string, string> = {
     crowdless: 'from-amber-500 via-orange-400 to-rose-400',
     miniShell: 'from-zinc-600 via-zinc-500 to-neutral-400',
     fitTrack: 'from-indigo-600 via-blue-500 to-cyan-400',
+    cineReserve: 'from-rose-600 via-red-500 to-pink-500',
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
@@ -76,6 +81,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const impactList = t(`projects.${projectKey}.impact`, { returnObjects: true }) as string[];
     const techStack = t(`projects.${projectKey}.tech_stack`, { returnObjects: true }) as string[];
     const siteUrl = t(`projects.${projectKey}.site_url`, { defaultValue: '#' });
+    const repoUrl = t(`projects.${projectKey}.repo_url`, { defaultValue: '' });
     const disclaimer = t(`projects.${projectKey}.disclaimer`, { defaultValue: '' });
     const linkLabel = t(`projects.${projectKey}.link_label`, { defaultValue: t('projects.visit_site') });
     const quote = t(`projects.${projectKey}.quote`, { defaultValue: '' });
@@ -154,19 +160,36 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                     ))}
                                 </div>
 
-                                {/* CTA Button */}
-                                <a
-                                    href={siteUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="relative inline-flex items-center gap-2 px-6 py-3 rounded-xl
-                                        bg-white text-slate-800 font-bold text-sm
-                                        hover:bg-white/90 hover:scale-105
-                                        shadow-lg transition-all duration-200"
-                                >
-                                    <ExternalLink size={16} />
-                                    {linkLabel}
-                                </a>
+                                {/* CTA Buttons */}
+                                <div className="relative flex flex-col gap-3 w-full max-w-[260px]">
+                                    <a
+                                        href={siteUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+                                            bg-white text-slate-800 font-bold text-sm
+                                            hover:bg-white/90 hover:scale-[1.03]
+                                            shadow-lg transition-all duration-200"
+                                    >
+                                        <ExternalLink size={16} />
+                                        {linkLabel}
+                                    </a>
+
+                                    {repoUrl && (
+                                        <a
+                                            href={repoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="relative inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl
+                                                bg-slate-900/40 text-white font-semibold text-sm
+                                                hover:bg-slate-900/60 border border-white/10
+                                                hover:scale-[1.03] transition-all duration-200 backdrop-blur-sm"
+                                        >
+                                            <Github size={16} />
+                                            Ver Código-fonte
+                                        </a>
+                                    )}
+                                </div>
 
                                 {/* Disclaimer footnote */}
                                 {disclaimer && (

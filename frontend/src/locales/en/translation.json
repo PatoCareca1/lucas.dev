@@ -354,7 +354,7 @@
                 "Docker",
                 "GitLab CI"
             ],
-            "site_url": "#",
+            "site_url": "https://distribuicao.plp.sethas.rn.gov.br/",
             "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
         },
         "prp": {
@@ -376,8 +376,43 @@
                 "Redis",
                 "Docker"
             ],
-            "site_url": "#",
+            "site_url": "http://www.sethas.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=9940&ACT=&PAGE=0&PARM=&LBL=Restaurante+Popular",
             "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
+        },
+        "cineReserve": {
+            "title": "CineReserve",
+            "tag": "Full-Stack",
+            "short_desc": "A complete cinema ticket reservation platform. Robust API and a responsive frontend experience.",
+            "challenge": "Develop a platform to simulate a real cinema ecosystem, requiring asynchronous processes and handling high demand during simultaneous events, ensuring secure reservations.",
+            "solution": "The backend was designed to handle background processes (such as automated email dispatch and background processing), ensuring the user interface remains responsive. The architecture enabled an efficient service ecosystem.",
+            "solution_details": {
+                "architecture": {
+                    "label": "Asynchronous Processing",
+                    "text": "The architecture was designed to handle asynchronous processes — such as sending purchase confirmation emails — ensuring the interface doesn't freeze during requests."
+                },
+                "infrastructure": {
+                    "label": "Containers & Deployment",
+                    "text": "The backend was containerized to facilitate deployment and scalability, maintaining efficient communication with the React frontend."
+                }
+            },
+            "impact": [
+                "Fast, robust, and seamless booking experience for the end user",
+                "Scalable container-based architecture ready for production",
+                "Background processing integration for efficient I/O operations scaling"
+            ],
+            "tech_stack": [
+                "Python",
+                "Django REST Framework",
+                "Celery",
+                "React",
+                "Vite",
+                "Tailwind CSS",
+                "Docker Compose",
+                "Docker"
+            ],
+            "site_url": "https://cinereserve.lucasdaniel.dev.br",
+            "repo_url": "https://github.com/PatoCareca1/CineReserve",
+            "link_label": "View in Production"
         },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",
