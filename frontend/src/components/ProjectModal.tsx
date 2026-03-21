@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { X, Target, Server, Award, Code2, ExternalLink } from 'lucide-react';
@@ -81,7 +82,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
     const solutionDetails = t(`projects.${projectKey}.solution_details`, { returnObjects: true, defaultValue: null }) as Record<string, { label: string; text: string }> | null;
     const hasSolutionDetails = solutionDetails && typeof solutionDetails === 'object' && !Array.isArray(solutionDetails) && Object.keys(solutionDetails).length > 0;
 
-    return (
+    const modalContent = (
         <AnimatePresence>
             {projectKey && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
@@ -304,6 +305,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
             )}
         </AnimatePresence>
     );
+
+    return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };
 
 export default ProjectModal;

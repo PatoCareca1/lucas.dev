@@ -14,10 +14,17 @@ const chibiMap: Record<string, string> = {
 
 type ModalState = 'initial' | 'asking' | 'no_1' | 'welcomed_recruiter' | 'welcomed_visitor' | 'closed';
 
+let hasSeenModalThisSession = false;
+
 const WelcomeModal: React.FC = () => {
   const [modalState, setModalState] = useState<ModalState>('initial');
 
   useEffect(() => {
+    if (hasSeenModalThisSession) {
+      setModalState('closed');
+      return;
+    }
+
     // Trigger modal 1.5s after mount
     const timer = setTimeout(() => {
       setModalState('asking');
@@ -26,7 +33,11 @@ const WelcomeModal: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Auto-close after 5 seconds when welcomed as recruiter
+    if (modalState === 'closed') {
+      hasSeenModalThisSession = true;
+    }
+
+    // Auto-close after 7 seconds when welcomed as recruiter
     if (modalState === 'welcomed_recruiter') {
       const closeTimer = setTimeout(() => {
         setModalState('closed');
