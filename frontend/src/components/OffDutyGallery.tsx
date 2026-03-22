@@ -34,7 +34,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({ title, caption, icon, delay =
             {/* Content Area */}
             <div className="p-5 bg-white/40 dark:bg-black/40 backdrop-blur-xl absolute bottom-0 left-0 right-0 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
                 <h4 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-1">{title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 line-clamp-2">
+                <p className="text-sm text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 line-clamp-2 text-justify">
                     {caption}
                 </p>
             </div>

@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                             ))}
                         </div>
 
-                        <p className="text-lg text-gray-700 dark:text-gray-400 max-w-2xl leading-relaxed">
+                        <p className="text-lg text-gray-700 dark:text-gray-400 max-w-2xl leading-relaxed text-justify">
                             {t('home.bio')}
                         </p>
                     </motion.div>

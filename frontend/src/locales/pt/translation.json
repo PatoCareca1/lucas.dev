@@ -221,18 +221,18 @@
     },
     "offduty": {
         "title": "Além do Código",
-        "subtitle": "Acredito que a lógica robusta escrita no terminal é reflexo da disciplina construída longe das telas. Conheça as bases que me mantêm focado.",
+        "subtitle": "Acredito que bons resultados em tecnologia nascem de hábitos construídos fora da tela. Aqui estão algumas coisas que moldam minha forma de trabalhar, aprender e resolver problemas.",
         "marilia": {
-            "title": "Marília",
-            "caption": "Parceria e suporte: a base sólida que permite o foco total na excelência técnica."
+            "title": "Relações e suporte",
+            "caption": "Ter uma base sólida fora do trabalho é o que me permite manter foco e constância dentro dele. A parceria com pessoas importantes na minha vida como minha namorada Marília me ajuda a compartilhar decisões, desafios e conquistas, o que traz equilíbrio e perspectiva nos momentos mais intensos. Isso reduz ansiedade, melhora a qualidade das minhas escolhas e reforça uma visão de longo prazo sobre carreira e projetos. No fim, essa rede de apoio é parte do que sustenta minha capacidade de aprender, entregar e evoluir continuamente."
         },
         "training": {
-            "title": "Treino de Força",
-            "caption": "Disciplina e Consistência. O progresso é feito um commit (e uma rep) de cada vez."
+            "title": "Treino de força",
+            "caption": "O treino de força é meu laboratório de disciplina. Ele me ensinou a valorizar o progresso incremental e a entender que resultados consistentes vêm de pequenas ações repetidas ao longo do tempo. Acompanho minha evolução por métricas como cargas, volume e desempenho da mesma forma que monitoro indicadores em projetos. Também aprendi a lidar com platôs e frustrações, o que me ajuda a manter a calma e a persistência diante de problemas técnicos complexos e processos longos."
         },
         "games": {
             "title": "Jogos",
-            "caption": "Resolução de Problemas e Estratégia. Navegando por sistemas complexos, tanto digitais quanto visuais."
+            "caption": "Jogos são o meu jeito de exercitar pensamento estratégico e lidar com sistemas complexos. Gosto de entender regras, mecânicas e interações, e de testar abordagens diferentes para chegar ao melhor resultado possível. Em jogos cooperativos, isso se transforma em treino de comunicação, alinhamento de expectativas e tomada de decisão em equipe. Essa combinação de estratégia, curiosidade e colaboração é algo que levo diretamente para a forma como participo de projetos de desenvolvimento."
         }
     },
     "contact": {
