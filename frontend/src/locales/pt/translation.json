@@ -234,7 +234,7 @@
         "reading": {
             "_image_placeholder": "TODO: adicionar imagem de leitura futuramente",
             "title": "Leitura como expansão de perspectiva",
-            "caption": "Leio com regularidade, desenvolvimento pessoal, filosofia estoica e ficção. O estoicismo me deu ferramentas práticas para lidar com incerteza, pressão e o que está fora do meu controle, algo que aparece toda semana no trabalho com software. A ficção treina empatia e pensamento não-linear. E livros de mentalidade me fazem questionar como penso antes de questionar como codifico."
+            "caption": "Minha estante mistura Clean Code, System Design Interview e alguns outros livros de engenharia de software. Não leio por obrigação, leio porque entender como outros engenheiros pensaram e erraram acelera meu próprio crescimento. Fora os livros, assino newsletters técnicas que chegam direto no e-mail: é minha forma de me manter atualizado com o ecossistema sem depender de algoritmo. O que entra na cabeça determina a qualidade do que sai no código."
         },
         "games": {
             "title": "Estratégia e decisão sob pressão",

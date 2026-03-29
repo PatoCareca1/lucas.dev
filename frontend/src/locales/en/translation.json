@@ -234,7 +234,7 @@
         "reading": {
             "_image_placeholder": "TODO: add reading image in the future",
             "title": "Reading as perspective expansion",
-            "caption": "I read regularly personal development, stoic philosophy, and fiction. Stoicism gave me practical tools to handle uncertainty, pressure, and what's outside my control something that comes up every week in software work. Fiction trains empathy and non-linear thinking. And mindset books make me question how I think before questioning how I code."
+            "caption": "My shelf mixes Clean Code, System Design Interview, and some other software engineering books. I don't read out of obligation, I read because understanding how other engineers thought and failed accelerates my own growth. Beyond books, I subscribe to technical newsletters delivered straight to my inbox: my way of staying current with the ecosystem without relying on algorithms. What goes into your head determines the quality of what comes out in your code."
         },
         "games": {
             "title": "Strategy and decision-making under pressure",
