@@ -106,14 +106,14 @@ const WelcomeModal: React.FC = () => {
         return (
           <>
             <h2 className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 text-center leading-relaxed">
-              Tudo bem, vamos entrar
+              Tudo bem, vamos entrar!
             </h2>
             <div className="flex justify-center">
               <button
                 onClick={() => setModalState('closed')}
                 className="px-8 py-3 bg-manjaro-green text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
               >
-                Entrar
+                Vamos lá!
               </button>
             </div>
           </>
@@ -132,7 +132,7 @@ const WelcomeModal: React.FC = () => {
                 onClick={() => setModalState('closed')}
                 className="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl hover:opacity-90 transition-opacity"
               >
-                Entrar
+                Vamos lá!
               </button>
             </div>
           </>

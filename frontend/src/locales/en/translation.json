@@ -221,18 +221,24 @@
     },
     "offduty": {
         "title": "Beyond the Code",
-        "subtitle": "I believe that strong results in technology are built on habits formed outside the screen. Here are some of the things that shape how I work, learn, and solve problems.",
-        "marilia": {
-            "title": "Relationships and support",
-            "caption": "Having a solid foundation outside of work is what allows me to stay focused and consistent within it. My partnership with the important people in my life like Marília, my girlfriend, helps me share decisions, challenges, and achievements, which brings balance and perspective in more intense moments. This reduces anxiety, improves the quality of my choices, and strengthens a long-term view of my career and projects. In the end, this support network is part of what sustains my ability to keep learning, delivering, and evolving."
-        },
+        "subtitle": "I believe strong results in tech are built on habits formed outside the screen. Here are some things that shape how I work, learn, and solve problems.",
         "training": {
-            "title": "Strength training",
-            "caption": "Strength training is my discipline lab. It taught me to value incremental progress and to understand that consistent results come from small actions repeated over time. I track my evolution through metrics such as load, volume, and performance in the same way I monitor indicators in projects. I also learned how to deal with plateaus and frustration, which helps me stay calm and persistent when facing complex technical problems and long-running processes."
+            "title": "Discipline through metrics",
+            "caption": "I've been strength training for years, and what interests me most isn't the weight, it's the system. I track loads, volume, and progression with the same mindset I use to monitor production performance: data, cycles, continuous adjustments. I've learned that plateaus aren't failures they're signals to revisit the strategy. That mindset of incremental improvement and tolerance for long processes is something I bring directly into software projects."
+        },
+        "cooking": {
+            "_image_placeholder": "TODO: add cooking image in the future",
+            "title": "Cooking to slow down",
+            "caption": "Cooking is my disconnection ritual. A deliberately long moment no screen, no notification where the process matters more than the result. Following a complex recipe, respecting each step's timing, adjusting on the fly: it's the only activity in my day that demands full presence without being urgent. I've learned that those who truly know how to slow down can accelerate with far more consistency when it matters."
+        },
+        "reading": {
+            "_image_placeholder": "TODO: add reading image in the future",
+            "title": "Reading as perspective expansion",
+            "caption": "I read regularly personal development, stoic philosophy, and fiction. Stoicism gave me practical tools to handle uncertainty, pressure, and what's outside my control something that comes up every week in software work. Fiction trains empathy and non-linear thinking. And mindset books make me question how I think before questioning how I code."
         },
         "games": {
-            "title": "Games",
-            "caption": "Games are my way of practicing strategic thinking and dealing with complex systems. I enjoy understanding rules, mechanics, and interactions, and testing different approaches to find the best possible outcome. In cooperative games, this becomes training in communication, expectation alignment, and team decision-making. This combination of strategy, curiosity, and collaboration is something I bring directly into the way I work on development projects."
+            "title": "Strategy and decision-making under pressure",
+            "caption": "Games are my simulation environment. What attracts me isn't the entertainment itself it's the constant need to read complex systems, make quick decisions with incomplete information, and adapt strategy when the scenario changes. In cooperative games, that becomes coordination, expectation alignment, and situational leadership. The same skills that show up in code review, sprint planning, and production incident response."
         }
     },
     "contact": {
@@ -302,7 +308,7 @@
     },
     "projects": {
         "title": "Projects",
-        "subtitle": "Real-world systems I've built and shipped — from government-scale APIs to hackathon-winning prototypes.",
+        "subtitle": "Real-world systems I've built and shipped from government-scale APIs to hackathon-winning prototypes.",
         "view_project": "View Project",
         "visit_site": "Visit Project Site",
         "close": "Close",
@@ -313,7 +319,7 @@
             "tech_stack": "Tech Stack"
         },
         "plp": {
-            "title": "PLP — SETHAS/RN",
+            "title": "PLP -SETHAS/RN",
             "tag": "Backend Engineering",
             "short_desc": "Robust backend platform for state-wide benefit distribution tracking with full traceability and governmental auditing.",
             "challenge": "Developing a robust backend platform for managing and tracking benefit distribution at state scale. The system needed to ensure full traceability and transparency in governmental transactions, supporting distributed operations and detailed auditing.",
@@ -358,7 +364,7 @@
             "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
         },
         "prp": {
-            "title": "PRP — SETHAS/RN",
+            "title": "PRP - SETHAS/RN",
             "tag": "Data Engineering",
             "short_desc": "Automated data processing and validation architecture for the Restaurante Popular Program in RN.",
             "challenge": "Modernizing the data infrastructure for the 'Restaurante Popular' Program in RN, responsible for auditing thousands of subsidized meals daily. The system relied on manual processes, hindering reliability and governmental reporting.",

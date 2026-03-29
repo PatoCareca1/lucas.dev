@@ -222,7 +222,7 @@ const Timeline: React.FC = () => {
     return (
         <div className="my-16 flex flex-col w-full relative">
             {/* Chibi Tópico (Senior) */}
-            <div className="absolute -top-48 right-0 md:right-10 w-48 h-48 md:w-72 md:h-72 z-10 pointer-events-none opacity-90 drop-shadow-md">
+            <div className="hidden md:block absolute -top-48 right-0 md:right-10 w-48 h-48 md:w-72 md:h-72 z-10 pointer-events-none opacity-90 drop-shadow-md">
                 <img src={chibiSenior} alt="Lucas Senior" className="w-full h-full object-contain" />
             </div>
 
@@ -249,7 +249,7 @@ const Timeline: React.FC = () => {
                                 {row.year}
                             </span>
                             {row.education?.key === 'ifba' && (
-                                <div className="mt-8 pointer-events-none opacity-90 drop-shadow-md">
+                                <div className="hidden md:block mt-8 pointer-events-none opacity-90 drop-shadow-md">
                                     <img src={chibiYoung} alt="Lucas Young" className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] max-w-none object-contain -ml-8 md:-ml-12" />
                                 </div>
                             )}

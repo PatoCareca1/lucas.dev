@@ -222,17 +222,23 @@
     "offduty": {
         "title": "Além do Código",
         "subtitle": "Acredito que bons resultados em tecnologia nascem de hábitos construídos fora da tela. Aqui estão algumas coisas que moldam minha forma de trabalhar, aprender e resolver problemas.",
-        "marilia": {
-            "title": "Relações e suporte",
-            "caption": "Ter uma base sólida fora do trabalho é o que me permite manter foco e constância dentro dele. A parceria com pessoas importantes na minha vida como minha namorada Marília me ajuda a compartilhar decisões, desafios e conquistas, o que traz equilíbrio e perspectiva nos momentos mais intensos. Isso reduz ansiedade, melhora a qualidade das minhas escolhas e reforça uma visão de longo prazo sobre carreira e projetos. No fim, essa rede de apoio é parte do que sustenta minha capacidade de aprender, entregar e evoluir continuamente."
-        },
         "training": {
-            "title": "Treino de força",
-            "caption": "O treino de força é meu laboratório de disciplina. Ele me ensinou a valorizar o progresso incremental e a entender que resultados consistentes vêm de pequenas ações repetidas ao longo do tempo. Acompanho minha evolução por métricas como cargas, volume e desempenho da mesma forma que monitoro indicadores em projetos. Também aprendi a lidar com platôs e frustrações, o que me ajuda a manter a calma e a persistência diante de problemas técnicos complexos e processos longos."
+            "title": "Disciplina com métricas",
+            "caption": "Treino de força há anos, e o que mais me interessa nele não é o peso, é o sistema. Acompanho cargas, volume e progressão com a mesma mentalidade que monitoro performance em produção: dados, ciclos, ajustes contínuos. Aprendi que platôs não são falhas, são sinais para revisar a estratégia. Essa mentalidade de melhoria incremental e tolerância ao processo longo é o que levo diretamente para projetos de software."
+        },
+        "cooking": {
+            "_image_placeholder": "TODO: adicionar imagem de culinária futuramente",
+            "title": "Cozinhar para desacelerar",
+            "caption": "Cozinhar é o meu ritual de desconexão. Um momento deliberadamente longo, sem tela, sem notificação, onde o processo importa mais do que o resultado. Seguir uma receita complexa, respeitar o tempo de cada etapa, ajustar na hora: é a única atividade do meu dia que exige presença total sem ser urgente. Aprendi que quem sabe desacelerar de verdade consegue acelerar com muito mais consistência quando importa."
+        },
+        "reading": {
+            "_image_placeholder": "TODO: adicionar imagem de leitura futuramente",
+            "title": "Leitura como expansão de perspectiva",
+            "caption": "Leio com regularidade, desenvolvimento pessoal, filosofia estoica e ficção. O estoicismo me deu ferramentas práticas para lidar com incerteza, pressão e o que está fora do meu controle, algo que aparece toda semana no trabalho com software. A ficção treina empatia e pensamento não-linear. E livros de mentalidade me fazem questionar como penso antes de questionar como codifico."
         },
         "games": {
-            "title": "Jogos",
-            "caption": "Jogos são o meu jeito de exercitar pensamento estratégico e lidar com sistemas complexos. Gosto de entender regras, mecânicas e interações, e de testar abordagens diferentes para chegar ao melhor resultado possível. Em jogos cooperativos, isso se transforma em treino de comunicação, alinhamento de expectativas e tomada de decisão em equipe. Essa combinação de estratégia, curiosidade e colaboração é algo que levo diretamente para a forma como participo de projetos de desenvolvimento."
+            "title": "Estratégia e decisão sob pressão",
+            "caption": "Jogos são o meu ambiente de simulação. O que me atrai não é o entretenimento em si, é a necessidade constante de ler sistemas complexos, tomar decisões rápidas com informação incompleta e adaptar a estratégia quando o cenário muda. Em jogos cooperativos, isso vira coordenação, alinhamento de expectativas e liderança situacional. As mesmas habilidades que aparecem em code review, planejamento de sprint e resolução de incidentes em produção."
         }
     },
     "contact": {
