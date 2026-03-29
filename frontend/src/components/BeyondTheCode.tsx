@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ChefHat, BookOpen } from 'lucide-react';
 import gymPhoto from '../assets/gym.jpeg';
 import setupPhoto from '../assets/setup.png';
 import carbonara from '../assets/Carbonara.jpeg';
