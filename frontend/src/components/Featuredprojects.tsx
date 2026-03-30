@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { PanInfo } from 'framer-motion';
 import { ArrowRight, Trophy } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ProjectModal from './ProjectModal';
@@ -50,28 +49,6 @@ const FeaturedProjects: React.FC = () => {
         setQueue(newQueue);
         setCarouselOffset(0);
     }, [queue, activeKey]);
-
-    const handlePrev = useCallback(() => {
-        setCarouselOffset(prev => {
-            const len = queue.length;
-            return ((prev - 1) % len + len) % len;
-        });
-    }, [queue.length]);
-
-    const handleNext = useCallback(() => {
-        setCarouselOffset(prev => {
-            const len = queue.length;
-            return (prev + 1) % len;
-        });
-    }, [queue.length]);
-
-    const handleDragEnd = useCallback((_: any, info: PanInfo) => {
-        if (info.offset.x < -50) {
-            handleNext();
-        } else if (info.offset.x > 50) {
-            handlePrev();
-        }
-    }, [handleNext, handlePrev]);
 
     const visibleCards = getVisibleCards();
     const techStack = t(`projects.${activeKey}.tech_stack`, { returnObjects: true }) as string[];
@@ -160,31 +137,37 @@ const FeaturedProjects: React.FC = () => {
                     </div>
                 </div>
 
-                <motion.div
-                    className="w-full overflow-hidden"
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    onDragEnd={handleDragEnd}
-                >
-                    <div className="grid grid-cols-3 gap-4">
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            {visibleCards.map((key) => (
-                                <motion.div
-                                    key={key}
-                                    layout
-                                    initial={{ x: '-100%', opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    exit={{ x: '100%', opacity: 0 }}
-                                    transition={springTransition}
-                                    onClick={() => handleCardClick(key)}
-                                    className="cursor-pointer"
-                                >
-                                    <CarouselCard projectKey={key} t={t} />
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </div>
-                </motion.div>
+                <div className="hidden md:grid grid-cols-3 gap-4">
+                    <AnimatePresence mode="popLayout" initial={false}>
+                        {visibleCards.map((key) => (
+                            <motion.div
+                                key={key}
+                                layout
+                                initial={{ x: '-100%', opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: '100%', opacity: 0 }}
+                                transition={springTransition}
+                                onClick={() => handleCardClick(key)}
+                                className="cursor-pointer"
+                            >
+                                <CarouselCard projectKey={key} t={t} />
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 md:hidden">
+                    {visibleCards.map((key) => (
+                        <motion.div
+                            key={key}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => handleCardClick(key)}
+                            className="cursor-pointer"
+                        >
+                            <MobileCard projectKey={key} t={t} />
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
             <div className="flex justify-center mt-6 md:hidden">
@@ -253,6 +236,29 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
                     {t(`projects.${projectKey}.short_desc`)}
                 </p>
+            </div>
+        </div>
+    );
+};
+
+const MobileCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
+    return (
+        <div className="w-full aspect-square bg-white/95 dark:bg-slate-900/40 border border-slate-700/50 hover:border-manjaro-green/60 rounded-xl overflow-hidden transition-colors duration-300 flex flex-col">
+            <div className={`h-1 w-full bg-gradient-to-r ${cardAccents[projectKey] || 'from-gray-500 to-gray-400'}`} />
+            <div className="p-3 flex-1 flex flex-col justify-between">
+                {projectKey === 'crowdless' ? (
+                    <span className="flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400">
+                        <Trophy size={10} />
+                        1º Lugar
+                    </span>
+                ) : (
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 truncate">
+                        {t(`projects.${projectKey}.tag`)}
+                    </span>
+                )}
+                <h4 className="text-xs font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
+                    {t(`projects.${projectKey}.title`)}
+                </h4>
             </div>
         </div>
     );
