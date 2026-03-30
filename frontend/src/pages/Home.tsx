@@ -8,6 +8,7 @@ import SkillsMatrix from '../components/SkillsMatrix';
 import Timeline from '../components/Timeline';
 import BeyondTheCode from '../components/BeyondTheCode';
 import ContactSection from '../components/ContactSection';
+import FeaturedProjects from '../components/Featuredprojects';
 import { Code2, Database, Layout, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -112,6 +113,9 @@ const Home: React.FC = () => {
                     </div>
                     <Timeline />
                 </section>
+
+                {/* Featured Projects Section */}
+                <FeaturedProjects />
 
                 {/* Beyond the Code Wrapper */}
                 <BeyondTheCode />

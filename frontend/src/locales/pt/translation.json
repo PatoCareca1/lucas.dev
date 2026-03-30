@@ -510,6 +510,10 @@
             ],
             "site_url": "https://github.com/PatoCareca1/fittrack",
             "link_label": "Ver no GitHub"
+        },
+        "featured_projects": {
+            "title": "Projetos em Destaque",
+            "see_all": "Ver todos os projetos"
         }
     }
 }
