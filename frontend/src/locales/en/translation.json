@@ -34,7 +34,9 @@
                 "title": "PostgreSQL & ETL",
                 "desc": "Heavy-duty fault-tolerant pipelines with Pandas."
             }
-        }
+        },
+        "cta_projects": "View Projects",
+        "cta_resume": "Download Resume"
     },
     "labs": {
         "title": "Labs & Tools",

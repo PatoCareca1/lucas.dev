@@ -54,7 +54,7 @@ const FeaturedProjects: React.FC = () => {
     const techStack = t(`projects.${activeKey}.tech_stack`, { returnObjects: true }) as string[];
 
     return (
-        <section className="mb-24">
+        <section id="featured-projects" className="mb-24">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
                     {t('projects.featured_projects.title')}

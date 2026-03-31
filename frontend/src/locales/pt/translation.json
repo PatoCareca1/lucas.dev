@@ -34,7 +34,9 @@
                 "title": "PostgreSQL & ETL",
                 "desc": "Pipelines pesados com Pandas tolerantes a falha."
             }
-        }
+        },
+        "cta_projects": "Ver Projetos",
+        "cta_resume": "Baixar Currículo"
     },
     "labs": {
         "title": "Labs & Ferramentas",

@@ -9,7 +9,7 @@ import Timeline from '../components/Timeline';
 import BeyondTheCode from '../components/BeyondTheCode';
 import ContactSection from '../components/ContactSection';
 import FeaturedProjects from '../components/Featuredprojects';
-import { Code2, Database, Layout, Terminal } from 'lucide-react';
+import { Code2, Database, Layout, Terminal, ArrowRight, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Home: React.FC = () => {
@@ -75,6 +75,25 @@ const Home: React.FC = () => {
                         <p className="text-lg text-gray-700 dark:text-gray-400 max-w-2xl leading-relaxed text-justify">
                             {t('home.bio')}
                         </p>
+
+                        <div className='flex flex-wrap justify-center md:justify-start gap-3 mt-8'>
+                            <button
+                                onClick={() => document.getElementById('featured-projects')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-manjaro-green text-white font-bold text-sm hover:bg-manjaro-green/90 hover:scale-[1.02] transition-all duration-200 shadow-md shadow-manjaro-green/20"
+                            >
+                                {t('home.cta_projects')}
+                                <ArrowRight size={16} />
+                            </button>
+
+                            <a
+                                href="/lucas-daniel-curriculo.pdf"
+                                download
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-manjaro-green/40 text-gray-700 dark:text-gray-300 font-semibold text-sm hover:bg-manjaro-green/10 hover:border-manjaro-green/60 hover:scale-[1.02] transition-all duration-200"
+                            >
+                                <Download size={16} />
+                                {t('home.cta_resume')}
+                            </a>
+                        </div>
                     </motion.div>
                 </div>
 
