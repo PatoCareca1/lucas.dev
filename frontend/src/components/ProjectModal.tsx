@@ -107,7 +107,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ type: "spring", stiffness: 300, damping: 28 }}
-                        className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-3xl
+                        className="relative w-full max-w-6xl max-h-[90vh] flex flex-col rounded-3xl
                             bg-white/95 text-slate-900 border border-slate-200 shadow-2xl
                             dark:bg-slate-900/90 dark:text-gray-100 dark:border-manjaro-green/20 dark:shadow-none
                             backdrop-blur-xl z-10"
@@ -125,10 +125,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                         </button>
 
                         {/* Two-column layout: Visual panel (left) + Content (right) */}
-                        <div className="grid grid-cols-1 lg:grid-cols-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-5 flex-1 overflow-hidden">
 
                             {/* === LEFT COLUMN: Visual / Architecture Panel === */}
                             <div className={`lg:col-span-2 relative overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none
+                                lg:sticky lg:top-0 lg:self-start lg:h-full
                                 bg-gradient-to-br ${panelGradients[projectKey] || 'from-slate-600 to-slate-400'}
                                 flex flex-col items-center justify-center p-8 lg:p-10 min-h-[280px] lg:min-h-0`}
                             >
@@ -200,7 +201,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                             </div>
 
                             {/* === RIGHT COLUMN: Content === */}
-                            <div className="lg:col-span-3 px-8 py-8 lg:py-10 space-y-8">
+                            <div className="lg:col-span-3 px-8 py-8 lg:py-10 space-y-8 overflow-y-auto modal-scrollbar">
 
                                 {/* Section: Challenge */}
                                 <section>
