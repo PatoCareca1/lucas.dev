@@ -422,6 +422,43 @@
             "repo_url": "https://github.com/PatoCareca1/CineReserve",
             "link_label": "View in Production"
         },
+        "sapo": {
+            "title": "SAPO — Oral Exam Scheduling System",
+            "tag": "Full-Stack",
+            "short_desc": "Oral exam scheduling platform for UFRN, replacing manual spreadsheet control with safe concurrent bookings and a complete audit trail.",
+            "challenge": "Replace the manual spreadsheet-based scheduling of oral exams at UFRN, allowing professors to create available time slots and students to book them autonomously, without scheduling conflicts and with full traceability of every action performed on the platform.",
+            "solution": "A full-stack Next.js application with authentication restricted to the institutional domain, atomic bookings via database transactions, and an append-only audit system that records every mutation.",
+            "solution_details": {
+                "concurrency": {
+                    "label": "Concurrency Control",
+                    "text": "Atomic bookings via database transactions and uniqueness constraints, preventing race conditions in simultaneous scheduling."
+                },
+                "audit": {
+                    "label": "Immutable Audit Trail",
+                    "text": "Append-only audit log (actor, timestamp, action, before/after diff) written within the same transaction as each mutation."
+                },
+                "auth": {
+                    "label": "Institutional Authentication",
+                    "text": "Google OAuth login restricted to UFRN's institutional domain, with 100% server-side authorization validation."
+                }
+            },
+            "impact": [
+                "Eliminated manual spreadsheet-based scheduling for oral exams",
+                "Gave professors and students autonomy to manage schedules without manual intervention",
+                "Complete, immutable audit trail of every action performed on the platform"
+            ],
+            "tech_stack": [
+                "Next.js",
+                "TypeScript",
+                "PostgreSQL",
+                "Prisma",
+                "Auth.js",
+                "Tailwind CSS",
+                "shadcn/ui"
+            ],
+            "repo_url": "https://github.com/PatoCareca1/SAPO",
+            "disclaimer": "Note: Institutional UFRN project."
+        },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",
             "tag": "Tech Lead",
