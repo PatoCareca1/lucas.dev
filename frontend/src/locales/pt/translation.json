@@ -422,6 +422,43 @@
             "repo_url": "https://github.com/PatoCareca1/CineReserve",
             "link_label": "Ver em Produção"
         },
+        "sapo": {
+            "title": "SAPO — Sistema de Agendamento de Provas",
+            "tag": "Full-Stack",
+            "short_desc": "Plataforma para agendamento de provas orais na UFRN, substituindo o controle manual por planilha, com reservas concorrentes seguras e trilha de auditoria completa.",
+            "challenge": "Substituir o controle manual (planilha) de agendamento de provas orais na UFRN, garantindo que professores possam criar horários disponíveis e alunos reservem vagas de forma autônoma, sem conflitos de horário e com total rastreabilidade das ações realizadas na plataforma.",
+            "solution": "Uma aplicação full-stack em Next.js com autenticação restrita ao domínio institucional, reservas atômicas via transações de banco de dados e um sistema de auditoria append-only que registra todas as mutações realizadas.",
+            "solution_details": {
+                "concurrency": {
+                    "label": "Controle de Concorrência",
+                    "text": "Reservas atômicas via transações de banco de dados e constraints de unicidade, prevenindo race conditions em agendamentos simultâneos."
+                },
+                "audit": {
+                    "label": "Auditoria Imutável",
+                    "text": "Log de auditoria append-only (ator, timestamp, ação, diff before/after) gravado na mesma transação de cada mutação."
+                },
+                "auth": {
+                    "label": "Autenticação Institucional",
+                    "text": "Login via Google OAuth restrito ao domínio institucional da UFRN, com validação de autorização 100% server-side."
+                }
+            },
+            "impact": [
+                "Eliminação do controle manual por planilha para agendamento de provas orais",
+                "Autonomia para professores e alunos gerenciarem horários sem intervenção manual",
+                "Trilha de auditoria completa e imutável de todas as ações realizadas na plataforma"
+            ],
+            "tech_stack": [
+                "Next.js",
+                "TypeScript",
+                "PostgreSQL",
+                "Prisma",
+                "Auth.js",
+                "Tailwind CSS",
+                "shadcn/ui"
+            ],
+            "repo_url": "https://github.com/PatoCareca1/SAPO",
+            "disclaimer": "Nota: Projeto institucional da UFRN."
+        },
         "crowdless": {
             "title": "Crowdless — Hackathon HackaPower",
             "tag": "Tech Lead",

@@ -40,12 +40,18 @@ const techColors: Record<string, string> = {
     'React': 'bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/40 dark:text-sky-300 dark:border-sky-700',
     'Vite': 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/40 dark:text-fuchsia-300 dark:border-fuchsia-700',
     'Docker Compose': 'bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/40 dark:text-sky-300 dark:border-sky-700',
+    'Next.js': 'bg-slate-200 text-slate-900 border-slate-400 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-500',
+    'TypeScript': 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700',
+    'Prisma': 'bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-700',
+    'Auth.js': 'bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-700',
+    'shadcn/ui': 'bg-neutral-200 text-neutral-900 border-neutral-400 dark:bg-neutral-800 dark:text-neutral-100 dark:border-neutral-500',
 };
 
 const defaultBadge = 'bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-600';
 
 // Gradient accents per project for the visual panel
 const panelGradients: Record<string, string> = {
+    sapo: 'from-green-700 via-green-500 to-lime-400',
     plp: 'from-emerald-600 via-teal-500 to-cyan-400',
     prp: 'from-blue-600 via-indigo-500 to-purple-400',
     crowdless: 'from-amber-500 via-orange-400 to-rose-400',
