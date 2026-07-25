@@ -27,7 +27,7 @@ const SystemInfo: React.FC = () => {
 
     return (
         <div className="py-6 px-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
-            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-6 font-mono text-sm text-gray-500 dark:text-gray-400">
                 {error ? (
                     <div className="flex items-center gap-2 text-red-500/80">
                         <Server size={16} />

@@ -143,7 +143,7 @@ const EventCard: React.FC<{ data?: InfoCard; type: 'exp' | 'edu' }> = ({ data, t
             className={`p-6 rounded-2xl bg-white/95 dark:bg-slate-900/40 backdrop-blur-md shadow-lg dark:shadow-none border border-slate-200 dark:border-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600 transition-colors relative group w-full h-full flex flex-col`}
         >
             <div className="flex items-start justify-between mb-1">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-slate-700 dark:group-hover:text-gray-200 transition-colors pr-4">
+                <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white group-hover:text-slate-700 dark:group-hover:text-gray-200 transition-colors pr-4">
                     {t(`${basePath}.title`)}
                 </h3>
                 <div
@@ -227,7 +227,7 @@ const Timeline: React.FC = () => {
             </div>
 
             {/* Table Header (hidden on mobile) */}
-            <div className="hidden md:flex w-full px-4 text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-widest mb-6 mt-8">
+            <div className="hidden md:flex w-full px-4 font-mono text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-widest mb-6 mt-8">
                 <div className="w-1/6">{t('timeline.headers.period')}</div>
                 <div className="w-2/5 pl-4">{t('timeline.headers.experience')}</div>
                 <div className="w-2/5 pl-4">{t('timeline.headers.education')}</div>
@@ -245,7 +245,7 @@ const Timeline: React.FC = () => {
                     >
                         {/* Col 1: Período */}
                         <div className="md:w-1/6 flex flex-col items-start pt-4 relative">
-                            <span className="inline-block px-3 py-1 bg-white border border-slate-200 shadow-sm dark:shadow-none dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-gray-200 font-bold text-sm tracking-widest rounded-full">
+                            <span className="inline-block px-3 py-1 bg-white border border-slate-200 shadow-sm dark:shadow-none dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-gray-200 font-mono font-medium text-sm tracking-widest rounded-full">
                                 {row.year}
                             </span>
                             {row.education?.key === 'ifba' && (

@@ -32,7 +32,7 @@ const BeyondTheCode: React.FC = () => {
     return (
         <section className="mt-32 pt-16">
             <div className="w-full text-center md:text-left mb-16">
-                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white inline-block border-b-2 border-manjaro-green pb-2">
+                <h2 className="font-display text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white inline-block border-b-2 border-manjaro-green pb-2">
                     {t('offduty.title')}
                 </h2>
                 <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl text-justify mx-auto md:mx-0">
@@ -60,7 +60,7 @@ const BeyondTheCode: React.FC = () => {
                             )}
                         </div>
                         <div className={`flex-1 space-y-4${block.reverse ? ' md:text-right' : ''}`}>
-                            <h3 className="text-2xl font-bold text-slate-900 dark:text-gray-200">
+                            <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-gray-200">
                                 {t(`offduty.${block.key}.title`)}
                             </h3>
                             <p className="text-slate-700 dark:text-gray-400 text-lg leading-relaxed text-justify">

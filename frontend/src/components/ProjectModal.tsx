@@ -159,7 +159,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
                                     {techStack.map((tech, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1 rounded-full text-xs font-semibold
+                                            className="px-3 py-1 rounded-full font-mono text-xs font-medium
                                                 bg-white/15 text-white/90 border border-white/25 backdrop-blur-sm"
                                         >
                                             {tech}

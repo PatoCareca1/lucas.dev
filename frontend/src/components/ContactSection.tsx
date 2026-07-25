@@ -7,7 +7,7 @@ const ContactSection: React.FC = () => {
 
     return (
         <section id="contato" className="py-16 px-6 text-center border-t border-slate-200 dark:border-slate-800/50 mt-16">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 {t('contact.title')}
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">

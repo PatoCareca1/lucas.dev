@@ -44,14 +44,14 @@ const SkillList: React.FC<{ title: string; skills: Skill[]; type: 'hard' | 'soft
     const { t } = useTranslation();
     return (
         <div className="p-6 bg-white/95 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200 dark:border-slate-700/50 rounded-2xl shadow-lg dark:shadow-none">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
                 {title}
             </h3>
             <ul className="space-y-5">
                 {skills.map((skill, idx) => (
                     <li key={idx} className="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
                         <div className="flex flex-col">
-                            <span className="text-slate-900 dark:text-gray-200 font-medium leading-snug">
+                            <span className="font-mono text-slate-900 dark:text-gray-200 font-medium leading-snug">
                                 {t(`skills.${type}.${skill.key}.name`)}
                             </span>
                             <span className="text-xs text-slate-600 dark:text-gray-400 mt-0.5">

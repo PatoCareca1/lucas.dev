@@ -53,10 +53,10 @@ const Home: React.FC = () => {
                         initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex-1 text-center md:text-left"
                     >
-                        <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-manjaro-green to-teal-400 mb-4 tracking-tight">
+                        <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-manjaro-green to-teal-400 mb-4 tracking-tight">
                             {t('home.greeting')}
                         </h1>
-                        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-5 drop-shadow-sm">
+                        <h2 className="font-display text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-5 drop-shadow-sm">
                             {t('home.subtitle')}
                         </h2>
 
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
                             {(t('home.badges', { returnObjects: true }) as string[]).map((badge) => (
                                 <span
                                     key={badge}
-                                    className="px-3 py-1 text-xs font-medium rounded-full border border-manjaro-green/30 bg-manjaro-green/5 text-gray-700 dark:text-gray-300 tracking-wide"
+                                    className="px-3 py-1 font-mono text-xs font-medium rounded-full border border-manjaro-green/30 bg-manjaro-green/5 text-gray-700 dark:text-gray-300 tracking-wide"
                                 >
                                     {badge}
                                 </span>
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
                     className="mb-24"
                 >
                     <div className="text-center md:text-left mb-8">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
+                        <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
                             {t('home.skills_title', 'Core Stacks')}
                         </h3>
                     </div>
@@ -126,7 +126,7 @@ const Home: React.FC = () => {
                 {/* Expanded Timeline Section */}
                 <section className="mb-24">
                     <div className="text-center md:text-left mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
+                        <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
                             {t('timeline.title')}
                         </h3>
                     </div>

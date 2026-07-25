@@ -65,7 +65,7 @@ const Projects: React.FC = () => {
                                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cardAccents[key]} opacity-70 group-hover:opacity-100 transition-opacity`} />
 
                                 {/* Tag */}
-                                <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-manjaro-green/10 text-manjaro-green border border-manjaro-green/30 mb-4">
+                                <span className="inline-block px-3 py-1 font-mono text-xs font-medium rounded-full bg-manjaro-green/10 text-manjaro-green border border-manjaro-green/30 mb-4">
                                     {t(`projects.${key}.tag`)}
                                 </span>
 

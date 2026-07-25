@@ -56,7 +56,7 @@ const FeaturedProjects: React.FC = () => {
     return (
         <section id="featured-projects" className="mb-24">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
+                <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 inline-block border-b-2 border-manjaro-green pb-2">
                     {t('projects.featured_projects.title')}
                 </h3>
                 <button
@@ -93,7 +93,7 @@ const FeaturedProjects: React.FC = () => {
                                     )}
                                 </div>
 
-                                <h4 className="text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug mb-4">
+                                <h4 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug mb-4">
                                     {t(`projects.${activeKey}.title`)}
                                 </h4>
 
@@ -105,7 +105,7 @@ const FeaturedProjects: React.FC = () => {
                                     {Array.isArray(techStack) && techStack.map((tech) => (
                                         <span
                                             key={tech}
-                                            className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700"
+                                            className="px-2.5 py-1 font-mono text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700"
                                         >
                                             {tech}
                                         </span>
@@ -220,7 +220,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
             <div className={`h-1.5 w-full bg-gradient-to-r ${cardAccents[projectKey] || 'from-gray-500 to-gray-400'}`} />
             <div className="p-5 flex-grow flex flex-col gap-3">
                 <div className="flex items-start justify-between gap-3">
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    <span className="font-mono text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
                         {t(`projects.${projectKey}.tag`)}
                     </span>
                     {projectKey === 'crowdless' && (
@@ -230,7 +230,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
                         </span>
                     )}
                 </div>
-                <h4 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-snug">
+                <h4 className="font-display text-base font-bold text-gray-900 dark:text-gray-100 leading-snug">
                     {t(`projects.${projectKey}.title`)}
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
@@ -256,7 +256,7 @@ const MobileCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
                         {t(`projects.${projectKey}.tag`)}
                     </span>
                 )}
-                <h4 className="text-xs font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
+                <h4 className="font-display text-xs font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
                     {t(`projects.${projectKey}.title`)}
                 </h4>
             </div>
