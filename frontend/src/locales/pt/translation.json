@@ -554,5 +554,131 @@
             "title": "Projetos em Destaque",
             "see_all": "Ver todos os projetos"
         }
+    },
+    "guides": {
+        "nav": {
+            "label": "Guias",
+            "breadcrumb": "guias",
+            "backToTrack": "Voltar para a trilha"
+        },
+        "index": {
+            "eyebrow": "Trilha · backend em Python",
+            "title": "Guias que não param no <0>runserver</0>",
+            "lede": "Três capítulos em sequência, do primeiro <0>python -m venv</0> até a aplicação servindo em produção com Docker, Postgres e deploy. Escritos na ordem em que os problemas realmente aparecem.",
+            "meta": {
+                "chapters_one": "{{count}} capítulo",
+                "chapters_other": "{{count}} capítulos",
+                "published_one": "{{count}} publicado",
+                "published_other": "{{count}} publicados",
+                "updated": "atualizado em {{date}}"
+            },
+            "track": {
+                "heading": "A trilha, em ordem",
+                "metaAll_one": "{{count}} capítulo · leia em ordem",
+                "metaAll_other": "{{count}} capítulos · leia em ordem",
+                "metaFiltered": "{{shown}} de {{total}} capítulos"
+            },
+            "repoBanner": {
+                "text": "Cada capítulo tem um repositório companheiro, com um commit por seção.",
+                "cta": "Ver no GitHub"
+            }
+        },
+        "search": {
+            "placeholder": "Buscar por assunto, comando ou arquivo…",
+            "clear": "Limpar busca",
+            "resultsHeading": "Resultados da busca",
+            "loadingMeta": "buscando nos capítulos…",
+            "count_one": "{{count}} ocorrência",
+            "count_other": "{{count}} ocorrências",
+            "empty": {
+                "meta": "0 ocorrências para “{{query}}”",
+                "title": "A trilha ainda não cobre isso",
+                "body": "São três capítulos, não uma enciclopédia. Se o assunto deveria estar aqui, ele entra na fila do próximo capítulo.",
+                "suggestionsLabel": "Tente"
+            },
+            "error": {
+                "title": "A busca não respondeu",
+                "body": "Não foi possível percorrer os capítulos agora. A trilha abaixo continua navegável.",
+                "retry": "Tentar novamente"
+            }
+        },
+        "filters": {
+            "stackLabel": "Stack",
+            "levelLabel": "Nível",
+            "clear": "Limpar filtros",
+            "emptyTitle": "Nenhum capítulo com esses filtros",
+            "emptyBody": "A trilha é curta de propósito. Tente uma combinação mais aberta."
+        },
+        "level": {
+            "iniciante": "Iniciante",
+            "intermediario": "Intermediário"
+        },
+        "card": {
+            "chapterLabel": "Capítulo {{num}}",
+            "startHere": "Comece aqui",
+            "readingTime": "{{minutes}} min de leitura",
+            "readingTimeShort": "~{{minutes}} min",
+            "cta": "Ler capítulo",
+            "soon": "Em breve",
+            "release": "previsto para {{date}}",
+            "notPublished": "Capítulo {{num}} ainda não publicado"
+        },
+        "article": {
+            "updatedAt": "Atualizado em {{date}}",
+            "levelInline": "Nível {{level}}",
+            "notFound": "Capítulo não encontrado",
+            "prerequisites": {
+                "label": "Pré-requisitos",
+                "intro": "Confira esta lista antes de rolar. Se dois itens estiverem em falta, comece por eles — o capítulo assume tudo daqui pra frente.",
+                "notNeededLabel": "Não é necessário"
+            },
+            "toc": {
+                "label": "Neste capítulo",
+                "count_one": "{{count}} seção",
+                "count_other": "{{count}} seções",
+                "readProgress": "{{percent}}% lido"
+            },
+            "code": {
+                "copy": "Copiar",
+                "copied": "Código copiado"
+            },
+            "callout": {
+                "note": "Nota",
+                "warning": "Atenção",
+                "pitfall": "Armadilha comum"
+            },
+            "feedback": {
+                "question": "Isso te ajudou?",
+                "subtitle": "Duas pessoas por semana respondem e é assim que o capítulo melhora.",
+                "yes": "Ajudou",
+                "no": "Faltou algo",
+                "formTitleUp": "Bom saber. Quer contar o que funcionou?",
+                "formTitleDown": "O que faltou neste capítulo?",
+                "formHint": "Opcional, mas ajuda: o que você tentou e onde travou.",
+                "notePlaceholder": "O comando X falhou no passo do Postgres…",
+                "submit": "Enviar feedback",
+                "cancel": "Cancelar",
+                "sending": "Enviando seu feedback…",
+                "doneTitle": "Registrado, obrigado.",
+                "doneBody": "Respostas negativas entram na revisão do mês.",
+                "errorTitle": "Não foi possível enviar agora",
+                "errorBody": "Seu texto continua aqui, nada foi perdido.",
+                "retry": "Tentar novamente"
+            },
+            "pager": {
+                "prevLabel": "Anterior",
+                "nextLabel": "Próximo · capítulo {{num}}",
+                "trackStart": "Início da trilha",
+                "trackEnd": "Fim da trilha, por enquanto"
+            },
+            "related": {
+                "heading": "Relacionados",
+                "source": "por stack em comum"
+            },
+            "repo": {
+                "title": "Repositório companheiro, um commit por seção deste capítulo.",
+                "cta": "Abrir"
+            }
+        }
     }
 }

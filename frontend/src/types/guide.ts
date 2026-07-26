@@ -30,11 +30,6 @@ export interface GuideSearchHit {
     excerpt: string;
 }
 
-export interface GuideStats {
-    slug: string;
-    reads: number;
-}
-
 export interface GuideSection {
     anchor: string;
     heading: string;

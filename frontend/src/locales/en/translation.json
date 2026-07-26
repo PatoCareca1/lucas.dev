@@ -554,5 +554,131 @@
             "title": "Featured Projects",
             "see_all": "See all projects"
         }
+    },
+    "guides": {
+        "nav": {
+            "label": "Guides",
+            "breadcrumb": "guides",
+            "backToTrack": "Back to the track"
+        },
+        "index": {
+            "eyebrow": "Track · Python backend",
+            "title": "Guides that don't stop at <0>runserver</0>",
+            "lede": "Three chapters in sequence, from the first <0>python -m venv</0> to the application serving in production with Docker, Postgres and a deploy. Written in the order the problems actually show up.",
+            "meta": {
+                "chapters_one": "{{count}} chapter",
+                "chapters_other": "{{count}} chapters",
+                "published_one": "{{count}} published",
+                "published_other": "{{count}} published",
+                "updated": "updated in {{date}}"
+            },
+            "track": {
+                "heading": "The track, in order",
+                "metaAll_one": "{{count}} chapter · read in order",
+                "metaAll_other": "{{count}} chapters · read in order",
+                "metaFiltered": "{{shown}} of {{total}} chapters"
+            },
+            "repoBanner": {
+                "text": "Every chapter has a companion repository, with one commit per section.",
+                "cta": "View on GitHub"
+            }
+        },
+        "search": {
+            "placeholder": "Search by topic, command or file…",
+            "clear": "Clear search",
+            "resultsHeading": "Search results",
+            "loadingMeta": "searching the chapters…",
+            "count_one": "{{count}} match",
+            "count_other": "{{count}} matches",
+            "empty": {
+                "meta": "0 matches for “{{query}}”",
+                "title": "The track doesn't cover that yet",
+                "body": "It is three chapters, not an encyclopedia. If the topic belongs here, it goes in the queue for the next chapter.",
+                "suggestionsLabel": "Try"
+            },
+            "error": {
+                "title": "The search didn't answer",
+                "body": "The chapters could not be scanned right now. The track below is still navigable.",
+                "retry": "Try again"
+            }
+        },
+        "filters": {
+            "stackLabel": "Stack",
+            "levelLabel": "Level",
+            "clear": "Clear filters",
+            "emptyTitle": "No chapter matches these filters",
+            "emptyBody": "The track is short on purpose. Try a broader combination."
+        },
+        "level": {
+            "iniciante": "Beginner",
+            "intermediario": "Intermediate"
+        },
+        "card": {
+            "chapterLabel": "Chapter {{num}}",
+            "startHere": "Start here",
+            "readingTime": "{{minutes}} min read",
+            "readingTimeShort": "~{{minutes}} min",
+            "cta": "Read chapter",
+            "soon": "Coming soon",
+            "release": "planned for {{date}}",
+            "notPublished": "Chapter {{num}} is not published yet"
+        },
+        "article": {
+            "updatedAt": "Updated on {{date}}",
+            "levelInline": "{{level}} level",
+            "notFound": "Chapter not found",
+            "prerequisites": {
+                "label": "Prerequisites",
+                "intro": "Check this list before scrolling. If two items are missing, start with them — the chapter assumes all of it from here on.",
+                "notNeededLabel": "Not needed"
+            },
+            "toc": {
+                "label": "In this chapter",
+                "count_one": "{{count}} section",
+                "count_other": "{{count}} sections",
+                "readProgress": "{{percent}}% read"
+            },
+            "code": {
+                "copy": "Copy",
+                "copied": "Code copied"
+            },
+            "callout": {
+                "note": "Note",
+                "warning": "Warning",
+                "pitfall": "Common pitfall"
+            },
+            "feedback": {
+                "question": "Did this help?",
+                "subtitle": "Two people a week answer, and that is how the chapter gets better.",
+                "yes": "It helped",
+                "no": "Something was missing",
+                "formTitleUp": "Good to know. Want to say what worked?",
+                "formTitleDown": "What was missing in this chapter?",
+                "formHint": "Optional, but it helps: what you tried and where you got stuck.",
+                "notePlaceholder": "Command X failed at the Postgres step…",
+                "submit": "Send feedback",
+                "cancel": "Cancel",
+                "sending": "Sending your feedback…",
+                "doneTitle": "Recorded, thank you.",
+                "doneBody": "Negative answers go into the monthly review.",
+                "errorTitle": "Could not send right now",
+                "errorBody": "Your text is still here, nothing was lost.",
+                "retry": "Try again"
+            },
+            "pager": {
+                "prevLabel": "Previous",
+                "nextLabel": "Next · chapter {{num}}",
+                "trackStart": "Start of the track",
+                "trackEnd": "End of the track, for now"
+            },
+            "related": {
+                "heading": "Related",
+                "source": "by shared stack"
+            },
+            "repo": {
+                "title": "Companion repository, one commit per section of this chapter.",
+                "cta": "Open"
+            }
+        }
     }
 }

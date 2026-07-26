@@ -8,6 +8,90 @@
   }
 }
 
+@layer components {
+  .guide-prose h2 {
+    @apply font-display text-[29px] leading-[1.22] tracking-[-0.02em] font-semibold text-gray-950 dark:text-gray-50 mt-11 mb-3.5 scroll-mt-24;
+  }
+
+  .guide-prose h3 {
+    @apply font-display text-[21px] leading-tight tracking-[-0.015em] font-semibold text-gray-950 dark:text-gray-50 mt-8 mb-3 scroll-mt-24;
+  }
+
+  .guide-prose p {
+    @apply mb-[18px];
+  }
+
+  .guide-prose ul {
+    @apply list-disc pl-6 mb-[22px] flex flex-col gap-2;
+  }
+
+  .guide-prose ol {
+    @apply list-decimal pl-6 mb-[22px] flex flex-col gap-2;
+  }
+
+  .guide-prose a {
+    @apply text-accent-ink dark:text-accent-ink-dark underline underline-offset-2;
+  }
+
+  .guide-prose strong {
+    @apply font-semibold text-gray-950 dark:text-gray-50;
+  }
+
+  .guide-prose :not(pre) > code {
+    @apply font-mono text-[0.87em] px-1.5 py-0.5 rounded bg-gray-900/[0.045] dark:bg-black/[0.35] text-gray-900 dark:text-gray-200;
+  }
+
+  .guide-prose table {
+    @apply w-full my-6 text-[15px] border-collapse;
+  }
+
+  .guide-prose th,
+  .guide-prose td {
+    @apply border border-gray-200 dark:border-gray-800 px-3 py-2 text-left;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-section {
+    @apply text-purple-700 dark:text-purple-300;
+  }
+
+  .hljs-string,
+  .hljs-attr,
+  .hljs-addition {
+    @apply text-emerald-700 dark:text-emerald-300;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    @apply text-gray-500 dark:text-gray-500 italic;
+  }
+
+  .hljs-number,
+  .hljs-symbol,
+  .hljs-bullet {
+    @apply text-amber-700 dark:text-amber-300;
+  }
+
+  .hljs-title,
+  .hljs-name,
+  .hljs-built_in {
+    @apply text-blue-700 dark:text-blue-300;
+  }
+
+  .hljs-meta,
+  .hljs-type {
+    @apply text-cyan-700 dark:text-cyan-300;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 @layer utilities {
   .modal-scrollbar {
     scrollbar-width: thin;

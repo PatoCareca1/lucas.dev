@@ -1,12 +1,9 @@
 import { getGuides } from '../content/loader';
 import { extractSections, normalizeText, toPlainText } from '../content/sections';
-import type { Guide, GuideSearchHit, GuideStats } from '../types/guide';
+import type { Guide, GuideSearchHit } from '../types/guide';
 
-const STATS_KEY = 'guides.stats';
-const READS_KEY = 'guides.reads.throttle';
 const FEEDBACK_KEY = 'guides.feedback';
 const ANSWERED_KEY = 'guides.feedback.answered';
-const READ_THROTTLE_MS = 6 * 60 * 60 * 1000;
 const EXCERPT_RADIUS = 90;
 
 export type FeedbackVerdict = 'helpful' | 'missing';
@@ -44,34 +41,24 @@ const writeStore = (storage: Storage, key: string, value: unknown): void => {
     }
 };
 
-export const fetchGuideStats = async (): Promise<GuideStats[]> => {
-    const counts = readStore<Record<string, number>>(localStorage, STATS_KEY, {});
-    return Object.entries(counts).map(([slug, reads]) => ({ slug, reads }));
-};
-
-export const recordGuideRead = async (slug: string): Promise<GuideStats[]> => {
-    const now = Date.now();
-    const throttle = readStore<Record<string, number>>(localStorage, READS_KEY, {});
-    const counts = readStore<Record<string, number>>(localStorage, STATS_KEY, {});
-
-    const last = throttle[slug] ?? 0;
-    if (now - last >= READ_THROTTLE_MS) {
-        counts[slug] = (counts[slug] ?? 0) + 1;
-        throttle[slug] = now;
-        writeStore(localStorage, STATS_KEY, counts);
-        writeStore(localStorage, READS_KEY, throttle);
-    }
-
-    return Object.entries(counts).map(([key, reads]) => ({ slug: key, reads }));
-};
-
 const buildExcerpt = (content: string, needle: string): string => {
     const plain = toPlainText(content);
     const at = normalizeText(plain).indexOf(needle);
     if (at < 0) return plain.slice(0, EXCERPT_RADIUS * 2).trim();
 
-    const start = Math.max(0, at - EXCERPT_RADIUS);
-    const end = Math.min(plain.length, at + needle.length + EXCERPT_RADIUS);
+    let start = Math.max(0, at - EXCERPT_RADIUS);
+    let end = Math.min(plain.length, at + needle.length + EXCERPT_RADIUS);
+
+    if (start > 0) {
+        const boundary = plain.indexOf(' ', start);
+        if (boundary >= 0 && boundary < at) start = boundary + 1;
+    }
+
+    if (end < plain.length) {
+        const boundary = plain.lastIndexOf(' ', end);
+        if (boundary > at + needle.length) end = boundary;
+    }
+
     const slice = plain.slice(start, end).trim();
 
     return `${start > 0 ? '…' : ''}${slice}${end < plain.length ? '…' : ''}`;
