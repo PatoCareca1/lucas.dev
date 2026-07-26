@@ -5,21 +5,24 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeHighlight from 'rehype-highlight';
-import { common } from 'lowlight';
-import dockerfile from 'highlight.js/lib/languages/dockerfile';
-import { ChevronLeft, Clock } from 'lucide-react';
-import { getGuideBySlug } from '../content/loader';
+import { guideLanguages } from '../content/highlightLanguages';
+import { ChevronLeft, Clock, Github } from 'lucide-react';
+import { getGuideBySlug, getGuides } from '../content/loader';
 import { extractSections } from '../content/sections';
 import { remarkCallout, remarkCodeMeta } from '../content/remarkPlugins';
 import { useActiveHeading } from '../hooks/useActiveHeading';
 import { useReadingProgress } from '../hooks/useReadingProgress';
 import { chapterNumber, formatLongDate } from '../utils/guideFormat';
 import { resolvePath } from '../routes/paths';
+import { useRelatedGuides } from '../hooks/useRelatedGuides';
 import ArticleToc from '../components/guides/ArticleToc';
 import Callout, { type CalloutVariant } from '../components/guides/Callout';
+import ChapterPager from '../components/guides/ChapterPager';
 import CodeBlock from '../components/guides/CodeBlock';
+import FeedbackPanel from '../components/guides/FeedbackPanel';
 import PrerequisitesPanel from '../components/guides/PrerequisitesPanel';
 import ReadingProgressBar from '../components/guides/ReadingProgressBar';
+import RelatedGuides from '../components/guides/RelatedGuides';
 
 const GuideArticle: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -33,6 +36,16 @@ const GuideArticle: React.FC = () => {
 
     const { progress, reducedMotion } = useReadingProgress(articleRef);
     const { activeAnchor, goTo } = useActiveHeading(anchors);
+    const related = useRelatedGuides(slug, language);
+
+    const { previous, next } = useMemo(() => {
+        const all = getGuides(language);
+        const index = all.findIndex((item) => item.slug === slug);
+        return {
+            previous: index > 0 && all[index - 1].published ? all[index - 1] : undefined,
+            next: index >= 0 ? all[index + 1] : undefined,
+        };
+    }, [slug, language]);
 
     useEffect(() => {
         if (!guide) return;
@@ -108,7 +121,7 @@ const GuideArticle: React.FC = () => {
                             rehypeSlug,
                             [
                                 rehypeHighlight,
-                                { detect: false, ignoreMissing: true, languages: { ...common, dockerfile } },
+                                { detect: false, ignoreMissing: true, languages: guideLanguages },
                             ],
                         ]}
                         components={{
@@ -147,6 +160,36 @@ const GuideArticle: React.FC = () => {
                     onNavigate={goTo}
                 />
             </div>
+
+            <footer className="max-w-[68ch] mt-16 flex flex-col gap-5">
+                <FeedbackPanel slug={guide.slug} language={language} />
+
+                <ChapterPager previous={previous} next={next} language={language} />
+
+                <RelatedGuides guides={related} language={language} />
+
+                {guide.repoUrl && (
+                    <a
+                        href={guide.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm hover:border-manjaro-green/40 transition-colors"
+                    >
+                        <Github size={20} className="text-gray-950 dark:text-gray-50 flex-none" />
+                        <span className="flex-1 min-w-0">
+                            <span className="block font-mono text-sm text-gray-950 dark:text-gray-50 truncate">
+                                {guide.repoUrl.replace(/^https?:\/\/(www\.)?github\.com\//, '')}
+                            </span>
+                            <span className="block mt-1 text-[13.5px] text-gray-600 dark:text-gray-400">
+                                {t('guides.article.repo.title')}
+                            </span>
+                        </span>
+                        <span className="text-[13.5px] font-medium text-accent-ink dark:text-accent-ink-dark flex-none">
+                            {t('guides.article.repo.cta')}
+                        </span>
+                    </a>
+                )}
+            </footer>
         </div>
     );
 };
