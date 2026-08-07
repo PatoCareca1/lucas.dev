@@ -1,23 +1,13 @@
 from ninja import NinjaAPI
-import platform
-import sys
-from labs.api import router as labs_router
-from bio.api import router as bio_router
 
-api = NinjaAPI()
-api.add_router("/labs", labs_router)
-api.add_router("/bio", bio_router)
+api = NinjaAPI(title="lucas.dev API", version="1.0.0")
 
 
-@api.get("/system-info")
-def system_info(request):
-    os_name = platform.system()
-    if os_name == "Linux":
-        try:
-            # Attempt to read from freedesktop standard
-            info = platform.freedesktop_os_release()
-            os_name = info.get("PRETTY_NAME", "Linux")
-        except:
-            os_name = "Linux"
+@api.get("/health", tags=["meta"])
+def health(request):
+    """Liveness check — used by the Docker healthcheck and uptime monitors.
 
-    return {"os": os_name, "python_version": sys.version.split(" ")[0]}
+    Intentionally does not touch the database: it should report the process
+    is up even if Postgres is temporarily unreachable.
+    """
+    return {"status": "ok"}
