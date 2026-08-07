@@ -3,8 +3,6 @@
     "theme": "Tema",
     "title": "Lucas.dev",
     "technologies": "Tecnologias Principais",
-    "os": "Sistema Operacional",
-    "python_version": "Versão Python",
     "welcome": "Bem-vindo ao meu portfólio movido por React & Django.",
     "home": {
         "greeting": "Olá, eu sou Lucas.",

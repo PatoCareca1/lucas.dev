@@ -3,8 +3,6 @@
     "theme": "Theme",
     "title": "Lucas.dev",
     "technologies": "Core Technologies",
-    "os": "Operating System",
-    "python_version": "Python Version",
     "welcome": "Welcome to my portfolio powered by React & Django.",
     "home": {
         "greeting": "Hello, I'm Lucas.",
