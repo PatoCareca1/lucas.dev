@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, Languages, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { resolvePath } from '../routes/paths';
 
 const Navbar: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -25,6 +26,9 @@ const Navbar: React.FC = () => {
                         <div className="hidden md:flex items-center space-x-4">
                             <Link to="/projects" className="text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors">
                                 {t('projects.title', 'Projects')}
+                            </Link>
+                            <Link to={resolvePath('guides', i18n.language)} className="text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors">
+                                {t('guides.nav.label')}
                             </Link>
                         </div>
                     </div>
@@ -62,6 +66,13 @@ const Navbar: React.FC = () => {
                         className="block text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors py-2"
                     >
                         {t('projects.title', 'Projects')}
+                    </Link>
+                    <Link
+                        to={resolvePath('guides', i18n.language)}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block text-sm font-medium text-gray-600 hover:text-manjaro-green dark:text-gray-300 dark:hover:text-manjaro-green transition-colors py-2"
+                    >
+                        {t('guides.nav.label')}
                     </Link>
                 </div>
             )}
