@@ -581,6 +581,15 @@
             "repoBanner": {
                 "text": "Cada capítulo tem um repositório companheiro, com um commit por seção.",
                 "cta": "Ver no GitHub"
+            },
+            "loading": {
+                "title": "Carregando os capítulos…",
+                "body": "Buscando a trilha mais recente no servidor."
+            },
+            "error": {
+                "title": "Não foi possível carregar os capítulos",
+                "body": "O servidor não respondeu agora. Tente de novo em alguns segundos.",
+                "retry": "Tentar novamente"
             }
         },
         "search": {
@@ -627,6 +636,15 @@
             "updatedAt": "Atualizado em {{date}}",
             "levelInline": "Nível {{level}}",
             "notFound": "Capítulo não encontrado",
+            "loading": {
+                "title": "Carregando capítulo…",
+                "body": "Buscando o conteúdo no servidor."
+            },
+            "error": {
+                "title": "Não foi possível carregar este capítulo",
+                "body": "O servidor não respondeu agora. Tente de novo em alguns segundos.",
+                "retry": "Tentar novamente"
+            },
             "prerequisites": {
                 "label": "Pré-requisitos",
                 "intro": "Confira esta lista antes de rolar. Se dois itens estiverem em falta, comece por eles — o capítulo assume tudo daqui pra frente.",

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { fetchRelatedGuides } from '../api/guidesClient';
+import { relatedGuides } from '../content/guidesQuery';
 import type { Guide } from '../types/guide';
 
-export const useRelatedGuides = (slug: string, language: string): Guide[] =>
-    useMemo(() => fetchRelatedGuides(slug, language), [slug, language]);
+export const useRelatedGuides = (guides: Guide[], slug: string): Guide[] =>
+    useMemo(() => relatedGuides(guides, slug), [guides, slug]);

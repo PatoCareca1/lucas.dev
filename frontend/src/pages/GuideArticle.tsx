@@ -6,8 +6,8 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeHighlight from 'rehype-highlight';
 import { guideLanguages } from '../content/highlightLanguages';
-import { ChevronLeft, Clock, Github } from 'lucide-react';
-import { getGuideBySlug, getGuides } from '../content/loader';
+import { AlertTriangle, ChevronLeft, Clock, Github, Loader2, RotateCw } from 'lucide-react';
+import { useGuides } from '../hooks/useGuides';
 import { extractSections } from '../content/sections';
 import { remarkCallout, remarkCodeMeta } from '../content/remarkPlugins';
 import { useActiveHeading } from '../hooks/useActiveHeading';
@@ -30,28 +30,72 @@ const GuideArticle: React.FC = () => {
     const language = i18n.language;
     const articleRef = useRef<HTMLElement>(null);
 
-    const guide = useMemo(() => getGuideBySlug(slug, language), [slug, language]);
+    const { guides, status, retry } = useGuides(language);
+    const guide = useMemo(() => guides.find((item) => item.slug === slug), [guides, slug]);
     const sections = useMemo(() => (guide ? extractSections(guide.body) : []), [guide]);
     const anchors = useMemo(() => sections.map((section) => section.anchor), [sections]);
 
     const { progress, reducedMotion } = useReadingProgress(articleRef);
     const { activeAnchor, goTo } = useActiveHeading(anchors);
-    const related = useRelatedGuides(slug, language);
+    const related = useRelatedGuides(guides, slug);
 
     const { previous, next } = useMemo(() => {
-        const all = getGuides(language);
-        const index = all.findIndex((item) => item.slug === slug);
+        const index = guides.findIndex((item) => item.slug === slug);
         return {
-            previous: index > 0 && all[index - 1].published ? all[index - 1] : undefined,
-            next: index >= 0 ? all[index + 1] : undefined,
+            previous: index > 0 && guides[index - 1].published ? guides[index - 1] : undefined,
+            next: index >= 0 ? guides[index + 1] : undefined,
         };
-    }, [slug, language]);
+    }, [guides, slug]);
 
     useEffect(() => {
         if (!guide) return;
         const hash = window.location.hash.slice(1);
         if (hash) goTo(decodeURIComponent(hash));
     }, [guide, goTo]);
+
+    if (status === 'loading') {
+        return (
+            <div className="max-w-5xl mx-auto px-6 lg:px-8 pt-14">
+                <div className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
+                    <Loader2 size={18} className="text-manjaro-green animate-spin flex-none" />
+                    <div className="flex-1 min-w-0">
+                        <div className="text-[14.5px] font-medium text-gray-950 dark:text-gray-50">
+                            {t('guides.article.loading.title')}
+                        </div>
+                        <div className="text-[13.5px] text-gray-600 dark:text-gray-400">
+                            {t('guides.article.loading.body')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (status === 'error') {
+        return (
+            <div className="max-w-5xl mx-auto px-6 lg:px-8 pt-14">
+                <div className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
+                    <AlertTriangle size={18} className="text-gray-600 dark:text-gray-400 flex-none" />
+                    <div className="flex-1 min-w-0">
+                        <div className="text-[14.5px] font-medium text-gray-950 dark:text-gray-50">
+                            {t('guides.article.error.title')}
+                        </div>
+                        <div className="text-[13.5px] text-gray-600 dark:text-gray-400">
+                            {t('guides.article.error.body')}
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={retry}
+                        className="flex items-center gap-2 flex-none px-4 py-2.5 rounded-xl border border-manjaro-green/40 dark:border-manjaro-green/30 text-[13.5px] font-semibold text-accent-ink dark:text-accent-ink-dark hover:scale-[1.02] transition-transform"
+                    >
+                        <RotateCw size={14} />
+                        {t('guides.article.error.retry')}
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     if (!guide || !guide.published) {
         return <Navigate to={resolvePath('guides', language)} replace />;

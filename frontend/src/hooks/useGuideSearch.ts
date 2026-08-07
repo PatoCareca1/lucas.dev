@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { searchGuides } from '../api/guidesClient';
-import type { GuideSearchHit } from '../types/guide';
+import { searchGuides } from '../content/guidesQuery';
+import type { Guide, GuideSearchHit } from '../types/guide';
 
 const DEBOUNCE_MS = 300;
 
@@ -15,7 +15,10 @@ interface UseGuideSearchResult {
     retry: () => void;
 }
 
-export const useGuideSearch = (language: string): UseGuideSearchResult => {
+/** Searches the already-loaded `guides` list (see `useGuides`). No network
+ * call happens here — the debounce just keeps typing snappy and results
+ * from flickering. */
+export const useGuideSearch = (guides: Guide[]): UseGuideSearchResult => {
     const [query, setQueryValue] = useState('');
     const [status, setStatus] = useState<SearchStatus>('idle');
     const [results, setResults] = useState<GuideSearchHit[]>([]);
@@ -28,24 +31,22 @@ export const useGuideSearch = (language: string): UseGuideSearchResult => {
         let active = true;
 
         timer.current = window.setTimeout(() => {
-            searchGuides(query, language)
-                .then((hits) => {
-                    if (!active) return;
-                    setResults(hits);
-                    setStatus(hits.length ? 'results' : 'empty');
-                })
-                .catch(() => {
-                    if (!active) return;
-                    setResults([]);
-                    setStatus('error');
-                });
+            if (!active) return;
+            try {
+                const hits = searchGuides(guides, query);
+                setResults(hits);
+                setStatus(hits.length ? 'results' : 'empty');
+            } catch {
+                setResults([]);
+                setStatus('error');
+            }
         }, DEBOUNCE_MS);
 
         return () => {
             active = false;
             window.clearTimeout(timer.current);
         };
-    }, [query, language, attempt]);
+    }, [query, guides, attempt]);
 
     const setQuery = useCallback((value: string) => {
         setQueryValue(value);

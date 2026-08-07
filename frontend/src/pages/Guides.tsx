@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Github } from 'lucide-react';
+import { AlertTriangle, Github, Loader2, RotateCw } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getGuides } from '../content/loader';
+import { useGuides } from '../hooks/useGuides';
 import { useGuideSearch } from '../hooks/useGuideSearch';
 import type { GuideLevel } from '../types/guide';
 import { formatShortDate } from '../utils/guideFormat';
@@ -14,11 +14,11 @@ const Guides: React.FC = () => {
     const { t, i18n } = useTranslation();
     const language = i18n.language;
 
-    const guides = useMemo(() => getGuides(language), [language]);
+    const { guides, status, retry } = useGuides(language);
     const [activeStacks, setActiveStacks] = useState<string[]>([]);
     const [activeLevels, setActiveLevels] = useState<GuideLevel[]>([]);
 
-    const search = useGuideSearch(language);
+    const search = useGuideSearch(guides);
 
     const stacks = useMemo(
         () => Array.from(new Set(guides.flatMap((guide) => guide.stack))),
@@ -98,66 +98,109 @@ const Guides: React.FC = () => {
                     />
                 </p>
 
-                <div className="flex flex-wrap gap-5 mt-6 font-mono text-[13.5px] text-gray-400 dark:text-gray-500">
-                    <span>{t('guides.index.meta.chapters', { count: guides.length })}</span>
-                    <span>·</span>
-                    <span>{t('guides.index.meta.published', { count: publishedCount })}</span>
-                    {lastUpdate && (
-                        <>
-                            <span>·</span>
-                            <span>{t('guides.index.meta.updated', { date: lastUpdate })}</span>
-                        </>
-                    )}
-                </div>
+                {status === 'ready' && (
+                    <div className="flex flex-wrap gap-5 mt-6 font-mono text-[13.5px] text-gray-400 dark:text-gray-500">
+                        <span>{t('guides.index.meta.chapters', { count: guides.length })}</span>
+                        <span>·</span>
+                        <span>{t('guides.index.meta.published', { count: publishedCount })}</span>
+                        {lastUpdate && (
+                            <>
+                                <span>·</span>
+                                <span>{t('guides.index.meta.updated', { date: lastUpdate })}</span>
+                            </>
+                        )}
+                    </div>
+                )}
             </motion.section>
 
-            <section className="flex flex-col gap-[18px] py-6 border-y border-gray-200 dark:border-gray-800">
-                <GuideSearch
-                    query={search.query}
-                    status={search.status}
-                    results={search.results}
-                    language={language}
-                    onQueryChange={search.setQuery}
-                    onClear={search.clear}
-                    onRetry={search.retry}
-                />
-
-                <GuideFilters
-                    stacks={stacks}
-                    activeStacks={activeStacks}
-                    activeLevels={activeLevels}
-                    onToggleStack={toggleStack}
-                    onToggleLevel={toggleLevel}
-                    onClear={clearFilters}
-                />
-            </section>
-
-            <section className="pt-10">
-                <div className="flex items-baseline justify-between mb-2">
-                    <h2 className="font-display text-[17px] font-semibold text-gray-950 dark:text-gray-50">
-                        {t('guides.index.track.heading')}
-                    </h2>
-                    <span className="font-mono text-xs text-gray-400 dark:text-gray-500">{trackMeta}</span>
+            {status === 'loading' && (
+                <div className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
+                    <Loader2 size={18} className="text-manjaro-green animate-spin flex-none" />
+                    <div className="flex-1 min-w-0">
+                        <div className="text-[14.5px] font-medium text-gray-950 dark:text-gray-50">
+                            {t('guides.index.loading.title')}
+                        </div>
+                        <div className="text-[13.5px] text-gray-600 dark:text-gray-400">
+                            {t('guides.index.loading.body')}
+                        </div>
+                    </div>
                 </div>
+            )}
 
-                <TrackTimeline guides={visible} language={language} onClearFilters={clearFilters} />
-
-                <div className="md:ml-24 mt-3.5 flex flex-wrap items-center gap-3 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
-                    <Github size={16} className="text-gray-400 dark:text-gray-500 flex-none" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {t('guides.index.repoBanner.text')}
-                    </span>
-                    <span className="flex-1" />
-                    <a
-                        href="https://github.com/lucasdaniel"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[13.5px] font-medium text-accent-ink dark:text-accent-ink-dark"
+            {status === 'error' && (
+                <div className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
+                    <AlertTriangle size={18} className="text-gray-600 dark:text-gray-400 flex-none" />
+                    <div className="flex-1 min-w-0">
+                        <div className="text-[14.5px] font-medium text-gray-950 dark:text-gray-50">
+                            {t('guides.index.error.title')}
+                        </div>
+                        <div className="text-[13.5px] text-gray-600 dark:text-gray-400">
+                            {t('guides.index.error.body')}
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={retry}
+                        className="flex items-center gap-2 flex-none px-4 py-2.5 rounded-xl border border-manjaro-green/40 dark:border-manjaro-green/30 text-[13.5px] font-semibold text-accent-ink dark:text-accent-ink-dark hover:scale-[1.02] transition-transform"
                     >
-                        {t('guides.index.repoBanner.cta')}
-                    </a>
+                        <RotateCw size={14} />
+                        {t('guides.index.error.retry')}
+                    </button>
                 </div>
-            </section>
+            )}
+
+            {status === 'ready' && (
+                <>
+                    <section className="flex flex-col gap-[18px] py-6 border-y border-gray-200 dark:border-gray-800">
+                        <GuideSearch
+                            query={search.query}
+                            status={search.status}
+                            results={search.results}
+                            guides={guides}
+                            language={language}
+                            onQueryChange={search.setQuery}
+                            onClear={search.clear}
+                            onRetry={search.retry}
+                        />
+
+                        <GuideFilters
+                            stacks={stacks}
+                            activeStacks={activeStacks}
+                            activeLevels={activeLevels}
+                            onToggleStack={toggleStack}
+                            onToggleLevel={toggleLevel}
+                            onClear={clearFilters}
+                        />
+                    </section>
+
+                    <section className="pt-10">
+                        <div className="flex items-baseline justify-between mb-2">
+                            <h2 className="font-display text-[17px] font-semibold text-gray-950 dark:text-gray-50">
+                                {t('guides.index.track.heading')}
+                            </h2>
+                            <span className="font-mono text-xs text-gray-400 dark:text-gray-500">{trackMeta}</span>
+                        </div>
+
+                        <TrackTimeline guides={visible} language={language} onClearFilters={clearFilters} />
+
+                        <div className="md:ml-24 mt-3.5 flex flex-wrap items-center gap-3 px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm">
+                            <Github size={16} className="text-gray-400 dark:text-gray-500 flex-none" />
+                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                                {t('guides.index.repoBanner.text')}
+                            </span>
+                            <span className="flex-1" />
+                            <a
+                                href="https://github.com/lucasdaniel"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[13.5px] font-medium text-accent-ink dark:text-accent-ink-dark"
+                            >
+                                {t('guides.index.repoBanner.cta')}
+                            </a>
+                        </div>
+                    </section>
+                </>
+            )}
         </div>
     );
 };

@@ -581,6 +581,15 @@
             "repoBanner": {
                 "text": "Every chapter has a companion repository, with one commit per section.",
                 "cta": "View on GitHub"
+            },
+            "loading": {
+                "title": "Loading chapters…",
+                "body": "Fetching the latest track from the server."
+            },
+            "error": {
+                "title": "Couldn't load the chapters",
+                "body": "The server didn't respond just now. Try again in a few seconds.",
+                "retry": "Try again"
             }
         },
         "search": {
@@ -627,6 +636,15 @@
             "updatedAt": "Updated on {{date}}",
             "levelInline": "{{level}} level",
             "notFound": "Chapter not found",
+            "loading": {
+                "title": "Loading chapter…",
+                "body": "Fetching the content from the server."
+            },
+            "error": {
+                "title": "Couldn't load this chapter",
+                "body": "The server didn't respond just now. Try again in a few seconds.",
+                "retry": "Try again"
+            },
             "prerequisites": {
                 "label": "Prerequisites",
                 "intro": "Check this list before scrolling. If two items are missing, start with them — the chapter assumes all of it from here on.",

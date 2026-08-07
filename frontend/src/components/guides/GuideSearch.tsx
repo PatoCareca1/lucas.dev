@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Loader2, RotateCw, Search, X } from 'lucide-react';
-import type { GuideSearchHit } from '../../types/guide';
+import type { Guide, GuideSearchHit } from '../../types/guide';
 import type { SearchStatus } from '../../hooks/useGuideSearch';
-import { getGuideBySlug } from '../../content/loader';
 import { resolveGuidePath } from '../../routes/paths';
 import { chapterNumber } from '../../utils/guideFormat';
 
@@ -15,6 +14,7 @@ interface GuideSearchProps {
     query: string;
     status: SearchStatus;
     results: GuideSearchHit[];
+    guides: Guide[];
     language: string;
     onQueryChange: (value: string) => void;
     onClear: () => void;
@@ -25,6 +25,7 @@ const GuideSearch: React.FC<GuideSearchProps> = ({
     query,
     status,
     results,
+    guides,
     language,
     onQueryChange,
     onClear,
@@ -149,7 +150,7 @@ const GuideSearch: React.FC<GuideSearchProps> = ({
                                         <span>CAP {chapterNumber(hit.chapter)}</span>
                                         <span className="text-gray-400 dark:text-gray-500">/</span>
                                         <span className="text-gray-400 dark:text-gray-500">
-                                            {getGuideBySlug(hit.slug, language)?.title}
+                                            {guides.find((guide) => guide.slug === hit.slug)?.title}
                                         </span>
                                     </div>
                                     <div className="mt-2 font-display text-base font-semibold text-gray-950 dark:text-gray-50">
