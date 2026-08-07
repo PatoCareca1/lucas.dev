@@ -55,6 +55,84 @@ O frontend em desenvolvimento aponta para essa API local via `VITE_API_URL`
 
 ## 🚢 Deploy
 
-O frontend segue no provedor estático de sempre. O backend roda em Docker Compose numa VM Oracle,
-atrás de um reverse proxy com HTTPS — detalhes de deploy em produção serão documentados aqui junto
-com os arquivos `docker-compose.prod.yml` / `Caddyfile`.
+O frontend segue no provedor estático de sempre (Vercel/Netlify). O backend roda em
+`docker-compose.prod.yml` numa VM Oracle: Postgres + Gunicorn + Caddy (HTTPS automático via
+Let's Encrypt). **Nunca use o `docker-compose.yml` da raiz em produção** — ele roda com
+`runserver`, expõe o Postgres na porta `5432` e existe só para desenvolvimento local. Só o Caddy
+expõe portas pro host (`80`/`443`); Postgres e o backend só são alcançáveis pela rede interna do
+Docker.
+
+### Testar localmente antes de ir pra VM
+
+Se o stack de dev (`docker compose up`) já estiver rodando, use um nome de projeto diferente pro
+teste do compose de produção, pra não colidir nomes de container/volume:
+
+```bash
+cp .env.production.example .env.production
+```
+
+Edite o `.env.production` gerado e troque `DOMAIN=api.lucasdaniel.dev.br` por `DOMAIN=localhost`
+(sem isso o Caddy tenta emitir um certificado Let's Encrypt real, que falha sem DNS público
+apontando pra sua máquina). Para `localhost`, o Caddy emite um certificado confiável localmente.
+
+```bash
+docker compose -p lucasdev-prod -f docker-compose.prod.yml up -d --build
+```
+
+```bash
+docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python manage.py migrate
+```
+
+```bash
+docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python manage.py createsuperuser
+```
+
+Acesse `https://localhost/api/health` e `https://localhost/admin/` (o navegador vai reclamar do
+certificado local na primeira vez — é esperado, é auto-assinado pela CA interna do Caddy).
+
+Pra derrubar o teste:
+
+```bash
+docker compose -p lucasdev-prod -f docker-compose.prod.yml down
+```
+
+### Deploy real na VM Oracle
+
+1. Entrar na VM por SSH e instalar Docker + Docker Compose ([guia oficial](https://docs.docker.com/engine/install/ubuntu/)).
+2. Clonar a branch de produção do repositório na VM.
+3. Criar o `.env.production` de verdade:
+   ```bash
+   cp .env.production.example .env.production
+   ```
+   Preencher com valores reais: `SECRET_KEY` (gere um novo, não reaproveite o de dev),
+   `POSTGRES_PASSWORD`, `ALLOWED_HOSTS`/`CORS_ALLOWED_ORIGINS`/`CSRF_TRUSTED_ORIGINS` com o domínio
+   real, `DOMAIN=api.lucasdaniel.dev.br`, `BEHIND_REVERSE_PROXY=True`.
+4. Na Oracle Cloud (regras de entrada da VCN), liberar só as portas `22` (SSH), `80` e `443`. A
+   porta do Postgres (`5432`) não deve ser liberada — o `docker-compose.prod.yml` nem publica essa
+   porta pro host, então nem adianta liberar.
+5. Subir o stack:
+   ```bash
+   docker compose -f docker-compose.prod.yml up -d --build
+   ```
+6. Rodar as migrações e criar o superusuário:
+   ```bash
+   docker compose -f docker-compose.prod.yml exec backend python manage.py migrate
+   docker compose -f docker-compose.prod.yml exec backend python manage.py createsuperuser
+   ```
+7. Apontar o DNS de `api.lucasdaniel.dev.br` (registro A) para o IP público da VM. O Caddy só
+   consegue emitir o certificado Let's Encrypt depois que isso propagar.
+8. No provedor do frontend (Vercel), configurar `VITE_API_URL=https://api.lucasdaniel.dev.br`.
+9. Só depois disso tudo validado, integrar o fluxo `dev → main → prod`.
+
+### Hardening ainda pendente
+
+Alguns pontos levantados numa revisão de segurança antes do primeiro deploy, pra tratar quando a
+VM já estiver no ar (não bloqueiam o primeiro deploy, mas não devem ser esquecidos):
+
+* Considerar `SECURE_HSTS_SECONDS` no Django uma vez que o HTTPS via Caddy estiver confirmado
+  estável (não ativado por padrão aqui: é uma configuração "sem volta fácil" — o navegador guarda
+  a política por muito tempo — não vale habilitar antes de confirmar que o domínio/certificado
+  estão 100% estáveis).
+* Senha forte de verdade pro superuser do `/admin/` — é o único endpoint de escrita de conteúdo e
+  fica exposto na internet.
+* Backups do Postgres (`pg_dump` agendado) — ainda não configurado.

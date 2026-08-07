@@ -44,9 +44,21 @@ CORS_ALLOWED_ORIGINS = env_list(
 
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS")
 
-# The backend sits behind a reverse proxy (Caddy) in production that
-# terminates TLS and forwards this header.
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# Only set this to True once Caddy (or another reverse proxy) is confirmed
+# to be the *only* way to reach this app (see docker-compose.prod.yml —
+# Postgres and this container are never published to the host there). Both
+# settings below trust client-controllable-looking headers
+# (X-Forwarded-Proto / X-Forwarded-For); that's only safe when a proxy you
+# control is guaranteed to set them itself rather than passing through
+# whatever the client sent. Defaults to False so local/dev runs (where the
+# backend's port is exposed directly, no proxy in front) never trust them.
+BEHIND_REVERSE_PROXY = env_bool("BEHIND_REVERSE_PROXY", False)
+
+if BEHIND_REVERSE_PROXY:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    # Used by django-ratelimit (see guides/api.py) to key the feedback
+    # endpoint's rate limit on the real client IP instead of Caddy's.
+    RATELIMIT_IP_META_KEY = "core.ratelimit.get_client_ip"
 
 
 # Application definition
@@ -65,6 +77,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -134,6 +147,37 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# WhiteNoise serves static files (Django admin's CSS/JS) straight out of
+# Gunicorn, compressed and cache-busted by hash — no separate static file
+# server or shared volume with Caddy needed. `entrypoint.sh` runs
+# `collectstatic` on every container start, so STATIC_ROOT is always
+# populated before Gunicorn/runserver starts serving requests.
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Django's default cache (LocMemCache) is per-process. Gunicorn runs this
+# app with multiple worker *processes* (not threads), so django-ratelimit's
+# counters would otherwise be split across workers — e.g. with 3 workers, a
+# "10/h" limit effectively becomes up to ~30/h, spread unpredictably
+# depending on which worker handles each request. FileBasedCache is shared
+# on disk by every worker on the same machine, no extra service required.
+#
+# Deliberately outside BASE_DIR (which is bind-mounted as `./backend:/app`
+# in dev): this is disposable, container-local state, not source code — it
+# should never leak onto the host or interact with `.dockerignore`.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/tmp/django_cache",
+    }
+}
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

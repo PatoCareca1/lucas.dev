@@ -1,0 +1,6 @@
+# Caddy gets HTTPS automatically for real domains (Let's Encrypt) and issues
+# a locally-trusted cert for `localhost` — handy for testing this compose
+# file before it ever touches the VM (see README.md "Testar localmente").
+{$DOMAIN:localhost} {
+	reverse_proxy backend:8000
+}

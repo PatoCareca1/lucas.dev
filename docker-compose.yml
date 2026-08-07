@@ -12,16 +12,16 @@ services:
     restart: unless-stopped
     env_file:
       - ./backend/.env
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-lucasdev}
-      POSTGRES_USER: ${POSTGRES_USER:-lucasdev}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lucasdev}
     volumes:
       - lucasdev_db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lucasdev}"]
+      # `$$VAR` (not `${VAR}`) so this is expanded by the container's own
+      # shell at healthcheck time, using the real value from `env_file` —
+      # not by Compose itself, which can't see into `env_file` and would
+      # silently fall back to a hardcoded default otherwise.
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
       interval: 5s
       timeout: 5s
       retries: 5

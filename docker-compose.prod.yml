@@ -1,0 +1,62 @@
+# Production stack for the Oracle VM: Postgres + Gunicorn + Caddy (automatic
+# HTTPS). Only Caddy's ports reach the host — Postgres and the backend are
+# reachable only on the internal Docker network, never published directly.
+#
+# Usage (on the VM, or locally to test — see README.md "Testar localmente"):
+#   cp .env.production.example .env.production   # fill in real values
+#   docker compose -f docker-compose.prod.yml up -d --build
+#   docker compose -f docker-compose.prod.yml exec backend python manage.py migrate
+#   docker compose -f docker-compose.prod.yml exec backend python manage.py createsuperuser
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    volumes:
+      - lucasdev_prod_db_data:/var/lib/postgresql/data
+    healthcheck:
+      # `$$VAR` (not `${VAR}`) so this is expanded by the container's own
+      # shell at healthcheck time, using the real value from `env_file` —
+      # not by Compose itself, which can't see into `env_file` and would
+      # silently fall back to a hardcoded default otherwise.
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    # Intentionally no `ports:` — only reachable from other containers on
+    # this network.
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    # Intentionally no `ports:` — only Caddy talks to this, over the
+    # internal Docker network.
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+
+volumes:
+  lucasdev_prod_db_data:
+  caddy_data:
+  caddy_config:
