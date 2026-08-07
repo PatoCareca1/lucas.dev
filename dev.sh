@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "🚀 Starting Lucas Portfolio Pro Dev Environment..."
+echo "ℹ️  Backend da API roda à parte via Docker: cp backend/.env.example backend/.env && docker compose up"
 
 echo "🛑 Cleaning up port 5173..."
 fuser -k 5173/tcp 2>/dev/null
