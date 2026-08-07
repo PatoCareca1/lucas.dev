@@ -2,10 +2,12 @@ from django_ratelimit.exceptions import Ratelimited
 from ninja import NinjaAPI
 
 from guides.api import router as guides_router
+from projects.api import router as projects_router
 
 api = NinjaAPI(title="lucas.dev API", version="1.0.0")
 
 api.add_router("/guides", guides_router)
+api.add_router("/projects", projects_router)
 
 
 @api.exception_handler(Ratelimited)
