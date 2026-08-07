@@ -1,0 +1,466 @@
+{
+  "pt": {
+    "sapo": {
+      "title": "SAPO — Sistema de Agendamento de Provas",
+      "tag": "Full-Stack",
+      "short_desc": "Plataforma para agendamento de provas orais na UFRN, substituindo o controle manual por planilha, com reservas concorrentes seguras e trilha de auditoria completa.",
+      "challenge": "Substituir o controle manual (planilha) de agendamento de provas orais na UFRN, garantindo que professores possam criar horários disponíveis e alunos reservem vagas de forma autônoma, sem conflitos de horário e com total rastreabilidade das ações realizadas na plataforma.",
+      "solution": "Uma aplicação full-stack em Next.js com autenticação restrita ao domínio institucional, reservas atômicas via transações de banco de dados e um sistema de auditoria append-only que registra todas as mutações realizadas.",
+      "solution_details": {
+        "concurrency": {
+          "label": "Controle de Concorrência",
+          "text": "Reservas atômicas via transações de banco de dados e constraints de unicidade, prevenindo race conditions em agendamentos simultâneos."
+        },
+        "audit": {
+          "label": "Auditoria Imutável",
+          "text": "Log de auditoria append-only (ator, timestamp, ação, diff before/after) gravado na mesma transação de cada mutação."
+        },
+        "auth": {
+          "label": "Autenticação Institucional",
+          "text": "Login via Google OAuth restrito ao domínio institucional da UFRN, com validação de autorização 100% server-side."
+        }
+      },
+      "impact": [
+        "Eliminação do controle manual por planilha para agendamento de provas orais",
+        "Autonomia para professores e alunos gerenciarem horários sem intervenção manual",
+        "Trilha de auditoria completa e imutável de todas as ações realizadas na plataforma"
+      ],
+      "tech_stack": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "Auth.js",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "repo_url": "https://github.com/PatoCareca1/SAPO",
+      "disclaimer": "Nota: Projeto institucional da UFRN."
+    },
+    "plp": {
+      "title": "PLP — SETHAS/RN",
+      "tag": "Backend Engineering",
+      "short_desc": "Plataforma backend robusta para rastreamento de distribuição de benefícios em escala estadual com rastreabilidade completa e auditoria governamental.",
+      "challenge": "Desenvolver uma plataforma backend robusta para gerenciamento e rastreamento da distribuição de benefícios em escala estadual. O sistema precisava garantir rastreabilidade completa e transparência em transações governamentais, suportando operações distribuídas e auditoria detalhada.",
+      "solution": "Uma plataforma completa baseada em Django, com arquitetura orientada a serviços e foco em integridade.",
+      "solution_details": {
+        "apis": {
+          "label": "APIs & Segurança",
+          "text": "Implementação de APIs REST com DRF e autenticação segura via JWT (SimpleJWT)."
+        },
+        "async": {
+          "label": "Processamento Assíncrono",
+          "text": "Orquestração de tarefas complexas (relatórios e automações) utilizando Celery com RabbitMQ e monitoramento em tempo real via Flower."
+        },
+        "data": {
+          "label": "Engenharia de Dados",
+          "text": "Manipulação intensiva de dados com Pandas e integração via SQLAlchemy."
+        },
+        "docs": {
+          "label": "Validação Documental",
+          "text": "Geração de PDFs institucionais e QR Codes para autenticação de documentos oficiais."
+        },
+        "infra": {
+          "label": "DevOps & CI/CD",
+          "text": "Infraestrutura containerizada com Docker e pipelines automatizados via GitLab CI."
+        }
+      },
+      "impact": [
+        "Plataforma de gestão de benefícios alimentares em escala estadual",
+        "Automação total de processos administrativos e geração de documentos",
+        "Infraestrutura escalável e auditável para sistemas governamentais"
+      ],
+      "tech_stack": [
+        "Django",
+        "DRF",
+        "Celery",
+        "RabbitMQ",
+        "Pandas",
+        "Docker",
+        "GitLab CI"
+      ],
+      "site_url": "https://distribuicao.plp.sethas.rn.gov.br/",
+      "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
+    },
+    "prp": {
+      "title": "PRP — SETHAS/RN",
+      "tag": "Data Engineering",
+      "short_desc": "Arquitetura de processamento e validação de dados automatizada para o Programa Restaurante Popular do RN.",
+      "challenge": "Modernizar a infraestrutura de dados do Programa Restaurante Popular do RN, responsável pelo registro e auditoria de milhares de refeições diárias. O sistema dependia de processos manuais, dificultando a confiabilidade e a geração de relatórios governamentais.",
+      "solution": "Desenvolvimento de uma arquitetura automatizada de Data Engineering, incluindo pipelines ETL em Python/Pandas, camadas de normalização em PostgreSQL e processamento assíncrono com Celery + Redis sob infraestrutura Docker.",
+      "impact": [
+        "Eliminação de processos manuais baseados em planilhas",
+        "Processamento automatizado diário de milhares de registros",
+        "Criação de uma base confiável para auditoria e prestação de contas governamental"
+      ],
+      "tech_stack": [
+        "Python",
+        "Pandas",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "Docker"
+      ],
+      "site_url": "http://www.sethas.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=9940&ACT=&PAGE=0&PARM=&LBL=Restaurante+Popular",
+      "disclaimer": "Nota: Projeto governamental com código-fonte privado. O link acima direciona para a página institucional do programa."
+    },
+    "cineReserve": {
+      "title": "CineReserve",
+      "tag": "Full-Stack",
+      "short_desc": "Uma plataforma completa para reserva de ingressos de cinema. API robusta e experiência frontend responsiva.",
+      "challenge": "Desenvolver uma plataforma para simular o ecossistema real de um cinema, necessitando lidar com processos assíncronos e alta demanda em eventos simultâneos, assegurando reservas seguras.",
+      "solution": "O backend foi construído para lidar com processos assíncronos (como disparo automático de emails e processamento contínuo) garantindo que a interface de resposta não trave. A arquitetura viabilizou um ecossistema com comunicação eficiente entre serviços.",
+      "solution_details": {
+        "architecture": {
+          "label": "Processamento Assíncrono",
+          "text": "A arquitetura foi pensada para lidar com processos assíncronos — como o disparo de e-mails de confirmação de compra — garantindo que a interface não trave durante as requisições."
+        },
+        "infrastructure": {
+          "label": "Containers & Deploy",
+          "text": "O backend foi containerizado para facilitar o deploy e a escalabilidade, mantendo a comunicação eficiente com o frontend em React."
+        }
+      },
+      "impact": [
+        "Experiência de reserva rápida, robusta e fluida para o cliente final",
+        "Arquitetura escalável baseada em containers preparados para produção",
+        "Garantia de escalonamento com processamento assíncrono para operações de I/O"
+      ],
+      "tech_stack": [
+        "Python",
+        "Django REST Framework",
+        "Celery",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Docker Compose",
+        "Docker"
+      ],
+      "site_url": "https://cinereserve.lucasdaniel.dev.br",
+      "repo_url": "https://github.com/PatoCareca1/CineReserve",
+      "link_label": "Ver em Produção"
+    },
+    "crowdless": {
+      "title": "Crowdless — Hackathon HackaPower",
+      "tag": "Tech Lead",
+      "short_desc": "Protótipo vencedor do 1º lugar, construído sob pressão com liderança técnica.",
+      "challenge": "\"Como o jovem pode interagir de forma segura na pandemia?\" O desafio era criar soluções para engajar o debate social e políticas públicas.",
+      "solution": "'Crowdless' — ferramenta para compartilhamento de dados sanitários de ambientes em tempo real, facilitando a escolha de locais seguros.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Highlights",
+          "text": "Desenvolvimento sob pressão (maratona de 27 horas). Atuação como Tech Lead coordenando o time e as principais decisões de arquitetura e tecnologia."
+        }
+      },
+      "impact": [
+        "Vencedor do 1º lugar baseado em: Criatividade, Originalidade, Impacto Social, Qualidade Técnica e Sustentabilidade.",
+        "Protótipo totalmente funcional entregue dentro do prazo",
+        "Demonstrou liderança técnica e coordenação de equipe sob pressão",
+        "Conceito validado com jurados e mentores"
+      ],
+      "quote": "\"Foi nosso primeiro hackathon... ganharmos foi algo completamente inesperado e de uma alegria muito grande\" — Lucas Daniel, Líder da Equipe.",
+      "tech_stack": [
+        "Python",
+        "Flask",
+        "jQuery",
+        "Bootstrap"
+      ],
+      "site_url": "https://portal.ifba.edu.br/jequie/noticias/2021/agosto/equipe-do-ifba-jequie-e-campea-do-hackathon-juventudes",
+      "link_label": "Ver Notícia Oficial",
+      "disclaimer": "Nota: Este é um projeto de hackathon. Confira a página oficial do evento no link acima."
+    },
+    "miniShell": {
+      "title": "Mini-Shell (C Interpreter)",
+      "tag": "Systems Programming",
+      "short_desc": "Um shell isolado e modular focado em segurança com uso de Kernel API.",
+      "challenge": "Criar um shell isolado e modular focado em segurança (Sandbox).",
+      "solution": "Desenvolvimento estratégico usando System Calls e rotinas de isolamento em ambiente Unix.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Decision",
+          "text": "Uso de System Calls nativas (stat, opendir, unlink, rename) em vez de bibliotecas de alto nível para manipulação de ficheiros, visando obter controle absoluto e comunicação direta com o kernel do sistema."
+        },
+        "sandbox": {
+          "label": "Sandbox Logic",
+          "text": "Rotina de inicialização que isola o processo do usuário no diretório /sandbox, bloqueando acessos indevidos e garantindo um ambiente de execução rigorosamente contido."
+        }
+      },
+      "impact": [
+        "Implementação robusta com Kernel API",
+        "Controle absoluto via chamadas de sistema (syscalls)",
+        "Isolamento eficaz de processos do sistema"
+      ],
+      "tech_stack": [
+        "C",
+        "GCC",
+        "Make",
+        "Linux/WSL API"
+      ],
+      "site_url": "https://github.com/PatoCareca1/miniShell",
+      "link_label": "Ver no GitHub"
+    },
+    "fitTrack": {
+      "title": "FitTrack — Workout & Health",
+      "tag": "Full-Stack",
+      "short_desc": "Plataforma de saúde com suporte a múltiplos protocolos (REST/GraphQL).",
+      "challenge": "Unificar o acompanhamento de treinos, dieta e medidas corporais numa plataforma que suporte múltiplos protocolos de comunicação (REST/GraphQL).",
+      "solution": "Uma arquitetura robusta baseada em Django integrando endpoints REST e GraphQL com persistência híbrida e alta segurança.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Solution",
+          "text": "Arquitetura backend estruturada com SimpleJWT para prover segurança unificada entre paradigmas de comunicação e implementação de uma lógica de persistência híbrida, mesclando banco de dados relacional e arquivos JSON associados."
+        },
+        "graphql": {
+          "label": "GraphQL Power",
+          "text": "Adoção do Graphene-Django para viabilizar Queries e Mutations completamente otimizadas nas rotinas de treinos e exercícios, elevando a flexibilidade e a performance das requisições."
+        }
+      },
+      "impact": [
+        "Arquitetura flexível e aderente a múltiplos protocolos (REST & GraphQL)",
+        "Autenticação unificada segura via SimpleJWT",
+        "Gerenciamento consistente e híbrido de informações"
+      ],
+      "tech_stack": [
+        "Python",
+        "Django",
+        "Graphene (GraphQL)",
+        "REST Framework",
+        "SQLite",
+        "Tailwind CSS"
+      ],
+      "site_url": "https://github.com/PatoCareca1/fittrack",
+      "link_label": "Ver no GitHub"
+    }
+  },
+  "en": {
+    "sapo": {
+      "title": "SAPO — Oral Exam Scheduling System",
+      "tag": "Full-Stack",
+      "short_desc": "Oral exam scheduling platform for UFRN, replacing manual spreadsheet control with safe concurrent bookings and a complete audit trail.",
+      "challenge": "Replace the manual spreadsheet-based scheduling of oral exams at UFRN, allowing professors to create available time slots and students to book them autonomously, without scheduling conflicts and with full traceability of every action performed on the platform.",
+      "solution": "A full-stack Next.js application with authentication restricted to the institutional domain, atomic bookings via database transactions, and an append-only audit system that records every mutation.",
+      "solution_details": {
+        "concurrency": {
+          "label": "Concurrency Control",
+          "text": "Atomic bookings via database transactions and uniqueness constraints, preventing race conditions in simultaneous scheduling."
+        },
+        "audit": {
+          "label": "Immutable Audit Trail",
+          "text": "Append-only audit log (actor, timestamp, action, before/after diff) written within the same transaction as each mutation."
+        },
+        "auth": {
+          "label": "Institutional Authentication",
+          "text": "Google OAuth login restricted to UFRN's institutional domain, with 100% server-side authorization validation."
+        }
+      },
+      "impact": [
+        "Eliminated manual spreadsheet-based scheduling for oral exams",
+        "Gave professors and students autonomy to manage schedules without manual intervention",
+        "Complete, immutable audit trail of every action performed on the platform"
+      ],
+      "tech_stack": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "Auth.js",
+        "Tailwind CSS",
+        "shadcn/ui"
+      ],
+      "repo_url": "https://github.com/PatoCareca1/SAPO",
+      "disclaimer": "Note: Institutional UFRN project."
+    },
+    "plp": {
+      "title": "PLP -SETHAS/RN",
+      "tag": "Backend Engineering",
+      "short_desc": "Robust backend platform for state-wide benefit distribution tracking with full traceability and governmental auditing.",
+      "challenge": "Developing a robust backend platform for managing and tracking benefit distribution at state scale. The system needed to ensure full traceability and transparency in governmental transactions, supporting distributed operations and detailed auditing.",
+      "solution": "A complete Django-based platform with service-oriented architecture focused on data integrity.",
+      "solution_details": {
+        "apis": {
+          "label": "APIs & Security",
+          "text": "REST API implementation with DRF and secure authentication via JWT (SimpleJWT)."
+        },
+        "async": {
+          "label": "Async Processing",
+          "text": "Complex task orchestration (reports and automations) using Celery with RabbitMQ and real-time monitoring via Flower."
+        },
+        "data": {
+          "label": "Data Engineering",
+          "text": "Intensive data manipulation with Pandas and integration via SQLAlchemy."
+        },
+        "docs": {
+          "label": "Document Validation",
+          "text": "Institutional PDF generation and QR Codes for official document authentication."
+        },
+        "infra": {
+          "label": "DevOps & CI/CD",
+          "text": "Containerized infrastructure with Docker and automated pipelines via GitLab CI."
+        }
+      },
+      "impact": [
+        "State-wide food benefit management platform",
+        "Full automation of administrative processes and document generation",
+        "Scalable and auditable infrastructure for governmental systems"
+      ],
+      "tech_stack": [
+        "Django",
+        "DRF",
+        "Celery",
+        "RabbitMQ",
+        "Pandas",
+        "Docker",
+        "GitLab CI"
+      ],
+      "site_url": "https://distribuicao.plp.sethas.rn.gov.br/",
+      "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
+    },
+    "prp": {
+      "title": "PRP - SETHAS/RN",
+      "tag": "Data Engineering",
+      "short_desc": "Automated data processing and validation architecture for the Restaurante Popular Program in RN.",
+      "challenge": "Modernizing the data infrastructure for the 'Restaurante Popular' Program in RN, responsible for auditing thousands of subsidized meals daily. The system relied on manual processes, hindering reliability and governmental reporting.",
+      "solution": "Development of an automated Data Engineering architecture, featuring Python/Pandas ETL pipelines, PostgreSQL normalization layers, and asynchronous processing using Celery + Redis within a Dockerized environment.",
+      "impact": [
+        "Elimination of manual spreadsheet-based processes",
+        "Automated daily processing of thousands of records",
+        "Creation of a reliable foundation for governmental auditing and accountability"
+      ],
+      "tech_stack": [
+        "Python",
+        "Pandas",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "Docker"
+      ],
+      "site_url": "http://www.sethas.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=9940&ACT=&PAGE=0&PARM=&LBL=Restaurante+Popular",
+      "disclaimer": "Note: This is a governmental project with private source code. The link above directs to the program's institutional page."
+    },
+    "cineReserve": {
+      "title": "CineReserve",
+      "tag": "Full-Stack",
+      "short_desc": "A complete cinema ticket reservation platform. Robust API and a responsive frontend experience.",
+      "challenge": "Develop a platform to simulate a real cinema ecosystem, requiring asynchronous processes and handling high demand during simultaneous events, ensuring secure reservations.",
+      "solution": "The backend was designed to handle background processes (such as automated email dispatch and background processing), ensuring the user interface remains responsive. The architecture enabled an efficient service ecosystem.",
+      "solution_details": {
+        "architecture": {
+          "label": "Asynchronous Processing",
+          "text": "The architecture was designed to handle asynchronous processes — such as sending purchase confirmation emails — ensuring the interface doesn't freeze during requests."
+        },
+        "infrastructure": {
+          "label": "Containers & Deployment",
+          "text": "The backend was containerized to facilitate deployment and scalability, maintaining efficient communication with the React frontend."
+        }
+      },
+      "impact": [
+        "Fast, robust, and seamless booking experience for the end user",
+        "Scalable container-based architecture ready for production",
+        "Background processing integration for efficient I/O operations scaling"
+      ],
+      "tech_stack": [
+        "Python",
+        "Django REST Framework",
+        "Celery",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Docker Compose",
+        "Docker"
+      ],
+      "site_url": "https://cinereserve.lucasdaniel.dev.br",
+      "repo_url": "https://github.com/PatoCareca1/CineReserve",
+      "link_label": "View in Production"
+    },
+    "crowdless": {
+      "title": "Crowdless — Hackathon HackaPower",
+      "tag": "Tech Lead",
+      "short_desc": "1st place winning prototype built under pressure with technical leadership.",
+      "challenge": "\"How can youngsters interact safely during the pandemic?\" The challenge was to create solutions to engage social debate and public policies.",
+      "solution": "'Crowdless' — a tool for real-time sharing of sanitary data about environments, making it easier to choose safe places.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Highlights",
+          "text": "Development under pressure (27-hour marathon). Role as Tech Lead coordinating the team and key architectural decisions."
+        }
+      },
+      "impact": [
+        "Won 1st place based on: Creativity, Originality, Social Impact, Technical Quality, and Sustainability.",
+        "Delivered a fully functional prototype within the time constraint",
+        "Demonstrated technical leadership and team coordination under pressure",
+        "Validated the concept with judges and mentors"
+      ],
+      "quote": "\"It was our first hackathon... winning was completely unexpected and brought immense joy\" — Lucas Daniel, Team Leader.",
+      "tech_stack": [
+        "Python",
+        "Flask",
+        "jQuery",
+        "Bootstrap"
+      ],
+      "site_url": "https://portal.ifba.edu.br/jequie/noticias/2021/agosto/equipe-do-ifba-jequie-e-campea-do-hackathon-juventudes",
+      "link_label": "Read Official News",
+      "disclaimer": "Note: This is a hackathon project. You can check the official event page at the link above."
+    },
+    "miniShell": {
+      "title": "Mini-Shell (C Interpreter)",
+      "tag": "Systems Programming",
+      "short_desc": "An isolated and modular shell focused on security using Kernel API.",
+      "challenge": "Create an isolated and modular shell focused on security (Sandbox).",
+      "solution": "Strategic development using System Calls and isolation routines in a Unix environment.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Decision",
+          "text": "Utilization of native System Calls (stat, opendir, unlink, rename) instead of high-level libraries for file manipulation, directly communicating with the kernel to ensure absolute efficiency and low-level control."
+        },
+        "sandbox": {
+          "label": "Sandbox Logic",
+          "text": "Initialization routine that strictly isolates the user process within the /sandbox directory, effectively blocking unauthorized access and securing the execution environment."
+        }
+      },
+      "impact": [
+        "Robust implementation with Kernel API",
+        "Absolute control via system calls (syscalls)",
+        "Effective isolation of system processes"
+      ],
+      "tech_stack": [
+        "C",
+        "GCC",
+        "Make",
+        "Linux/WSL API"
+      ],
+      "site_url": "https://github.com/PatoCareca1/miniShell",
+      "link_label": "View on GitHub"
+    },
+    "fitTrack": {
+      "title": "FitTrack — Workout & Health",
+      "tag": "Full-Stack",
+      "short_desc": "Health tracking platform with multi-protocol support (REST/GraphQL).",
+      "challenge": "Unify the tracking of workouts, diet, and body measurements in a platform that supports multiple communication protocols (REST/GraphQL).",
+      "solution": "A robust Django-based architecture integrating REST and GraphQL endpoints with hybrid persistence and high security.",
+      "solution_details": {
+        "engineering": {
+          "label": "Engineering Solution",
+          "text": "Structured backend architecture with SimpleJWT to provide unified security across communication paradigms and implementation of hybrid persistence logic, blending a relational database and associated JSON files."
+        },
+        "graphql": {
+          "label": "GraphQL Power",
+          "text": "Adoption of Graphene-Django to enable fully optimized Queries and Mutations for workout and exercise routines, enhancing flexibility and request performance."
+        }
+      },
+      "impact": [
+        "Flexible architecture compatible with multiple protocols (REST & GraphQL)",
+        "Unified secure authentication via SimpleJWT",
+        "Consistent and hybrid information management"
+      ],
+      "tech_stack": [
+        "Python",
+        "Django",
+        "Graphene (GraphQL)",
+        "REST Framework",
+        "SQLite",
+        "Tailwind CSS"
+      ],
+      "site_url": "https://github.com/PatoCareca1/fittrack",
+      "link_label": "View on GitHub"
+    }
+  }
+}

@@ -1,0 +1,180 @@
+[
+  {
+    "slug": "django-zero-ao-deploy",
+    "chapter": 1,
+    "title": "Django do zero ao deploy",
+    "description": "Ambiente, projeto, banco, estáticos e um deploy real. O capítulo mais longo da trilha e o único que você precisa terminar antes dos outros.",
+    "level": "iniciante",
+    "stack": [
+      "Python",
+      "Django",
+      "Docker",
+      "Postgres"
+    ],
+    "prerequisites": [
+      "Python 3.11 ou superior, com `python --version` respondendo no terminal.",
+      "Linha de comando sem susto: navegar diretórios, editar arquivos, exportar variáveis de ambiente.",
+      "Docker Engine 24+ ou Docker Desktop instalado e rodando."
+    ],
+    "notNeeded": [
+      "experiência com Django",
+      "SQL avançado",
+      "Kubernetes"
+    ],
+    "readingTime": 24,
+    "published": true,
+    "publishedAt": "2026-05-12",
+    "updatedAt": "2026-07-10",
+    "releaseDate": null,
+    "repoUrl": "https://github.com/lucasdaniel/django-zero-ao-deploy",
+    "language": "pt",
+    "body": "A maior parte dos tutoriais de Django em português termina no momento em que o servidor de desenvolvimento sobe. Este começa ali e segue até a aplicação atendendo requisições de fora da sua máquina, com Postgres, Gunicorn e um processo de deploy que você consegue repetir.\n\n## Ambiente: venv e dependências fixadas\n\nInstalar Django com `sudo pip install` é a primeira dívida técnica do projeto. Um ambiente virtual por projeto isola versões e torna o build reproduzível dentro do container mais adiante.\n\n```bash\npython -m venv .venv\nsource .venv/bin/activate\npip install \"django==5.0.*\" \"psycopg[binary]\" gunicorn whitenoise\npip freeze > requirements.txt\ndjango-admin startproject config .\n```\n\nO ponto no fim do `startproject` evita a pasta duplicada que atrapalha o `COPY` do Dockerfile depois.\n\n## O projeto que já nasce dockerizado\n\nContainer desde o primeiro dia significa que a diferença entre a sua máquina e o servidor deixa de ser uma surpresa de sexta-feira.\n\n```dockerfile:Dockerfile\nFROM python:3.12-slim\n\nENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\nRUN python manage.py collectstatic --noinput\n\nCMD [\"gunicorn\", \"config.wsgi:application\", \"--bind\", \"0.0.0.0:8000\", \"--workers\", \"3\"]\n```\n\n> [!note]\n> `--workers 3` não é número mágico. Comece com `2 × núcleos + 1` e ajuste medindo, não adivinhando.\n\n## Postgres desde o primeiro commit\n\nSQLite é confortável e mente para você. Constraints, tipos, transações concorrentes e ordenação se comportam de outra forma em produção.\n\n- Migrations que passam no SQLite e falham no Postgres são um clássico de sexta à noite.\n- `JSONField`, índices parciais e `select_for_update` só existem de verdade no Postgres.\n- Ordenação com acento e busca por texto dependem de collation — algo que o SQLite ignora.\n\n> [!warning]\n> Com `ALLOWED_HOSTS` vazio em produção, o Django responde 400 antes de qualquer log útil. Configure na primeira variável de ambiente que você criar.\n\n## Configuração por ambiente\n\nUm pacote `settings/` com `base`, `dev` e `prod` deixa explícito o que muda entre ambientes. Segredo ausente derruba o boot na hora — e isso é bom.\n\n```python:config/settings/base.py\nimport os\nfrom pathlib import Path\n\nBASE_DIR = Path(__file__).resolve().parent.parent.parent\n\nSECRET_KEY = os.environ[\"DJANGO_SECRET_KEY\"]\nDEBUG = os.environ.get(\"DJANGO_DEBUG\", \"0\") == \"1\"\nALLOWED_HOSTS = os.environ[\"DJANGO_ALLOWED_HOSTS\"].split(\",\")\n```\n\n## Estáticos, Gunicorn e Whitenoise\n\nCom `DEBUG=False` o Django deixa de servir estáticos. Whitenoise resolve com uma linha de middleware.\n\n> [!pitfall]\n> Esquecer o `collectstatic` no build da imagem gera um container que sobe, responde e serve a aplicação sem nenhum CSS.\n\n## Deploy: build, migrate, health check\n\nMigrations aditivas antes do switch de tráfego, remoção de coluna só no deploy seguinte.\n\n## O que fica de fora, por enquanto\n\nCache, filas e observabilidade têm capítulo próprio. Terminar este já coloca a aplicação no ar.\n"
+  },
+  {
+    "slug": "primeira-api-drf",
+    "chapter": 2,
+    "title": "Sua primeira API com DRF",
+    "description": "Serializers, viewsets, autenticação por token e paginação, com testes desde o primeiro endpoint.",
+    "level": "intermediario",
+    "stack": [
+      "Django",
+      "DRF",
+      "Postgres"
+    ],
+    "prerequisites": [
+      "O capítulo 1 terminado, com a aplicação servindo em produção.",
+      "Um modelo de dados já migrado no Postgres."
+    ],
+    "notNeeded": [
+      "GraphQL",
+      "WebSockets",
+      "Kubernetes"
+    ],
+    "readingTime": 18,
+    "published": true,
+    "publishedAt": "2026-06-18",
+    "updatedAt": "2026-07-02",
+    "releaseDate": null,
+    "repoUrl": "https://github.com/lucasdaniel/primeira-api-drf",
+    "language": "pt",
+    "body": "Uma API que devolve JSON é fácil. Uma API que continua fácil de mudar depois de seis meses é outro assunto — e é sobre isso que este capítulo trata.\n\n## Serializers que não escondem regra de negócio\n\nValidação no serializer, regra no modelo ou no serviço. A viewset fica magra.\n\n```python:api/serializers.py\nfrom rest_framework import serializers\nfrom .models import Project\n\n\nclass ProjectSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Project\n        fields = ['id', 'name', 'slug', 'created_at']\n        read_only_fields = ['slug', 'created_at']\n```\n\n> [!note]\n> `read_only_fields` evita o endpoint aceitar campos que ele não deveria escrever. É a defesa mais barata contra mass assignment.\n\n## Paginação e filtros sem N+1\n\n`select_related` e `prefetch_related` são parte do contrato do endpoint, não otimização posterior.\n\n```python:api/views.py\nclass ProjectViewSet(viewsets.ModelViewSet):\n    serializer_class = ProjectSerializer\n    queryset = Project.objects.select_related('owner').prefetch_related('tags')\n```\n\n> [!pitfall]\n> Testar a listagem com três registros esconde o N+1. Popule o banco de teste com algumas centenas antes de confiar no tempo de resposta.\n\n## Autenticação por token\n\nToken simples resolve o primeiro cliente. JWT entra quando houver mais de um consumidor e expiração virar requisito.\n\n## Testes desde o primeiro endpoint\n\nUm teste por status code que o endpoint promete devolver. Se ele pode responder 404, existe um teste para o 404.\n"
+  },
+  {
+    "slug": "celery-background",
+    "chapter": 3,
+    "title": "Tarefas em background com Celery",
+    "description": "Filas, retries, agendamento com beat e o que monitorar quando um worker cai às três da manhã.",
+    "level": "intermediario",
+    "stack": [
+      "Celery",
+      "Redis",
+      "Docker"
+    ],
+    "prerequisites": [
+      "Os capítulos 1 e 2 terminados.",
+      "Redis rodando via Docker Compose."
+    ],
+    "notNeeded": [
+      "Kubernetes",
+      "RabbitMQ",
+      "Kafka"
+    ],
+    "readingTime": 21,
+    "published": false,
+    "publishedAt": null,
+    "updatedAt": null,
+    "releaseDate": "2026-08-15",
+    "repoUrl": null,
+    "language": "pt",
+    "body": "\n"
+  },
+  {
+    "slug": "django-zero-ao-deploy",
+    "chapter": 1,
+    "title": "Django from zero to deploy",
+    "description": "Environment, project, database, static files and a real deploy. The longest chapter in the track, and the only one you need to finish before the others.",
+    "level": "iniciante",
+    "stack": [
+      "Python",
+      "Django",
+      "Docker",
+      "Postgres"
+    ],
+    "prerequisites": [
+      "Python 3.11 or newer, with `python --version` answering in your terminal.",
+      "Comfort on the command line: navigating directories, editing files, exporting environment variables.",
+      "Docker Engine 24+ or Docker Desktop installed and running."
+    ],
+    "notNeeded": [
+      "Django experience",
+      "advanced SQL",
+      "Kubernetes"
+    ],
+    "readingTime": 24,
+    "published": true,
+    "publishedAt": "2026-05-12",
+    "updatedAt": "2026-07-10",
+    "releaseDate": null,
+    "repoUrl": "https://github.com/lucasdaniel/django-zero-ao-deploy",
+    "language": "en",
+    "body": "Most Django tutorials stop the moment the development server boots. This one starts there and goes until the application is serving requests from outside your machine, with Postgres, Gunicorn and a deploy process you can actually repeat.\n\n## Environment: venv and pinned dependencies\n\nInstalling Django with `sudo pip install` is the project's first piece of technical debt. A virtual environment per project isolates versions and makes the build reproducible inside the container later on.\n\n```bash\npython -m venv .venv\nsource .venv/bin/activate\npip install \"django==5.0.*\" \"psycopg[binary]\" gunicorn whitenoise\npip freeze > requirements.txt\ndjango-admin startproject config .\n```\n\nThe trailing dot on `startproject` avoids the duplicated folder that gets in the way of the Dockerfile's `COPY` later.\n\n## A project that is containerized from birth\n\nRunning in a container from day one means the gap between your machine and the server stops being a Friday afternoon surprise.\n\n```dockerfile:Dockerfile\nFROM python:3.12-slim\n\nENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\nRUN python manage.py collectstatic --noinput\n\nCMD [\"gunicorn\", \"config.wsgi:application\", \"--bind\", \"0.0.0.0:8000\", \"--workers\", \"3\"]\n```\n\n> [!note]\n> `--workers 3` is not a magic number. Start at `2 × cores + 1` and tune by measuring, not by guessing.\n\n## Postgres from the first commit\n\nSQLite is comfortable and it lies to you. Constraints, types, concurrent transactions and ordering all behave differently in production.\n\n- Migrations that pass on SQLite and fail on Postgres are a Friday-night classic.\n- `JSONField`, partial indexes and `select_for_update` only truly exist on Postgres.\n- Accent-aware ordering and text search depend on collation — something SQLite ignores.\n\n> [!warning]\n> With an empty `ALLOWED_HOSTS` in production, Django answers 400 before any useful log line. Set it in the very first environment variable you create.\n\n## Per-environment configuration\n\nA `settings/` package with `base`, `dev` and `prod` makes it explicit what changes between environments. A missing secret kills the boot immediately — and that is a good thing.\n\n```python:config/settings/base.py\nimport os\nfrom pathlib import Path\n\nBASE_DIR = Path(__file__).resolve().parent.parent.parent\n\nSECRET_KEY = os.environ[\"DJANGO_SECRET_KEY\"]\nDEBUG = os.environ.get(\"DJANGO_DEBUG\", \"0\") == \"1\"\nALLOWED_HOSTS = os.environ[\"DJANGO_ALLOWED_HOSTS\"].split(\",\")\n```\n\n## Static files, Gunicorn and Whitenoise\n\nWith `DEBUG=False` Django stops serving static files. Whitenoise fixes it with a single middleware line.\n\n> [!pitfall]\n> Forgetting `collectstatic` in the image build gives you a container that boots, responds, and serves the whole application without any CSS.\n\n## Deploy: build, migrate, health check\n\nAdditive migrations before the traffic switch; dropping a column only on the following deploy.\n\n## What is left out, for now\n\nCaching, queues and observability get their own chapters. Finishing this one already puts the application online.\n"
+  },
+  {
+    "slug": "primeira-api-drf",
+    "chapter": 2,
+    "title": "Your first API with DRF",
+    "description": "Serializers, viewsets, token authentication and pagination, with tests from the very first endpoint.",
+    "level": "intermediario",
+    "stack": [
+      "Django",
+      "DRF",
+      "Postgres"
+    ],
+    "prerequisites": [
+      "Chapter 1 finished, with the application serving in production.",
+      "A data model already migrated on Postgres."
+    ],
+    "notNeeded": [
+      "GraphQL",
+      "WebSockets",
+      "Kubernetes"
+    ],
+    "readingTime": 18,
+    "published": true,
+    "publishedAt": "2026-06-18",
+    "updatedAt": "2026-07-02",
+    "releaseDate": null,
+    "repoUrl": "https://github.com/lucasdaniel/primeira-api-drf",
+    "language": "en",
+    "body": "An API that returns JSON is easy. An API that is still easy to change six months later is another matter — and that is what this chapter is about.\n\n## Serializers that do not hide business rules\n\nValidation in the serializer, rules in the model or in the service. The viewset stays thin.\n\n```python:api/serializers.py\nfrom rest_framework import serializers\nfrom .models import Project\n\n\nclass ProjectSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Project\n        fields = ['id', 'name', 'slug', 'created_at']\n        read_only_fields = ['slug', 'created_at']\n```\n\n> [!note]\n> `read_only_fields` stops the endpoint from accepting fields it should never write. It is the cheapest defense against mass assignment.\n\n## Pagination and filters without N+1\n\n`select_related` and `prefetch_related` are part of the endpoint's contract, not a later optimization.\n\n```python:api/views.py\nclass ProjectViewSet(viewsets.ModelViewSet):\n    serializer_class = ProjectSerializer\n    queryset = Project.objects.select_related('owner').prefetch_related('tags')\n```\n\n> [!pitfall]\n> Testing the list endpoint with three records hides the N+1. Seed the test database with a few hundred before trusting the response time.\n\n## Token authentication\n\nA simple token solves the first client. JWT comes in when there is more than one consumer and expiry becomes a requirement.\n\n## Tests from the first endpoint\n\nOne test per status code the endpoint promises to return. If it can answer 404, there is a test for the 404.\n"
+  },
+  {
+    "slug": "celery-background",
+    "chapter": 3,
+    "title": "Background tasks with Celery",
+    "description": "Queues, retries, scheduling with beat, and what to monitor when a worker dies at three in the morning.",
+    "level": "intermediario",
+    "stack": [
+      "Celery",
+      "Redis",
+      "Docker"
+    ],
+    "prerequisites": [
+      "Chapters 1 and 2 finished.",
+      "Redis running through Docker Compose."
+    ],
+    "notNeeded": [
+      "Kubernetes",
+      "RabbitMQ",
+      "Kafka"
+    ],
+    "readingTime": 21,
+    "published": false,
+    "publishedAt": null,
+    "updatedAt": null,
+    "releaseDate": "2026-08-15",
+    "repoUrl": null,
+    "language": "en",
+    "body": "\n"
+  }
+]
