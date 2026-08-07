@@ -1,13 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Trophy } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Loader2, RotateCw, Trophy } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ProjectModal from './ProjectModal';
-// @ts-ignore
+import { useProjects } from '../hooks/useProjects';
+import type { Project } from '../types/project';
 import crowdlessCert from '../assets/hackathon.png';
-
-
 
 const cardAccents: Record<string, string> = {
     plp: 'from-emerald-500 to-teal-400',
@@ -19,8 +18,10 @@ const cardAccents: Record<string, string> = {
 const springTransition = { type: 'spring' as const, stiffness: 260, damping: 28 };
 
 const FeaturedProjects: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const { projects, status, retry } = useProjects(i18n.language);
+    const bySlug = useMemo(() => new Map(projects.map((project) => [project.slug, project])), [projects]);
 
     const [activeKey, setActiveKey] = useState('crowdless');
     const [queue, setQueue] = useState(['plp', 'miniShell', 'cineReserve']);
@@ -51,7 +52,7 @@ const FeaturedProjects: React.FC = () => {
     }, [queue, activeKey]);
 
     const visibleCards = getVisibleCards();
-    const techStack = t(`projects.${activeKey}.tech_stack`, { returnObjects: true }) as string[];
+    const active = bySlug.get(activeKey);
 
     return (
         <section id="featured-projects" className="mb-24">
@@ -68,107 +69,135 @@ const FeaturedProjects: React.FC = () => {
                 </button>
             </div>
 
-            <div className="flex flex-col gap-6">
-                <div className="w-full bg-white/95 dark:bg-slate-900/40 border border-manjaro-green/50 dark:border-manjaro-green/40 shadow-xl dark:shadow-manjaro-green/5 rounded-2xl overflow-hidden">
-                    <div className={`h-1.5 w-full bg-gradient-to-r ${cardAccents[activeKey] || 'from-gray-500 to-gray-400'}`} />
-                    <div className="p-6 md:p-8 min-h-[260px] flex flex-col md:flex-row gap-6 md:gap-8">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeKey}
-                                initial={{ x: '100%', opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                exit={{ x: '-100%', opacity: 0 }}
-                                transition={springTransition}
-                                className="flex-1 flex flex-col"
-                            >
-                                <div className="flex items-start justify-between gap-3 mb-3">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                                        {t(`projects.${activeKey}.tag`)}
-                                    </span>
-                                    {activeKey === 'crowdless' && (
-                                        <span className="flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 rounded-full shrink-0">
-                                            <Trophy size={11} />
-                                            1º Lugar
-                                        </span>
-                                    )}
-                                </div>
-
-                                <h4 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug mb-4">
-                                    {t(`projects.${activeKey}.title`)}
-                                </h4>
-
-                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                                    {t(`projects.${activeKey}.short_desc`)}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {Array.isArray(techStack) && techStack.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="px-2.5 py-1 font-mono text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <div className="mt-auto">
-                                    <button
-                                        onClick={() => setModalProject(activeKey)}
-                                        className="w-max flex items-center gap-2 text-manjaro-green font-semibold text-sm hover:gap-3 transition-all"
-                                    >
-                                        {t('projects.view_project')}
-                                        <ArrowRight size={14} />
-                                    </button>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-
-                        {activeKey === 'crowdless' && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={springTransition}
-                                className="w-full md:w-5/12 lg:w-1/3 flex-shrink-0"
-                            >
-                                <CertificateImage />
-                            </motion.div>
-                        )}
-                    </div>
+            {status === 'loading' && (
+                <div className="flex items-center gap-3 px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40">
+                    <Loader2 size={18} className="text-manjaro-green animate-spin flex-none" />
+                    <span className="text-[14.5px] text-gray-600 dark:text-gray-400">
+                        {t('projects.featured_projects.loading')}
+                    </span>
                 </div>
+            )}
 
-                <div className="hidden md:grid grid-cols-3 gap-4">
-                    <AnimatePresence mode="popLayout" initial={false}>
+            {status === 'error' && (
+                <div className="flex items-center gap-3.5 px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40">
+                    <AlertTriangle size={18} className="text-gray-600 dark:text-gray-400 flex-none" />
+                    <span className="flex-1 text-[14.5px] font-medium text-gray-900 dark:text-gray-100">
+                        {t('projects.featured_projects.error.title')}
+                    </span>
+                    <button
+                        type="button"
+                        onClick={retry}
+                        className="flex items-center gap-2 flex-none px-4 py-2.5 rounded-xl border border-manjaro-green/40 text-[13.5px] font-semibold text-manjaro-green hover:scale-[1.02] transition-transform"
+                    >
+                        <RotateCw size={14} />
+                        {t('projects.featured_projects.error.retry')}
+                    </button>
+                </div>
+            )}
+
+            {status === 'ready' && active && (
+                <div className="flex flex-col gap-6">
+                    <div className="w-full bg-white/95 dark:bg-slate-900/40 border border-manjaro-green/50 dark:border-manjaro-green/40 shadow-xl dark:shadow-manjaro-green/5 rounded-2xl overflow-hidden">
+                        <div className={`h-1.5 w-full bg-gradient-to-r ${cardAccents[activeKey] || 'from-gray-500 to-gray-400'}`} />
+                        <div className="p-6 md:p-8 min-h-[260px] flex flex-col md:flex-row gap-6 md:gap-8">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeKey}
+                                    initial={{ x: '100%', opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{ x: '-100%', opacity: 0 }}
+                                    transition={springTransition}
+                                    className="flex-1 flex flex-col"
+                                >
+                                    <div className="flex items-start justify-between gap-3 mb-3">
+                                        <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                                            {active.tag}
+                                        </span>
+                                        {activeKey === 'crowdless' && (
+                                            <span className="flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 rounded-full shrink-0">
+                                                <Trophy size={11} />
+                                                1º Lugar
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <h4 className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug mb-4">
+                                        {active.title}
+                                    </h4>
+
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                                        {active.shortDesc}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {active.techStack.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="px-2.5 py-1 font-mono text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-auto">
+                                        <button
+                                            onClick={() => setModalProject(activeKey)}
+                                            className="w-max flex items-center gap-2 text-manjaro-green font-semibold text-sm hover:gap-3 transition-all"
+                                        >
+                                            {t('projects.view_project')}
+                                            <ArrowRight size={14} />
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {activeKey === 'crowdless' && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={springTransition}
+                                    className="w-full md:w-5/12 lg:w-1/3 flex-shrink-0"
+                                >
+                                    <CertificateImage />
+                                </motion.div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="hidden md:grid grid-cols-3 gap-4">
+                        <AnimatePresence mode="popLayout" initial={false}>
+                            {visibleCards.map((key) => (
+                                <motion.div
+                                    key={key}
+                                    layout
+                                    initial={{ x: '-100%', opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{ x: '100%', opacity: 0 }}
+                                    transition={springTransition}
+                                    onClick={() => handleCardClick(key)}
+                                    className="cursor-pointer"
+                                >
+                                    <CarouselCard projectKey={key} project={bySlug.get(key)} />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2 md:hidden">
                         {visibleCards.map((key) => (
                             <motion.div
                                 key={key}
-                                layout
-                                initial={{ x: '-100%', opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                exit={{ x: '100%', opacity: 0 }}
-                                transition={springTransition}
+                                whileTap={{ scale: 0.95 }}
                                 onClick={() => handleCardClick(key)}
                                 className="cursor-pointer"
                             >
-                                <CarouselCard projectKey={key} t={t} />
+                                <MobileCard projectKey={key} project={bySlug.get(key)} />
                             </motion.div>
                         ))}
-                    </AnimatePresence>
+                    </div>
                 </div>
-
-                <div className="grid grid-cols-3 gap-2 md:hidden">
-                    {visibleCards.map((key) => (
-                        <motion.div
-                            key={key}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => handleCardClick(key)}
-                            className="cursor-pointer"
-                        >
-                            <MobileCard projectKey={key} t={t} />
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
+            )}
 
             <div className="flex justify-center mt-6 md:hidden">
                 <button
@@ -209,19 +238,21 @@ const CertificateImage: React.FC = () => {
     );
 };
 
-interface CarouselCardProps {
+interface ProjectCardProps {
     projectKey: string;
-    t: any;
+    project: Project | undefined;
 }
 
-const CarouselCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
+const CarouselCard: React.FC<ProjectCardProps> = ({ projectKey, project }) => {
+    if (!project) return null;
+
     return (
         <div className="group w-full text-left bg-white/95 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700/50 hover:border-manjaro-green/60 hover:shadow-lg dark:hover:shadow-none rounded-2xl overflow-hidden transition-colors duration-300 flex flex-col h-full">
             <div className={`h-1.5 w-full bg-gradient-to-r ${cardAccents[projectKey] || 'from-gray-500 to-gray-400'}`} />
             <div className="p-5 flex-grow flex flex-col gap-3">
                 <div className="flex items-start justify-between gap-3">
                     <span className="font-mono text-xs font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                        {t(`projects.${projectKey}.tag`)}
+                        {project.tag}
                     </span>
                     {projectKey === 'crowdless' && (
                         <span className="flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 rounded-full shrink-0">
@@ -231,17 +262,19 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
                     )}
                 </div>
                 <h4 className="font-display text-base font-bold text-gray-900 dark:text-gray-100 leading-snug">
-                    {t(`projects.${projectKey}.title`)}
+                    {project.title}
                 </h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                    {t(`projects.${projectKey}.short_desc`)}
+                    {project.shortDesc}
                 </p>
             </div>
         </div>
     );
 };
 
-const MobileCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
+const MobileCard: React.FC<ProjectCardProps> = ({ projectKey, project }) => {
+    if (!project) return null;
+
     return (
         <div className="w-full aspect-square bg-white/95 dark:bg-slate-900/40 border border-slate-700/50 hover:border-manjaro-green/60 rounded-xl overflow-hidden transition-colors duration-300 flex flex-col">
             <div className={`h-1 w-full bg-gradient-to-r ${cardAccents[projectKey] || 'from-gray-500 to-gray-400'}`} />
@@ -253,11 +286,11 @@ const MobileCard: React.FC<CarouselCardProps> = ({ projectKey, t }) => {
                     </span>
                 ) : (
                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 truncate">
-                        {t(`projects.${projectKey}.tag`)}
+                        {project.tag}
                     </span>
                 )}
                 <h4 className="font-display text-xs font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
-                    {t(`projects.${projectKey}.title`)}
+                    {project.title}
                 </h4>
             </div>
         </div>

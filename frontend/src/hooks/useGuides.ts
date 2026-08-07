@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { fetchGuides, normalizeLanguage } from '../api/guidesApi';
+import { fetchGuides } from '../api/guidesApi';
+import { normalizeLanguage } from '../utils/language';
 import type { Guide } from '../types/guide';
 
 export type GuidesStatus = 'loading' | 'ready' | 'error';

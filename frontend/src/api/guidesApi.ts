@@ -1,4 +1,5 @@
 import { httpGet, httpPost } from './http';
+import { normalizeLanguage } from '../utils/language';
 import type { Guide, GuideLevel } from '../types/guide';
 
 export type FeedbackVerdict = 'helpful' | 'missing';
@@ -23,8 +24,6 @@ interface GuidePayload {
     repo_url: string | null;
     body: string;
 }
-
-export const normalizeLanguage = (language: string): string => (language.startsWith('pt') ? 'pt' : 'en');
 
 const toGuide = (payload: GuidePayload): Guide => ({
     slug: payload.slug,

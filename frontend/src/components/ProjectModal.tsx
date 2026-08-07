@@ -6,6 +6,7 @@ import { X, Target, Server, Award, Code2, ExternalLink, Github } from 'lucide-re
 import chibiPro from '../assets/chibi_senior.png';
 import chibiYoung from '../assets/chibi_young.png';
 import hackathonImg from '../assets/hackathon.png';
+import { useProjects } from '../hooks/useProjects';
 
 interface ProjectModalProps {
     projectKey: string | null;
@@ -61,7 +62,8 @@ const panelGradients: Record<string, string> = {
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const { projects } = useProjects(i18n.language);
 
     // Close on Escape key
     useEffect(() => {
@@ -80,19 +82,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ projectKey, onClose }) => {
 
     if (!projectKey) return null;
 
-    const title = t(`projects.${projectKey}.title`);
-    const tag = t(`projects.${projectKey}.tag`);
-    const challenge = t(`projects.${projectKey}.challenge`);
-    const solution = t(`projects.${projectKey}.solution`);
-    const impactList = t(`projects.${projectKey}.impact`, { returnObjects: true }) as string[];
-    const techStack = t(`projects.${projectKey}.tech_stack`, { returnObjects: true }) as string[];
-    const siteUrl = t(`projects.${projectKey}.site_url`, { defaultValue: '#' });
-    const repoUrl = t(`projects.${projectKey}.repo_url`, { defaultValue: '' });
-    const disclaimer = t(`projects.${projectKey}.disclaimer`, { defaultValue: '' });
-    const linkLabel = t(`projects.${projectKey}.link_label`, { defaultValue: t('projects.visit_site') });
-    const quote = t(`projects.${projectKey}.quote`, { defaultValue: '' });
-    const solutionDetails = t(`projects.${projectKey}.solution_details`, { returnObjects: true, defaultValue: null }) as Record<string, { label: string; text: string }> | null;
-    const hasSolutionDetails = solutionDetails && typeof solutionDetails === 'object' && !Array.isArray(solutionDetails) && Object.keys(solutionDetails).length > 0;
+    const project = projects.find((item) => item.slug === projectKey);
+    if (!project) return null;
+
+    const { title, tag, challenge, solution, impact: impactList, techStack } = project;
+    const siteUrl = project.siteUrl ?? '#';
+    const repoUrl = project.repoUrl ?? '';
+    const disclaimer = project.disclaimer;
+    const linkLabel = project.linkLabel || t('projects.visit_site');
+    const quote = project.quote;
+    const solutionDetails = project.solutionDetails;
+    const hasSolutionDetails = Object.keys(solutionDetails).length > 0;
 
     const modalContent = (
         <AnimatePresence>
