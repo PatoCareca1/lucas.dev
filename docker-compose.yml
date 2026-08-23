@@ -27,7 +27,10 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      args:
+        REQUIREMENTS: requirements-dev.txt
     restart: unless-stopped
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
