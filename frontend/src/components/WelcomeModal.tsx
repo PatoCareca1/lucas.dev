@@ -17,13 +17,12 @@ type ModalState = 'initial' | 'asking' | 'no_1' | 'welcomed_recruiter' | 'welcom
 let hasSeenModalThisSession = false;
 
 const WelcomeModal: React.FC = () => {
-  const [modalState, setModalState] = useState<ModalState>('initial');
+  const [modalState, setModalState] = useState<ModalState>(() =>
+    hasSeenModalThisSession ? 'closed' : 'initial'
+  );
 
   useEffect(() => {
-    if (hasSeenModalThisSession) {
-      setModalState('closed');
-      return;
-    }
+    if (hasSeenModalThisSession) return;
 
     // Trigger modal 1.5s after mount
     const timer = setTimeout(() => {
