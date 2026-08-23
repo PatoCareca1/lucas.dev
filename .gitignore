@@ -8,4 +8,5 @@ venv/
 .env.production
 db.sqlite3
 backend/staticfiles/
+dev.log
 Technical Guides Section Design/
