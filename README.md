@@ -47,11 +47,49 @@ docker compose exec backend python manage.py migrate
 docker compose exec backend python manage.py createsuperuser
 ```
 
+Depois, popule o conteúdo de Guides e Projetos com os seeds:
+
+```bash
+docker compose exec backend python manage.py seed_guides
+docker compose exec backend python manage.py seed_projects
+```
+
 * API: `http://localhost:8000/api/` (docs interativos em `http://localhost:8000/api/docs`)
 * Admin: `http://localhost:8000/admin/`
 
 O frontend em desenvolvimento aponta para essa API local via `VITE_API_URL`
 (`frontend/.env.development`).
+
+## 🌱 Seeds
+
+O conteúdo de Guides e Projetos vive no banco, não no código do frontend. Dois management
+commands populam as tabelas a partir de snapshots JSON versionados dentro do próprio app:
+
+| Comando | O que importa | Fonte |
+| --- | --- | --- |
+| `seed_guides` | Os 3 capítulos de Guides em pt e en (6 registros) | `backend/guides/management/commands/data/guides.json` |
+| `seed_projects` | Os 7 projetos, cada um com tradução pt e en | `backend/projects/management/commands/data/projects.json` |
+
+Ambos fazem **upsert** (`update_or_create`), então são seguros de re-rodar: `seed_guides` casa
+por `(slug, language)` e `seed_projects` por `slug` e `(project, language)`. Rodar de novo
+sobrescreve edições feitas no `/admin/` para os registros que estão no JSON — para mudar o
+conteúdo de forma permanente, edite o JSON e rode o seed, ou pare de rodar o seed e passe a
+editar só pelo admin. Nenhum dos dois apaga registros que não estão no JSON.
+
+## 🧪 Testes
+
+O backend tem uma suíte mínima cobrindo os endpoints da API (health, guides, projects, feedback e
+rate limit) e os dois seeds. Roda com pytest + pytest-django, declarados em
+`backend/requirements-dev.txt` — o `Dockerfile` recebe o arquivo a instalar via
+`ARG REQUIREMENTS`, e o `docker-compose.yml` de dev passa `requirements-dev.txt` (o compose de
+produção usa o padrão, `requirements.txt`, e não leva pytest para a imagem).
+
+```bash
+docker compose exec backend pytest
+```
+
+Os testes criam e destroem um banco próprio (`test_<POSTGRES_DB>`), não tocam nos dados de
+desenvolvimento.
 
 ## 🚢 Deploy
 
@@ -87,6 +125,11 @@ docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python m
 docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python manage.py createsuperuser
 ```
 
+```bash
+docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python manage.py seed_guides
+docker compose -p lucasdev-prod -f docker-compose.prod.yml exec backend python manage.py seed_projects
+```
+
 Acesse `https://localhost/api/health` e `https://localhost/admin/` (o navegador vai reclamar do
 certificado local na primeira vez — é esperado, é auto-assinado pela CA interna do Caddy).
 
@@ -114,9 +157,11 @@ docker compose -p lucasdev-prod -f docker-compose.prod.yml down
    ```bash
    docker compose -f docker-compose.prod.yml up -d --build
    ```
-6. Rodar as migrações e criar o superusuário:
+6. Rodar as migrações, os seeds e criar o superusuário:
    ```bash
    docker compose -f docker-compose.prod.yml exec backend python manage.py migrate
+   docker compose -f docker-compose.prod.yml exec backend python manage.py seed_guides
+   docker compose -f docker-compose.prod.yml exec backend python manage.py seed_projects
    docker compose -f docker-compose.prod.yml exec backend python manage.py createsuperuser
    ```
 7. Apontar o DNS de `api.lucasdaniel.dev.br` (registro A) para o IP público da VM. O Caddy só
